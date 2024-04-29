@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "183226616065",
+    "project_id": "trim-spot",
+    "storage_bucket": "trim-spot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183226616065:android:9b9693204706f771deb300",
+        "android_client_info": {
+          "package_name": "in.client.trimspot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6TRs7ZvzrXVH4d-waSoq24Un3iM1i5Z4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183226616065:android:0495198a89cee0d2deb300",
+        "android_client_info": {
+          "package_name": "in.salon.trimspot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6TRs7ZvzrXVH4d-waSoq24Un3iM1i5Z4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
