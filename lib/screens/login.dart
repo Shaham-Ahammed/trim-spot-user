@@ -35,9 +35,11 @@ class LoginScreen extends StatelessWidget {
           BlocListener<LoginValidationBloc, LoginValidationState>(
             listener: (context, state) {
               if (state is LoginSuccess) {
-                Navigator.pop(context);
-                Navigator.of(context).push(FadeTransitionPageRoute(
-                    child: const BottomNavigationBarScreen()));
+               // Navigator.pop(context);
+               Navigator.of(context)
+                            .pushAndRemoveUntil(FadeTransitionPageRoute(
+                          child: const BottomNavigationBarScreen(),
+                        ),(route) => false,);
                 loginSuccessSnackBar(context).show(context);
               }
 
@@ -72,7 +74,7 @@ class LoginScreen extends StatelessWidget {
               listener: (context, state) {
             if (state is GoogleSigninSuccess) {
               Navigator.pop(context);
-              Navigator.of(context).push(FadeTransitionPageRoute(
+              Navigator.of(context).pushReplacement(FadeTransitionPageRoute(
                   child: const BottomNavigationBarScreen()));
               loginSuccessSnackBar(context).show(context);
             }

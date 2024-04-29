@@ -31,7 +31,7 @@ class HeadingAndLogoutButton extends StatelessWidget {
               fontColor: whiteColor),
           IconButton(
               onPressed: () {
-                logoutConfirmation(context);
+                logoutConfirmationFromProfile(context);
               },
               icon: Icon(
                 Icons.logout_outlined,

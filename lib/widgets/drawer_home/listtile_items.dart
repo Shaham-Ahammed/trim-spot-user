@@ -5,8 +5,8 @@ import 'package:trim_spot_user_side/screens/customer_support.dart';
 import 'package:trim_spot_user_side/utils/home/listtile_widget.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/utils/page%20transitions/fade_transition.dart';
+import 'package:trim_spot_user_side/widgets/drawer_home/logout_confirm.dart';
 import 'package:trim_spot_user_side/widgets/drawer_home/version_number.dart';
-import 'package:trim_spot_user_side/widgets/profile_widgets/logout_alert.dart';
 
 Expanded listviewDrawerHome(BuildContext context) {
   return Expanded(

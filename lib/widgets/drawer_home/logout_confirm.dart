@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:trim_spot_user_side/screens/login.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
+import 'package:trim_spot_user_side/utils/home/scaffold_key.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/utils/page%20transitions/fade_transition.dart';
 
-Future<dynamic> logoutConfirmationFromProfile(BuildContext context) {
+Future<dynamic> logoutConfirmation(BuildContext context) {
   return showDialog(
       context: context,
       builder: (context) {
@@ -49,12 +50,12 @@ Future<dynamic> logoutConfirmationFromProfile(BuildContext context) {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pushAndRemoveUntil(
-                          FadeTransitionPageRoute(
-                            child: const LoginScreen(),
-                          ),
-                          (route) => false,
-                        );
+                      //  Navigator.pop(context);
+                        homeScaffoldKey.currentState?.closeDrawer();
+                        Navigator.of(context)
+                            .pushAndRemoveUntil(FadeTransitionPageRoute(
+                          child: const LoginScreen(),
+                        ),(route) => false,);
                       },
                       child: myFont("Logout",
                           fontFamily: balooChettan,
