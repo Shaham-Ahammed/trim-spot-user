@@ -103,8 +103,8 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                                         ),
                                         serviceBookingScreenHeadings(
                                             context, "USER REVIEWS"),
-                                         UserReviews(widget.shop),
-                                        if (widget.shop[SalonDocumentModel.reviewsAndRatings].length > 2)
+                                         UserReviews(),
+                                      
                                           const ViewMoreRatingsButton(),
                                         SizedBox(
                                           height:
