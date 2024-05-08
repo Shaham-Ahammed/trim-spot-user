@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/location_permission_bloc/location_permission_bloc.dart';
-import 'package:trim_spot_user_side/screens/booking_success.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/error_snackbars.dart';
 import 'package:trim_spot_user_side/utils/home/scaffold_key.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
-import 'package:trim_spot_user_side/utils/page%20transitions/no_transition_page_route.dart';
 import 'package:trim_spot_user_side/utils/screen_padding.dart';
 import 'package:trim_spot_user_side/widgets/home_widgets/app_bar.dart';
 import 'package:trim_spot_user_side/widgets/home_widgets/category_items.dart';
@@ -59,9 +57,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: mediaqueryHeight(0.03, context),
                     ),
                     GestureDetector(
-                        onTap: () => Navigator.of(context).push(
-                            NoTransitionPageRoute(
-                                child: const BookingFailureMessageScreen())),
+                        onTap: ()  {
+                        
+                        
+                        },
                         child: const SearchBox()),
                     SizedBox(
                       height: mediaqueryHeight(0.02, context),

@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:trim_spot_user_side/data/shared_preference/functions.dart';
 import 'package:trim_spot_user_side/screens/login.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
@@ -49,13 +52,15 @@ Future<dynamic> logoutConfirmation(BuildContext context) {
                       color: greyColor3,
                     ),
                     GestureDetector(
-                      onTap: () {
-                      //  Navigator.pop(context);
+                      onTap: () async {
+                        await SharedPreferenceOperation().setGmail("");
                         homeScaffoldKey.currentState?.closeDrawer();
-                        Navigator.of(context)
-                            .pushAndRemoveUntil(FadeTransitionPageRoute(
-                          child: const LoginScreen(),
-                        ),(route) => false,);
+                        Navigator.of(context).pushAndRemoveUntil(
+                          FadeTransitionPageRoute(
+                            child: const LoginScreen(),
+                          ),
+                          (route) => false,
+                        );
                       },
                       child: myFont("Logout",
                           fontFamily: balooChettan,

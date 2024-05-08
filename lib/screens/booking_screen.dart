@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/service_booking_blocs/date_selection_bloc/date_selection_bloc.dart';
 import 'package:trim_spot_user_side/blocs/service_booking_blocs/service_selected_bloc/service_selected_bloc.dart';
 import 'package:trim_spot_user_side/blocs/slot_selection_bloc/slot_selection_bloc.dart';
-import 'package:trim_spot_user_side/data/repository/document_model.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/utils/service_booking/animation_controller.dart';
@@ -66,13 +65,13 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                   width: mediaqueryWidth(1, context),
                   height: mediaqueryHeight(0.3, context),
                 ),
-                 Positioned(child: ShopImageDisplay(widget.shop)),
+                Positioned(child: ShopImageDisplay(widget.shop)),
                 const BackButton(),
                 const BookmarkAnimationLottie()
               ],
             ),
-            shopName(context,widget.shop),
-             ShopLocation(widget.shop),
+            shopName(context, widget.shop),
+            ShopLocation(widget.shop),
             SizedBox(
               height: mediaqueryHeight(0.02, context),
             ),
@@ -96,16 +95,16 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                                       children: [
                                         serviceBookingScreenHeadings(
                                             context, "WORKING HOURS"),
-                                        workingHourContainerField(context,widget.shop),
+                                        workingHourContainerField(
+                                            context, widget.shop),
                                         SizedBox(
                                           height:
                                               mediaqueryHeight(0.02, context),
                                         ),
                                         serviceBookingScreenHeadings(
                                             context, "USER REVIEWS"),
-                                         UserReviews(),
-                                      
-                                          const ViewMoreRatingsButton(),
+                                        const UserReviews(),
+                                        const ViewMoreRatingsButton(),
                                         SizedBox(
                                           height:
                                               mediaqueryHeight(0.012, context),

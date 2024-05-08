@@ -17,8 +17,8 @@ import 'package:trim_spot_user_side/widgets/otp_verification_widgets/backgorund_
 import 'package:trim_spot_user_side/widgets/signup_screen/screen_padding.dart';
 
 class OtpVerificationScreen extends StatelessWidget {
- final bool fromLogin;
-  const OtpVerificationScreen({super.key,required this.fromLogin});
+  final bool fromLogin;
+  const OtpVerificationScreen({super.key, required this.fromLogin});
 
   @override
   Widget build(BuildContext context) {
@@ -27,29 +27,39 @@ class OtpVerificationScreen extends StatelessWidget {
         BlocListener<FormValidationBloc, FormValidationState>(
           listener: (context, state) {
             if (state is NavigateToHomePage) {
-           
+            
               loginSuccessSnackBar(context).show(context);
+            }
+            if (state is EmailVerificationFailedFromOtpPage) {
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(errorSnackBar("otp verification failed"));
             }
 
             if (state is RegisrationFailure) {
+       
               ScaffoldMessenger.of(context)
                   .showSnackBar(errorSnackBar(state.exception));
-              Navigator.pop(context);
             }
-            if (state is LoadingStateOtpScreen) {
-              loadingIndicator(context);
-            }
+           
           },
         ),
         BlocListener<LoginValidationBloc, LoginValidationState>(
           listener: (context, state) {
             if (state is NavigateToHomePage) {
               Navigator.pop(context);
-              Navigator.of(context).push(NoTransitionPageRoute(
-                  child: const BottomNavigationBarScreen()));
+              Navigator.of(context).pushAndRemoveUntil(
+                NoTransitionPageRoute(
+                  child: const BottomNavigationBarScreen(),
+                ),
+                (route) => false,
+              );
               loginSuccessSnackBar(context).show(context);
             }
-
+       if (state is EmailVerificationFailedFromLoginOtpPage) {
+            ScaffoldMessenger.of(context)
+                  .showSnackBar(errorSnackBar("otp verification failed"));
+       }
             if (state is LoadingStateLogin) {
               loadingIndicator(context);
             }
@@ -77,12 +87,14 @@ class OtpVerificationScreen extends StatelessWidget {
                     SizedBox(
                       height: mediaqueryHeight(0.029, context),
                     ),
-                    submitButton(context,fromLogin),
+                    submitButton(context, fromLogin),
                     SizedBox(
                       height: mediaqueryHeight(0.19, context),
                     ),
                     resendEmailText(context),
-                    ResendEmailButton(fromLogin: fromLogin,)
+                    ResendEmailButton(
+                      fromLogin: fromLogin,
+                    )
                   ],
                 ),
               ),

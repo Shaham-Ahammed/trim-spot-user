@@ -49,15 +49,18 @@ class SignUpScreen extends StatelessWidget {
                 if (state is LoadingState) {
                   loadingIndicator(context);
                 }
-                if (state is RegisrationFailure) {
+                if (state is RegisrationFailureFromSignUpPage) {
                   registerEmailController.clear();
                   ScaffoldMessenger.of(context)
                       .showSnackBar(errorSnackBar(state.exception));
                   Navigator.pop(context);
                 }
-                if (state is NavigateToEmailVerficationPage) {
-                  Navigator.of(context).push(
-                      SlideTransitionPageRoute(child: const OtpVerificationScreen(fromLogin: false,)));
+                if (state is NavigateToEmailVerficationPageFromRegister) {
+                  Navigator.pop(context);
+                  Navigator.of(context).push(SlideTransitionPageRoute(
+                      child: const OtpVerificationScreen(
+                    fromLogin: false,
+                  )));
                 }
               },
               builder: (context, state) {

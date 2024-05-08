@@ -16,9 +16,9 @@ import 'package:trim_spot_user_side/blocs/profile_blocs/user_profile_image_bloc/
 import 'package:trim_spot_user_side/blocs/profile_image_bloc/profile_image_bloc.dart';
 import 'package:trim_spot_user_side/blocs/user_form_validation/form_validation_bloc.dart';
 import 'package:trim_spot_user_side/firebase_options.dart';
+import 'package:trim_spot_user_side/screens/splash_screen.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'blocs/on_boarding_bloc/onboardind_bloc_bloc.dart';
-import 'screens/introduction_page.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -63,7 +63,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
           bottomSheetTheme:
               const BottomSheetThemeData(backgroundColor: introductionColor)),
-      home: FirstIntroductionPage(),
+      home: const SplashScreen(),
     );
   }
 }

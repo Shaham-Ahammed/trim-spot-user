@@ -35,11 +35,13 @@ class LoginScreen extends StatelessWidget {
           BlocListener<LoginValidationBloc, LoginValidationState>(
             listener: (context, state) {
               if (state is LoginSuccess) {
-               // Navigator.pop(context);
-               Navigator.of(context)
-                            .pushAndRemoveUntil(FadeTransitionPageRoute(
-                          child: const BottomNavigationBarScreen(),
-                        ),(route) => false,);
+                // Navigator.pop(context);
+                Navigator.of(context).pushAndRemoveUntil(
+                  FadeTransitionPageRoute(
+                    child: const BottomNavigationBarScreen(),
+                  ),
+                  (route) => false,
+                );
                 loginSuccessSnackBar(context).show(context);
               }
 
@@ -55,14 +57,16 @@ class LoginScreen extends StatelessWidget {
                     .showSnackBar(networkErrorSnackbar(context));
               }
               if (state is EmailNotVerified) {
-                  ScaffoldMessenger.of(context)
+                ScaffoldMessenger.of(context)
                     .showSnackBar(errorSnackBar("please verify your email"));
               }
 
               if (state is NavigateToOtPage) {
-                    Navigator.pop(context);
-                    Navigator.of(context).push(SlideTransitionPageRoute(
-                    child: const OtpVerificationScreen(fromLogin: true,)));
+                Navigator.pop(context);
+                Navigator.of(context).push(SlideTransitionPageRoute(
+                    child: const OtpVerificationScreen(
+                  fromLogin: true,
+                )));
               }
 
               if (state is AuthenticatingUser) {
@@ -73,9 +77,12 @@ class LoginScreen extends StatelessWidget {
           BlocListener<GoogleSignInBloc, GoogleSignInState>(
               listener: (context, state) {
             if (state is GoogleSigninSuccess) {
-              Navigator.pop(context);
-              Navigator.of(context).pushReplacement(FadeTransitionPageRoute(
-                  child: const BottomNavigationBarScreen()));
+         //     Navigator.pop(context);
+              Navigator.of(context).pushAndRemoveUntil(
+                FadeTransitionPageRoute(
+                    child: const BottomNavigationBarScreen()),
+                (route) => false,
+              );
               loginSuccessSnackBar(context).show(context);
             }
             if (state is ProcessingLogin) {

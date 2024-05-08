@@ -13,13 +13,13 @@ final class IncorrectDetails extends LoginValidationState {}
 
 final class NetworkError extends LoginValidationState {}
 
-final class LoadingStateLogin extends LoginValidationState{}
+final class LoadingStateLogin extends LoginValidationState {}
+
 final class EmailNotVerified extends LoginValidationState {}
 
-final class NavigateToOtPage extends LoginValidationState {
-final  User user;
+final class NavigateToOtPage extends LoginValidationState {}
 
-  NavigateToOtPage(this.user);
-}
+final class EmailVerificationFailedFromOtpPage extends LoginValidationState {}
 
-final class EmailVerificationFailedFromOtpPage extends LoginValidationState{}
+final class EmailVerificationFailedFromLoginOtpPage
+    extends LoginValidationState {}
