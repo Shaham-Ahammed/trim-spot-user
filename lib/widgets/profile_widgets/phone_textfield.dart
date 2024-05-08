@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/profile_blocs/phone_bloc/profile_phone_bloc.dart';
-import 'package:trim_spot_user_side/screens/edit_phone_number.dart';
+
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
@@ -18,7 +18,7 @@ class PhoneTextField extends StatelessWidget {
     return BlocBuilder<ProfilePhoneBloc, ProfilePhoneState>(
       builder: (context, state) {
         return Container(
-          height: mediaqueryHeight(0.05, context),
+          height: mediaqueryHeight(0.06, context),
           decoration: BoxDecoration(
               color: state.editPressed ? whiteColor : greyColor3,
               borderRadius: BorderRadius.circular(8)),
@@ -30,10 +30,26 @@ class PhoneTextField extends StatelessWidget {
               children: [
                 Expanded(
                     child: TextFormField(
+                  keyboardType: TextInputType.phone,
+                  maxLength: 10,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "please enter your phone number";
+                    } else if (value.length < 10) {
+                      return "enter a valid number";
+                    }
+
+                    return null;
+                  },
                   style: TextStyle(
                       color: state.editPressed ? blackColor : whiteColor,
                       fontFamily: b612),
-                  decoration: const InputDecoration(border: InputBorder.none),
+                  decoration: InputDecoration(
+                    counterText: "",
+                      contentPadding: EdgeInsets.symmetric(
+                          vertical: mediaqueryHeight(0.0072, context)),
+                      border: InputBorder.none),
                   controller: profilePhoneController,
                   cursorColor: Colors.blueGrey.shade200,
                   enableInteractiveSelection: false,
@@ -41,10 +57,11 @@ class PhoneTextField extends StatelessWidget {
                 )),
                 GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(
-                          NoTransitionPageRoute(child: (const EditPhoneScreen())));
+                      context
+                          .read<ProfilePhoneBloc>()
+                          .add(ProfilPhoneEditButtonPressed(editPressed: true));
                     },
-                    child: const Icon(Icons.edit))
+                    child: Icon(Icons.edit))
               ],
             ),
           ),

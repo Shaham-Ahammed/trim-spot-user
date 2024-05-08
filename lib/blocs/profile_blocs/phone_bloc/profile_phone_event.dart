@@ -3,8 +3,8 @@ part of 'profile_phone_bloc.dart';
 @immutable
 sealed class ProfilePhoneEvent {}
 
-final class ProfilPhoneEdit extends ProfilePhoneEvent {
+final class ProfilPhoneEditButtonPressed extends ProfilePhoneEvent {
  final bool editPressed;
 
-  ProfilPhoneEdit({required this.editPressed});
+  ProfilPhoneEditButtonPressed({required this.editPressed});
 }

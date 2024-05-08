@@ -2,7 +2,7 @@
 
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:trim_spot_user_side/data/data_provider/add_image_to_firebase.dart';
-import 'package:trim_spot_user_side/data/data_provider/user_data.dart';
+import 'package:trim_spot_user_side/data/data_provider/register_user_data.dart';
 import 'package:trim_spot_user_side/data/firebase_collection_references/user_information_reference.dart';
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
 import 'package:trim_spot_user_side/data/shared_preference/functions.dart';

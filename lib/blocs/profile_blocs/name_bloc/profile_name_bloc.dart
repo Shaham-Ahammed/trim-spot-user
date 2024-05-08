@@ -7,12 +7,12 @@ part 'profile_name_state.dart';
 
 class ProfileNameBloc extends Bloc<ProfileNameEvent, ProfileNameState> {
   ProfileNameBloc()
-      : super(const ProfileNameInitial(editPressed: false, name: "jack robert")) {
+      : super(
+            const ProfileNameInitial(editPressed: false)) {
     on<NameEditButtonPressed>(_nameEditButtonPressed);
   }
   _nameEditButtonPressed(
       NameEditButtonPressed event, Emitter<ProfileNameState> emit) {
-    emit(ProfileNameInitial(name: state.name, editPressed: event.editPressed));
-  
+    emit(ProfileNameInitial( editPressed: event.editPressed));
   }
 }

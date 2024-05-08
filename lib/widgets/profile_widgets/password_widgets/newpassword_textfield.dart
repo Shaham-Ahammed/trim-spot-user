@@ -5,7 +5,6 @@ import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/utils/profile_screen/controllers.dart';
-
 class NewPasswordTextFormField extends StatelessWidget {
   const NewPasswordTextFormField({
     super.key,
@@ -16,8 +15,16 @@ class NewPasswordTextFormField extends StatelessWidget {
     return TextFormField(
       controller: profileNewPasswordController,
       cursorColor: greyColor,
-      style: const TextStyle(color: whiteColor),
-      onChanged: (value) {},
+      style: TextStyle(color: whiteColor),
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "please enter your new password";
+        } else if (value.length < 8) {
+          return "must contain atleast 8 characters";
+        }
+        return null;
+      },
       decoration: InputDecoration(
         labelStyle: TextStyle(
           color: greyColor3,
@@ -25,8 +32,8 @@ class NewPasswordTextFormField extends StatelessWidget {
           fontFamily: balooChettan,
         ),
         focusedBorder:
-            const OutlineInputBorder(borderSide: BorderSide(color: cyanColor)),
-        border: const OutlineInputBorder(),
+            OutlineInputBorder(borderSide: BorderSide(color: cyanColor)),
+        border: OutlineInputBorder(),
         contentPadding:
             EdgeInsets.symmetric(horizontal: mediaqueryWidth(0.04, context)),
         labelText: 'New Password',

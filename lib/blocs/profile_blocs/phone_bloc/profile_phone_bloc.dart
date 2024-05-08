@@ -5,11 +5,10 @@ part 'profile_phone_event.dart';
 part 'profile_phone_state.dart';
 
 class ProfilePhoneBloc extends Bloc<ProfilePhoneEvent, ProfilePhoneState> {
-  ProfilePhoneBloc()
-      : super(const ProfilePhoneInitial(editPressed: false, phone: "9961628874")) {
-    on<ProfilPhoneEdit>(_profilePhoneEdit);
+  ProfilePhoneBloc() : super(const ProfilePhoneInitial(editPressed: false)) {
+    on<ProfilPhoneEditButtonPressed>(_profilePhoneEdit);
   }
-  _profilePhoneEdit(ProfilPhoneEdit event, Emitter<ProfilePhoneState> emit) {
-    emit(ProfilePhoneInitial(phone: state.phone, editPressed: event.editPressed));
+  _profilePhoneEdit(ProfilPhoneEditButtonPressed event, Emitter<ProfilePhoneState> emit) {
+    emit(ProfilePhoneInitial(editPressed: event.editPressed));
   }
 }

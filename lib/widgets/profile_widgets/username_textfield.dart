@@ -16,7 +16,7 @@ class UserNameTextField extends StatelessWidget {
     return BlocBuilder<ProfileNameBloc, ProfileNameState>(
       builder: (context, state) {
         return Container(
-          height: mediaqueryHeight(0.05, context),
+          height: mediaqueryHeight(0.06, context),
           decoration: BoxDecoration(
               color: state.editPressed ? whiteColor : greyColor3,
               borderRadius: BorderRadius.circular(8)),
@@ -28,10 +28,21 @@ class UserNameTextField extends StatelessWidget {
               children: [
                 Expanded(
                     child: TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "please enter a name";
+                    } else {
+                      return null;
+                    }
+                  },
                   style: TextStyle(
                       color: state.editPressed ? blackColor : whiteColor,
                       fontFamily: b612),
-                  decoration: const InputDecoration(border: InputBorder.none),
+                  decoration: InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(
+                          vertical: mediaqueryHeight(0.0072, context)),
+                      border: InputBorder.none),
                   controller: profileNameController,
                   cursorColor: Colors.blueGrey.shade200,
                   enableInteractiveSelection: false,
@@ -43,7 +54,7 @@ class UserNameTextField extends StatelessWidget {
                           .read<ProfileNameBloc>()
                           .add(NameEditButtonPressed(editPressed: true));
                     },
-                    child: const Icon(Icons.edit))
+                    child: Icon(Icons.edit))
               ],
             ),
           ),

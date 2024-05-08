@@ -2,14 +2,19 @@ part of 'profile_user_image_bloc.dart';
 
 @immutable
 sealed class ProfileUserImageState {
-  final String profileImage;
+  final Uint8List? newProfileUnit8list;
   final String newImagePath;
+  final String originalProfilePic;
 
-  const ProfileUserImageState({required this.profileImage, required this.newImagePath});
- 
+  ProfileUserImageState(
+      {required this.newProfileUnit8list,
+      required this.newImagePath,
+      required this.originalProfilePic});
 }
 
 final class ProfileImageInitial extends ProfileUserImageState {
-  const ProfileImageInitial({required super.profileImage, required super.newImagePath});
-
+  ProfileImageInitial(
+      {required super.newProfileUnit8list,
+      required super.newImagePath,
+      required super.originalProfilePic});
 }

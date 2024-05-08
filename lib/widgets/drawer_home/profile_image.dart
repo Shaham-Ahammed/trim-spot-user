@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_user_side/screens/profile.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
@@ -13,7 +15,14 @@ class ProfileImageDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: mediaqueryHeight(0.05, context),
-      backgroundImage: const AssetImage("assets/images/s2.jpg"),
+      backgroundImage: context
+              .watch<UserDetailsBloc>()
+              .state
+              .profileImage
+              .isEmpty
+          ? const AssetImage("assets/images/profile upload.png")
+          : NetworkImage(context.watch<UserDetailsBloc>().state.profileImage)
+              as ImageProvider,
     );
   }
 }
@@ -34,14 +43,12 @@ class ProfileImageEditButton extends StatelessWidget {
           child: InkWell(
             onTap: () {
               Navigator.pop(context);
-              Navigator.of(context).push(
-                  FadeTransitionPageRoute(
-                      child: const ProfileScreen()));
+              Navigator.of(context)
+                  .push(FadeTransitionPageRoute(child: const ProfileScreen()));
             },
             borderRadius: BorderRadius.circular(90),
             child: Container(
-              padding: EdgeInsets.all(
-                  mediaqueryHeight(0.007, context)),
+              padding: EdgeInsets.all(mediaqueryHeight(0.007, context)),
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
               ),
@@ -54,4 +61,3 @@ class ProfileImageEditButton extends StatelessWidget {
         ));
   }
 }
-

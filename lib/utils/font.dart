@@ -6,17 +6,18 @@ const String bebasNeue = "BebasNeue";
 const String b612 = "B612";
 const String balooChettan = "Baloo Chettan";
 
-myFont( String text,
-    {required  String fontFamily,
+myFont(String text,
+    {required String fontFamily,
     required double fontSize,
     required FontWeight fontWeight,
+    TextOverflow? overflow,
     required Color fontColor,
-    TextAlign textalign=TextAlign.start}) {
+    TextAlign textalign = TextAlign.start}) {
   return Text(
     text,
     textAlign: textalign,
     style: TextStyle(
-      
+        overflow: overflow,
         fontFamily: fontFamily,
         fontSize: fontSize,
         fontWeight: fontWeight,

@@ -13,3 +13,10 @@ final TextEditingController profileNewPasswordController =
     TextEditingController();
 
 final TextEditingController newPhoneController = TextEditingController();
+
+
+final TextEditingController setNewPasswordController =
+    TextEditingController();
+
+final TextEditingController confirmSetNewPasswordController =
+    TextEditingController();

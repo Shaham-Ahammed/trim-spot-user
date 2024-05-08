@@ -9,9 +9,9 @@ import 'package:trim_spot_user_side/blocs/google_sign_in_bloc/google_sign_in_blo
 import 'package:trim_spot_user_side/blocs/location_permission_bloc/location_permission_bloc.dart';
 import 'package:trim_spot_user_side/blocs/login_validation/login_validation_bloc.dart';
 import 'package:trim_spot_user_side/blocs/nearby_salons_bloc/nearby_salons_bloc.dart';
-import 'package:trim_spot_user_side/blocs/profile_blocs/email_bloc/profile_email_bloc.dart';
 import 'package:trim_spot_user_side/blocs/profile_blocs/name_bloc/profile_name_bloc.dart';
 import 'package:trim_spot_user_side/blocs/profile_blocs/phone_bloc/profile_phone_bloc.dart';
+import 'package:trim_spot_user_side/blocs/profile_blocs/profile_password_bloc/profile_password_bloc.dart';
 import 'package:trim_spot_user_side/blocs/profile_blocs/user_profile_image_bloc/profile_user_image_bloc.dart';
 import 'package:trim_spot_user_side/blocs/profile_image_bloc/profile_image_bloc.dart';
 import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
@@ -31,10 +31,11 @@ void main(List<String> args) async {
   Bloc.observer = AppBlocObserver();
   runApp(MultiBlocProvider(
     providers: [
+         BlocProvider<ProfilePasswordBloc>(create: (context) => ProfilePasswordBloc()),
        BlocProvider<UserDetailsBloc>(create: (context) => UserDetailsBloc()),
         BlocProvider<LocationPermissionBloc>(create: (context) => LocationPermissionBloc()),
        BlocProvider<BookMarkAnimationBloc>(create: (context) => BookMarkAnimationBloc()),
-      BlocProvider<ProfileEmailBloc>(create: (context) => ProfileEmailBloc()),
+  
       BlocProvider<ProfileNameBloc>(create: (context) => ProfileNameBloc()),
       BlocProvider<ProfilePhoneBloc>(create: (context) => ProfilePhoneBloc()),
       BlocProvider<ProfileUserImageBloc>(

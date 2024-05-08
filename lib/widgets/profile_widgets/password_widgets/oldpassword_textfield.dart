@@ -1,12 +1,14 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/profile_screen/controllers.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 
-class OldPasswordTextField extends StatelessWidget {
-  const OldPasswordTextField({
+class oldPasswordTextField extends StatelessWidget {
+  const oldPasswordTextField({
     super.key,
   });
 
@@ -15,8 +17,19 @@ class OldPasswordTextField extends StatelessWidget {
     return TextFormField(
       controller: profileOldPasswordController,
       cursorColor: greyColor,
-      style: const TextStyle(color: whiteColor),
-      onChanged: (value) {},
+      style: TextStyle(color: whiteColor),
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "please enter your current password";
+        } else if (value !=
+            BlocProvider.of<UserDetailsBloc>(context, listen: false)
+                .state
+                .password) {
+          return "incorrect password";
+        }
+        return null;
+      },
+        autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         labelStyle: TextStyle(
           color: greyColor3,
@@ -24,8 +37,8 @@ class OldPasswordTextField extends StatelessWidget {
           fontFamily: balooChettan,
         ),
         focusedBorder:
-            const OutlineInputBorder(borderSide: BorderSide(color: cyanColor)),
-        border: const OutlineInputBorder(),
+            OutlineInputBorder(borderSide: BorderSide(color: cyanColor)),
+        border: OutlineInputBorder(),
         contentPadding:
             EdgeInsets.symmetric(horizontal: mediaqueryWidth(0.04, context)),
         labelText: 'Old Password',
