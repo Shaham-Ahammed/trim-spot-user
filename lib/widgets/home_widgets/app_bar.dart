@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:trim_spot_user_side/blocs/location_permission_bloc/location_permission_bloc.dart';
-import 'package:trim_spot_user_side/blocs/profile_image_bloc/profile_image_bloc.dart';
+import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/home/scaffold_key.dart';
@@ -57,7 +57,7 @@ class NameAndLocation extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        myFont("JACK JONES",
+        myFont(context.watch<UserDetailsBloc>().state.userName,
             fontFamily: balooChettan,
             fontSize: mediaqueryHeight(0.023, context),
             fontWeight: FontWeight.normal,
@@ -72,7 +72,8 @@ class NameAndLocation extends StatelessWidget {
                 context,
               ),
             ),
-            myFont(context.watch<LocationPermissionBloc>().state.currentLocation,
+            myFont(
+                context.watch<LocationPermissionBloc>().state.currentLocation,
                 fontFamily: balooChettan,
                 fontSize: mediaqueryHeight(0.018, context),
                 fontWeight: FontWeight.normal,
@@ -91,13 +92,13 @@ class ProfileImageHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProfileImageBloc, ProfileImageState>(
+    return BlocBuilder<UserDetailsBloc, UserDetailsState>(
       builder: (context, state) {
         return CircleAvatar(
-          radius: mediaqueryWidth(0.06, context),
-          backgroundImage: state.imageInBytes == null
+          radius: mediaqueryWidth(0.07, context),
+          backgroundImage: state.profileImage.isEmpty
               ? const AssetImage("assets/images/profile upload.png")
-              : MemoryImage(state.imageInBytes!) as ImageProvider,
+              : NetworkImage(state.profileImage) as ImageProvider,
         );
       },
     );

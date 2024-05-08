@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/google_sign_in_bloc/google_sign_in_bloc.dart';
 
 import 'package:trim_spot_user_side/blocs/login_validation/login_validation_bloc.dart';
+import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_user_side/screens/bottom_navigation.dart';
 import 'package:trim_spot_user_side/screens/otp_verification.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
@@ -35,6 +36,9 @@ class LoginScreen extends StatelessWidget {
           BlocListener<LoginValidationBloc, LoginValidationState>(
             listener: (context, state) {
               if (state is LoginSuccess) {
+                context
+                    .read<UserDetailsBloc>()
+                    .add(FetchingUserDetailsFromFirebase());
                 // Navigator.pop(context);
                 Navigator.of(context).pushAndRemoveUntil(
                   FadeTransitionPageRoute(
@@ -77,7 +81,10 @@ class LoginScreen extends StatelessWidget {
           BlocListener<GoogleSignInBloc, GoogleSignInState>(
               listener: (context, state) {
             if (state is GoogleSigninSuccess) {
-         //     Navigator.pop(context);
+              context
+                  .read<UserDetailsBloc>()
+                  .add(FetchingUserDetailsFromFirebase());
+              //     Navigator.pop(context);
               Navigator.of(context).pushAndRemoveUntil(
                 FadeTransitionPageRoute(
                     child: const BottomNavigationBarScreen()),

@@ -87,14 +87,13 @@ class FormValidationBloc
       FirebaseAuth.instance.currentUser?.reload();
       final user = FirebaseAuth.instance.currentUser;
       if (user!.emailVerified) {
-       
+        await SharedPreferenceOperation().setGmail(user.email!);
         Navigator.of(event.context).pushAndRemoveUntil(
           FadeTransitionPageRoute(child: const BottomNavigationBarScreen()),
           (route) => false,
         );
 
         emit(NavigateToHomePage());
-        await SharedPreferenceOperation().setGmail(user.email!);
       } else {
         emit(RegisrationFailure("email not verified"));
       }

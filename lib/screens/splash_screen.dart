@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_user_side/data/shared_preference/variables.dart';
 import 'package:trim_spot_user_side/screens/bottom_navigation.dart';
 import 'package:trim_spot_user_side/screens/introduction_page.dart';
@@ -21,6 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     checkTheScreen(context);
+    context.read<UserDetailsBloc>().add(FetchingUserDetailsFromFirebase());
     super.initState();
   }
 
@@ -49,20 +52,20 @@ checkTheScreen(context) async {
   final sharedPre = await SharedPreferences.getInstance();
   final newUser = sharedPre.getBool(firstTimeUser);
   if (newUser == true) {
-       Navigator.of(context).pushReplacement(
-      FadeTransitionPageRoute (child: FirstIntroductionPage()));
+    Navigator.of(context).pushReplacement(
+        FadeTransitionPageRoute(child: FirstIntroductionPage()));
   } else {
     final loginStatus = sharedPre.getString(loggedInGmail);
 
     if (loginStatus == null) {
       Navigator.of(context).pushReplacement(
-      FadeTransitionPageRoute (child: const LoginOrSignup()));
-    }else if(loginStatus.isEmpty){
-       Navigator.of(context).pushReplacement(
-      FadeTransitionPageRoute (child: const LoginScreen()));
-    }else {
-        Navigator.of(context).pushReplacement(
-      FadeTransitionPageRoute (child: const BottomNavigationBarScreen()));
+          FadeTransitionPageRoute(child: const LoginOrSignup()));
+    } else if (loginStatus.isEmpty) {
+      Navigator.of(context)
+          .pushReplacement(FadeTransitionPageRoute(child: const LoginScreen()));
+    } else {
+      Navigator.of(context).pushReplacement(
+          FadeTransitionPageRoute(child: const BottomNavigationBarScreen()));
     }
   }
 }

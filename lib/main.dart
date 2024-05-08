@@ -14,6 +14,7 @@ import 'package:trim_spot_user_side/blocs/profile_blocs/name_bloc/profile_name_b
 import 'package:trim_spot_user_side/blocs/profile_blocs/phone_bloc/profile_phone_bloc.dart';
 import 'package:trim_spot_user_side/blocs/profile_blocs/user_profile_image_bloc/profile_user_image_bloc.dart';
 import 'package:trim_spot_user_side/blocs/profile_image_bloc/profile_image_bloc.dart';
+import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_user_side/blocs/user_form_validation/form_validation_bloc.dart';
 import 'package:trim_spot_user_side/firebase_options.dart';
 import 'package:trim_spot_user_side/screens/splash_screen.dart';
@@ -30,6 +31,7 @@ void main(List<String> args) async {
   Bloc.observer = AppBlocObserver();
   runApp(MultiBlocProvider(
     providers: [
+       BlocProvider<UserDetailsBloc>(create: (context) => UserDetailsBloc()),
         BlocProvider<LocationPermissionBloc>(create: (context) => LocationPermissionBloc()),
        BlocProvider<BookMarkAnimationBloc>(create: (context) => BookMarkAnimationBloc()),
       BlocProvider<ProfileEmailBloc>(create: (context) => ProfileEmailBloc()),
