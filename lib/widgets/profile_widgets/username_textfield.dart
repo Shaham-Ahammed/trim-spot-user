@@ -54,7 +54,7 @@ class UserNameTextField extends StatelessWidget {
                           .read<ProfileNameBloc>()
                           .add(NameEditButtonPressed(editPressed: true));
                     },
-                    child: Icon(Icons.edit))
+                    child: const Icon(Icons.edit))
               ],
             ),
           ),

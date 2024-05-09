@@ -32,7 +32,7 @@ class _ProfilePictureDispalyState extends State<ProfilePictureDispaly> {
                 backgroundImage: state.newImagePath.isNotEmpty
                     ? MemoryImage(state.newProfileUnit8list!) as ImageProvider
                     : state.originalProfilePic.isEmpty
-                        ? AssetImage("assets/images/profile upload.png")
+                        ? const AssetImage("assets/images/profile upload.png")
                             as ImageProvider
                         : NetworkImage(state.originalProfilePic),
               );

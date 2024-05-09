@@ -43,7 +43,7 @@ Future<dynamic> changePasswordAlert(BuildContext context) {
             backgroundColor: blackColor,
             insetPadding: EdgeInsets.symmetric(
                 horizontal: mediaqueryWidth(0.02, context)),
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               side: BorderSide(
                 color: greyColor3,
               ),
@@ -68,11 +68,11 @@ Future<dynamic> changePasswordAlert(BuildContext context) {
                     SizedBox(
                       height: mediaqueryHeight(0.017, context),
                     ),
-                    oldPasswordTextField(),
+                    const OldPasswordTextField(),
                     SizedBox(
                       height: mediaqueryHeight(0.018, context),
                     ),
-                    NewPasswordTextFormField(),
+                    const NewPasswordTextFormField(),
                     SizedBox(
                       height: mediaqueryHeight(0.018, context),
                     ),
@@ -127,10 +127,10 @@ Future<dynamic> changePasswordAlert(BuildContext context) {
 SnackBar passwordUpdatedSnackBar() {
   return SnackBar(
       backgroundColor: Colors.green.shade400,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(12), topRight: Radius.circular(12))),
-      content: Center(
+      content: const Center(
           child: Text(
         "password updated",
         style: TextStyle(color: whiteColor),

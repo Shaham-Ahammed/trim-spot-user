@@ -15,7 +15,7 @@ class NewPasswordTextFormField extends StatelessWidget {
     return TextFormField(
       controller: profileNewPasswordController,
       cursorColor: greyColor,
-      style: TextStyle(color: whiteColor),
+      style: const TextStyle(color: whiteColor),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) {
         if (value!.isEmpty) {
@@ -32,8 +32,8 @@ class NewPasswordTextFormField extends StatelessWidget {
           fontFamily: balooChettan,
         ),
         focusedBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: cyanColor)),
-        border: OutlineInputBorder(),
+            const OutlineInputBorder(borderSide: BorderSide(color: cyanColor)),
+        border: const OutlineInputBorder(),
         contentPadding:
             EdgeInsets.symmetric(horizontal: mediaqueryWidth(0.04, context)),
         labelText: 'New Password',

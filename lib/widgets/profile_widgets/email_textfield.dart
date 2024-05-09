@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
@@ -29,10 +28,10 @@ class EmailTextField extends StatelessWidget {
               children: [
                 Expanded(
                     child: TextFormField(
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: whiteColor,
                       fontFamily: b612),
-                  decoration: InputDecoration(border: InputBorder.none),
+                  decoration: const InputDecoration(border: InputBorder.none),
                   controller: profileEmailController,
                   cursorColor: Colors.blueGrey.shade200,
                   enableInteractiveSelection: false,

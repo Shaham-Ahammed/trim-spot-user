@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +20,7 @@ class ProfilePasswordBloc
       Emitter<ProfilePasswordState> emit) async {
     if (event.formKey.currentState!.validate()) {
       emit(PasswordUpdating());
-      final collection = await CollectionReferences().userCollectionReference();
+      final collection = CollectionReferences().userCollectionReference();
       final user = await UserDataDocumentFromFirebase().userDocument();
       final userId = user.id;
       try {
@@ -29,7 +31,6 @@ class ProfilePasswordBloc
       } catch (e) {
         Navigator.pop(event.context);
         emit(ProfilePasswordInitial());
-        print("error editing password");
       }
     } else {
       return;

@@ -172,7 +172,7 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                                         )
                                       ],
                                     ))))),
-                        fourRoundedIcons(context),
+                        fourRoundedIcons(context, widget.shop),
                       ],
                     )))
           ]))),

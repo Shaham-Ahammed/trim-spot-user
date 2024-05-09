@@ -7,8 +7,8 @@ import 'package:trim_spot_user_side/utils/profile_screen/controllers.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 
-class oldPasswordTextField extends StatelessWidget {
-  const oldPasswordTextField({
+class OldPasswordTextField extends StatelessWidget {
+  const OldPasswordTextField({
     super.key,
   });
 
@@ -17,7 +17,7 @@ class oldPasswordTextField extends StatelessWidget {
     return TextFormField(
       controller: profileOldPasswordController,
       cursorColor: greyColor,
-      style: TextStyle(color: whiteColor),
+      style: const TextStyle(color: whiteColor),
       validator: (value) {
         if (value!.isEmpty) {
           return "please enter your current password";
@@ -37,8 +37,8 @@ class oldPasswordTextField extends StatelessWidget {
           fontFamily: balooChettan,
         ),
         focusedBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: cyanColor)),
-        border: OutlineInputBorder(),
+            const OutlineInputBorder(borderSide: BorderSide(color: cyanColor)),
+        border: const OutlineInputBorder(),
         contentPadding:
             EdgeInsets.symmetric(horizontal: mediaqueryWidth(0.04, context)),
         labelText: 'Old Password',

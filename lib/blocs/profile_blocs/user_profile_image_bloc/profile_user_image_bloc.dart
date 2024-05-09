@@ -10,7 +10,7 @@ part 'profile_user_image_state.dart';
 class ProfileUserImageBloc
     extends Bloc<ProfileUserImageEvent, ProfileUserImageState> {
   ProfileUserImageBloc()
-      : super(ProfileImageInitial(
+      : super(const ProfileImageInitial(
             newProfileUnit8list: null,
             newImagePath: '',
             originalProfilePic: '')) {

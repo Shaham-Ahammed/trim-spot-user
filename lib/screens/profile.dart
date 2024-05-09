@@ -5,8 +5,6 @@ import 'package:trim_spot_user_side/blocs/profile_blocs/phone_bloc/profile_phone
 import 'package:trim_spot_user_side/blocs/profile_blocs/profile_save_button_bloc/profile_save_button_bloc.dart';
 import 'package:trim_spot_user_side/blocs/profile_blocs/user_profile_image_bloc/profile_user_image_bloc.dart';
 import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
-import 'package:trim_spot_user_side/data/data_provider/user_data_document.dart';
-import 'package:trim_spot_user_side/data/repository/document_model.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/utils/profile_screen/controllers.dart';

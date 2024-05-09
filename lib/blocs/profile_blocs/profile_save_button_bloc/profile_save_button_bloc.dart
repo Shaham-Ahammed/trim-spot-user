@@ -1,4 +1,5 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,20 +23,16 @@ class ProfileSaveButtonBloc
   _profileSaveButtonPressed(ProfileSaveButtonPressed event,
       Emitter<ProfileSaveButtonState> emit) async {
     if (profileFormKey.currentState!.validate()) {
-      final connectivity = await Connectivity().checkConnectivity();
-      if (connectivity.contains(ConnectionState.none)) {
-        emit(NetworkErrorWhileUpdatingProfile());
-        return;
-      }
+     
 
       emit(ProfileUpdating());
-      final collection = await CollectionReferences().userCollectionReference();
+      final collection = CollectionReferences().userCollectionReference();
       final data = await UserDataDocumentFromFirebase().userDocument();
 
-      if (!BlocProvider.of<ProfileUserImageBloc>(event.context, listen: false)
+      if (BlocProvider.of<ProfileUserImageBloc>(event.context, listen: false)
           .state
           .newImagePath
-          .isEmpty) {
+          .isNotEmpty) {
         final metadata =
             firebase_storage.SettableMetadata(contentType: 'image/jpeg');
         try {

@@ -5,7 +5,6 @@ import 'package:trim_spot_user_side/blocs/profile_blocs/phone_bloc/profile_phone
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
-import 'package:trim_spot_user_side/utils/page%20transitions/no_transition_page_route.dart';
 import 'package:trim_spot_user_side/utils/profile_screen/controllers.dart';
 
 class PhoneTextField extends StatelessWidget {
@@ -61,7 +60,7 @@ class PhoneTextField extends StatelessWidget {
                           .read<ProfilePhoneBloc>()
                           .add(ProfilPhoneEditButtonPressed(editPressed: true));
                     },
-                    child: Icon(Icons.edit))
+                    child: const Icon(Icons.edit))
               ],
             ),
           ),

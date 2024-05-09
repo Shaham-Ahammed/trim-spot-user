@@ -6,14 +6,14 @@ sealed class ProfileUserImageState {
   final String newImagePath;
   final String originalProfilePic;
 
-  ProfileUserImageState(
+  const ProfileUserImageState(
       {required this.newProfileUnit8list,
       required this.newImagePath,
       required this.originalProfilePic});
 }
 
 final class ProfileImageInitial extends ProfileUserImageState {
-  ProfileImageInitial(
+  const ProfileImageInitial(
       {required super.newProfileUnit8list,
       required super.newImagePath,
       required super.originalProfilePic});
