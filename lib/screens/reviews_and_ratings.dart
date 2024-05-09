@@ -1,123 +1,48 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:trim_spot_user_side/data/firebase_collection_references/user_information_reference.dart';
+import 'package:trim_spot_user_side/data/repository/firebase_docs_and_collections.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
-import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
-import 'package:trim_spot_user_side/utils/reviews_and_ratings/modal_list.dart';
+import 'package:trim_spot_user_side/widgets/reviews_and_ratings/appbar.dart';
+import 'package:trim_spot_user_side/widgets/reviews_and_ratings/listview_reviews.dart';
+import 'package:trim_spot_user_side/widgets/reviews_and_ratings/subheading.dart';
+
+import 'package:trim_spot_user_side/widgets/reviews_and_ratings/ratings_shimmer_effect.dart';
 
 class ReviewsAndRatingsScreen extends StatelessWidget {
-  const ReviewsAndRatingsScreen({super.key});
+  final QueryDocumentSnapshot<Object?> shop;
+  const ReviewsAndRatingsScreen({super.key, required this.shop});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: blackColor,
-        appBar: AppBar(
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: greyColor2,
-              )),
-          automaticallyImplyLeading: false,
-          centerTitle: true,
-          backgroundColor: const Color.fromARGB(179, 60, 60, 60),
-          title: myFont("HIPOCHI SALON",
-              fontFamily: cabinCondensed,
-              fontSize: mediaqueryHeight(0.03, context),
-              fontWeight: FontWeight.w600,
-              fontColor: greyColor2),
-        ),
+        appBar: reviewsAndRatingsAppBar(context, shop),
         body: SafeArea(
             child: Padding(
           padding: EdgeInsets.all(mediaqueryHeight(0.02, context)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              myFont(
-                "Reviews & Ratings",
-                fontFamily: balooChettan,
-                fontSize: mediaqueryHeight(0.02, context),
-                fontWeight: FontWeight.w500,
-                fontColor: greyColor,
-              ),
-          
+              reviesAndRatingsSubCaption(context),
               SizedBox(
                 height: mediaqueryHeight(0.025, context),
               ),
-              Expanded(
-                child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: reviewList.length,
-                  itemBuilder: (context, index) {
-                    final reviewer = reviewList[index];
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (index != 0)
-                          SizedBox(
-                            height: mediaqueryHeight(0.02, context),
-                          ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundImage: AssetImage(reviewer.imagepath),
-                              radius: 23,
-                            ),
-                            SizedBox(
-                              width: mediaqueryWidth(0.04, context),
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                myFont(reviewer.name,
-                                    fontFamily: balooChettan,
-                                    fontSize:
-                                        mediaqueryHeight(0.023, context),
-                                    fontWeight: FontWeight.w500,
-                                    fontColor: whiteColor),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: List.generate(5, (index) {
-                                    if (index < reviewer.rating) {
-                                      return Icon(
-                                        Icons.star_rate_rounded,
-                                        color: Colors.yellow,
-                                        size:
-                                            mediaqueryHeight(0.023, context),
-                                      );
-                                    } else {
-                                      return Icon(Icons.star_rate_rounded,
-                                          color: Colors.grey,
-                                          size: mediaqueryHeight(
-                                              0.023, context));
-                                    }
-                                  }),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: mediaqueryHeight(0.02, context),
-                        ),
-                        myFont(reviewer.review,
-                            fontFamily: balooChettan,
-                            fontSize: mediaqueryHeight(0.018, context),
-                            fontWeight: FontWeight.normal,
-                            fontColor: greyColor),
-                        SizedBox(
-                          height: mediaqueryHeight(0.02, context),
-                        ),
-                        const Divider(
-                          thickness: 1,
-                        )
-                      ],
-                    );
-                  },
-                ),
-              ),
+              StreamBuilder<QuerySnapshot>(
+                  stream: CollectionReferences()
+                      .salonCollectionReference()
+                      .doc(shop.id)
+                      .collection(
+                          FirebaseNamesShopSide.reviewscollectionReference)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Expanded(child: ShimmerOfReviewsLoading(count: 4));
+                    }
+
+                    return DisplayReviewsAndRatings(snapshot);
+                  }),
             ],
           ),
         )));

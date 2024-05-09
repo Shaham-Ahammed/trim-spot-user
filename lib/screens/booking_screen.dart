@@ -21,8 +21,8 @@ import 'package:trim_spot_user_side/widgets/service_booking_widgets/shop_name.da
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/slide_to_widget.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/slots.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/total_time.dart';
-import 'package:trim_spot_user_side/widgets/service_booking_widgets/user_review.dart';
-import 'package:trim_spot_user_side/widgets/service_booking_widgets/view_more_ratings_button.dart';
+import 'package:trim_spot_user_side/widgets/service_booking_widgets/reviews_and_ratings/user_review.dart';
+import 'package:trim_spot_user_side/widgets/service_booking_widgets/reviews_and_ratings/view_more_ratings_button.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/working_hours.dart';
 
 class ServiceBookingScreen extends StatefulWidget {
@@ -103,8 +103,8 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                                         ),
                                         serviceBookingScreenHeadings(
                                             context, "USER REVIEWS"),
-                                        const UserReviews(),
-                                        const ViewMoreRatingsButton(),
+                                         UserReviews(widget.shop),
+                                         ViewMoreRatingsButton(shop:widget.shop),
                                         SizedBox(
                                           height:
                                               mediaqueryHeight(0.012, context),

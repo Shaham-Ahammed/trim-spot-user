@@ -1,24 +1,17 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:trim_spot_user_side/data/repository/document_model.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
-import 'package:trim_spot_user_side/utils/reviews_and_ratings/modal_list.dart';
-
-
-class UserReviews extends StatelessWidget {
-  const UserReviews({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
+  ListView reviewList(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
     return ListView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: reviewList.length > 2 ? 2 : reviewList.length,
+        itemCount:
+            snapshot.data!.docs.length > 2 ? 2 : snapshot.data!.docs.length,
         itemBuilder: (context, index) {
-          final reviewer = reviewList[index];
+          final reviewer = snapshot.data!.docs[index];
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -29,8 +22,12 @@ class UserReviews extends StatelessWidget {
               Row(
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage(reviewer.imagepath),
-                    radius: 23,
+                    backgroundImage: reviewer[ReviewDocumentModel.imagePath] ==
+                            ""
+                        ? const AssetImage("assets/images/profile upload.png")
+                            as ImageProvider
+                        : NetworkImage(reviewer[ReviewDocumentModel.imagePath]),
+                    radius: mediaqueryHeight(0.0323, context),
                   ),
                   SizedBox(
                     width: mediaqueryWidth(0.04, context),
@@ -38,7 +35,7 @@ class UserReviews extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      myFont(reviewer.name,
+                      myFont(reviewer[ReviewDocumentModel.userNmae],
                           fontFamily: balooChettan,
                           fontSize: mediaqueryHeight(0.023, context),
                           fontWeight: FontWeight.w500,
@@ -46,7 +43,9 @@ class UserReviews extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: List.generate(5, (index) {
-                          if (index < reviewer.rating) {
+                          if (index <
+                              int.parse(
+                                  reviewer[ReviewDocumentModel.ratings])) {
                             return Icon(
                               Icons.star_rate_rounded,
                               color: Colors.yellow,
@@ -64,9 +63,9 @@ class UserReviews extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: mediaqueryHeight(0.02, context),
+                height: mediaqueryHeight(0.01, context),
               ),
-              myFont(reviewer.review,
+              myFont(reviewer[ReviewDocumentModel.review],
                   fontFamily: balooChettan,
                   fontSize: mediaqueryHeight(0.018, context),
                   fontWeight: FontWeight.normal,
@@ -78,4 +77,3 @@ class UserReviews extends StatelessWidget {
           );
         });
   }
-}

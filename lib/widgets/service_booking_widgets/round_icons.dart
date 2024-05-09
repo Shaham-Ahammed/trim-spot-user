@@ -4,10 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
-import 'package:trim_spot_user_side/widgets/service_booking_widgets/icon_fucntions/map_opening.dart';
-import 'package:trim_spot_user_side/widgets/service_booking_widgets/icon_fucntions/message.dart';
-import 'package:trim_spot_user_side/widgets/service_booking_widgets/icon_fucntions/phone_dial.dart';
-import 'package:trim_spot_user_side/widgets/service_booking_widgets/icon_fucntions/share_details.dart';
+import 'package:trim_spot_user_side/widgets/service_booking_widgets/icon_fucntions.dart/map_opening.dart';
+import 'package:trim_spot_user_side/widgets/service_booking_widgets/icon_fucntions.dart/message.dart';
+import 'package:trim_spot_user_side/widgets/service_booking_widgets/icon_fucntions.dart/phone_dial.dart';
+import 'package:trim_spot_user_side/widgets/service_booking_widgets/icon_fucntions.dart/share_details.dart';
+
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/round_icons_function.dart';
 
 Positioned fourRoundedIcons(
