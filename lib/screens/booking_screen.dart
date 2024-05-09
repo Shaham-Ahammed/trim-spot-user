@@ -111,7 +111,7 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                                         ),
                                         serviceBookingScreenHeadings(
                                             context, "DATE"),
-                                        dateSelectionContaienerField(),
+                                        dateSelectionContaienerField(widget.shop),
                                         servicesSection(),
                                         BlocBuilder<ServiceSelectedBloc,
                                             ServiceSelectedState>(

@@ -9,9 +9,8 @@ class SalonDocumentModel {
   static const String profileImage = "profileImage";
   static const String shopImage = "shopImage";
   static const String services = "services";
-  static const String openingTime = "openingTime";
   static const String parsedOpeningTime = "parsedOpeningTime";
-  static const String closingTime = "closingTime";
+  static const String occasionalClosures = "occasionalClosures";
   static const String parsedClosingTime = "parsedClosingTime";
   static const String holidays = "holidays";
   static const String password = "password";

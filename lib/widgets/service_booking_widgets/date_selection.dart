@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/service_booking_blocs/date_selection_bloc/date_selection_bloc.dart';
@@ -8,7 +9,7 @@ import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/resusables.dart';
 
   BlocBuilder<DateSelectionBloc, DateSelectionState>
-      dateSelectionContaienerField() {
+      dateSelectionContaienerField(final QueryDocumentSnapshot<Object?> shop) {
     return BlocBuilder<DateSelectionBloc, DateSelectionState>(
       builder: (context, state) {
         return Material(
@@ -18,7 +19,7 @@ import 'package:trim_spot_user_side/widgets/service_booking_widgets/resusables.d
             onTap: () {
               context
                   .read<DateSelectionBloc>()
-                  .add(DatePickerPressed(context: context));
+                  .add(DatePickerPressed(context: context, shop: shop));
             },
             borderRadius: BorderRadius.circular(10),
             child: Container(
