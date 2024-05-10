@@ -17,6 +17,14 @@ class SalonDocumentModel {
   static const String isApproved = "isApproved";
   static const String isRejected = "isRejected";
   static const String reviewsAndRatings = "reviewsAndRatings";
+  static const String serviceHaircut = "haircut";
+  static const String serviceFacial = "facial";
+  static const String serviceShave = "shave";
+  static const String serviceBeardTrim = "beard trim";
+  static const String serviceMassage = "massage";
+  static const String serviceStraighten = "straighten";
+  static const String serviceTime = "time";
+  static const String serviceRate = "rate";
 }
 
 class UserDocumentModel {

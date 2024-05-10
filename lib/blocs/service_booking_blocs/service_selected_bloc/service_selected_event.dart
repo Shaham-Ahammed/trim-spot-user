@@ -4,7 +4,7 @@ part of 'service_selected_bloc.dart';
 sealed class ServiceSelectedEvent {}
 
 final class SelectedAService extends ServiceSelectedEvent {
-  final ServicesAvailableModel service;
-
-  SelectedAService({required this.service});
+  final String service;
+  final QueryDocumentSnapshot<Object?> shop;
+  SelectedAService({required this.shop,required this.service});
 }

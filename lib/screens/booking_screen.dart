@@ -20,6 +20,7 @@ import 'package:trim_spot_user_side/widgets/service_booking_widgets/shop_locatio
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/shop_name.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/slide_to_widget.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/slots.dart';
+import 'package:trim_spot_user_side/widgets/service_booking_widgets/total_amount.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/total_time.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/reviews_and_ratings/user_review.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/reviews_and_ratings/view_more_ratings_button.dart';
@@ -103,32 +104,39 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                                         ),
                                         serviceBookingScreenHeadings(
                                             context, "USER REVIEWS"),
-                                         UserReviews(widget.shop),
-                                         ViewMoreRatingsButton(shop:widget.shop),
+                                        UserReviews(widget.shop),
+                                        ViewMoreRatingsButton(
+                                            shop: widget.shop),
                                         SizedBox(
                                           height:
                                               mediaqueryHeight(0.012, context),
                                         ),
                                         serviceBookingScreenHeadings(
                                             context, "DATE"),
-                                        dateSelectionContaienerField(widget.shop),
-                                        servicesSection(),
+                                        dateSelectionContaienerField(
+                                            widget.shop),
+                                        servicesSection(widget.shop),
                                         BlocBuilder<ServiceSelectedBloc,
                                             ServiceSelectedState>(
                                           builder: (context, state) {
-                                            if (state
-                                                .servicesSelected.isNotEmpty) {
+                                            if (state.serviceMap.isNotEmpty) {
                                               return Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  serviceBookingScreenHeadings(
-                                                      context, "TOTAL TIME"),
-                                                  totalTimeContainerField(
-                                                      context),
+                                                  Row(
+                                                    children: [
+                                                  const    TotalTime(),
+                                                      SizedBox(
+                                                        width: mediaqueryWidth(
+                                                            0.055, context),
+                                                      ),
+                                                     const TotalAmount(),
+                                                    ],
+                                                  ),
                                                   SizedBox(
                                                     height: mediaqueryHeight(
-                                                        0.012, context),
+                                                        0.022, context),
                                                   ),
                                                   Row(
                                                     mainAxisAlignment:
