@@ -10,20 +10,18 @@ part 'service_selected_state.dart';
 
 class ServiceSelectedBloc
     extends Bloc<ServiceSelectedEvent, ServiceSelectedState> {
-  ServiceSelectedBloc() : super( ServiceSelectedInitial(serviceMap: const {})) {
+  ServiceSelectedBloc() : super(const ServiceSelectedInitial(serviceMap: {})) {
     on<SelectedAService>(_selectedAService);
   }
   _selectedAService(
       SelectedAService event, Emitter<ServiceSelectedState> emit) {
-    if (state.serviceMap.containsKey(event.service)) {
-      final map = state.serviceMap;
-
+    Map<String, Map<String, String>> map =  Map.from(state.serviceMap);
+    if (map.containsKey(event.service)) {
       map.remove(event.service);
       emit(ServiceSelectedInitial(serviceMap: map));
 
       print("removed");
     } else {
-      final map = state.serviceMap;
       map.addAll({
         event.service: ({
           SalonDocumentModel.serviceTime:
