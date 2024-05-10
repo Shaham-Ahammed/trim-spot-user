@@ -10,7 +10,7 @@ part 'service_selected_state.dart';
 
 class ServiceSelectedBloc
     extends Bloc<ServiceSelectedEvent, ServiceSelectedState> {
-  ServiceSelectedBloc() : super(const ServiceSelectedInitial(serviceMap: {})) {
+  ServiceSelectedBloc() : super( ServiceSelectedInitial(serviceMap: const {})) {
     on<SelectedAService>(_selectedAService);
   }
   _selectedAService(

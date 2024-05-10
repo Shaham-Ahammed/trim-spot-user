@@ -19,7 +19,7 @@ class ViewMoreRatingsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
         stream: CollectionReferences()
-            .salonCollectionReference()
+            .shopDetailsReference()
             .doc(shop.id)
             .collection(FirebaseNamesShopSide.reviewscollectionReference)
             .snapshots(),

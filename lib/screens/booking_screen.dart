@@ -126,12 +126,12 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                                                 children: [
                                                   Row(
                                                     children: [
-                                                  const    TotalTime(),
+                                                      const TotalTime(),
                                                       SizedBox(
                                                         width: mediaqueryWidth(
                                                             0.055, context),
                                                       ),
-                                                     const TotalAmount(),
+                                                      const TotalAmount(),
                                                     ],
                                                   ),
                                                   SizedBox(
@@ -154,24 +154,16 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                                                     height: mediaqueryHeight(
                                                         0.008, context),
                                                   ),
-                                                  BlocBuilder<SlotSelectionBloc,
-                                                          SlotSelectionState>(
-                                                      builder:
-                                                          (context, state) {
-                                                    final event = context.read<
-                                                        SlotSelectionBloc>();
-                                                    return Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        SlotsPickingArea(
-                                                            event: event),
-                                                        if (state.selectedSlots
-                                                            .isNotEmpty)
-                                                          const SlideToPayWidget(),
-                                                      ],
-                                                    );
-                                                  })
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      SlotsPickingArea(
+                                                        shop: widget.shop,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const SlideToPayWidget(),
                                                 ],
                                               );
                                             }

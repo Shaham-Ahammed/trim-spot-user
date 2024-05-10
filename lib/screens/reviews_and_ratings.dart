@@ -31,14 +31,15 @@ class ReviewsAndRatingsScreen extends StatelessWidget {
               ),
               StreamBuilder<QuerySnapshot>(
                   stream: CollectionReferences()
-                      .salonCollectionReference()
+                      .shopDetailsReference()
                       .doc(shop.id)
                       .collection(
                           FirebaseNamesShopSide.reviewscollectionReference)
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Expanded(child: ShimmerOfReviewsLoading(count: 4));
+                      return const Expanded(
+                          child: ShimmerOfReviewsLoading(count: 4));
                     }
 
                     return DisplayReviewsAndRatings(snapshot);

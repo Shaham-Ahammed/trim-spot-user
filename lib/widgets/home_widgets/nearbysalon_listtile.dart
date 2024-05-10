@@ -19,7 +19,7 @@ class NearbySalonsListviewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
         stream: CollectionReferences()
-            .salonCollectionReference()
+            .shopDetailsReference()
             .where(SalonDocumentModel.isApproved, isEqualTo: true)
             .snapshots(),
         builder: (context, snapshot) {

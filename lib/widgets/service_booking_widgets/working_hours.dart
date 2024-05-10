@@ -20,7 +20,7 @@ Container workingHourContainerField(
     child: Align(
       alignment: Alignment.centerLeft,
       child: myFont(
-          "${shop[SalonDocumentModel.parsedOpeningTime]} - ${shop[SalonDocumentModel.parsedOpeningTime]}",
+          "${shop[SalonDocumentModel.parsedOpeningTime]} - ${shop[SalonDocumentModel.parsedClosingTime]}",
           fontFamily: cabinCondensed,
           textalign: TextAlign.start,
           fontSize: mediaqueryHeight(0.02, context),
