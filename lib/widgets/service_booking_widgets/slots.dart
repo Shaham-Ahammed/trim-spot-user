@@ -44,10 +44,12 @@ class _SlotsPickingAreaState extends State<SlotsPickingArea> {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const SlotsInShimmerEffect();
               }
+
               String today = DateFormat('dd-MM-yyyy').format(DateTime.now());
               final List<String> list =
                   (snapshot.data!.data()![today] as List<dynamic>)
                       .cast<String>();
+
               final totalSlots =
                   BlocProvider.of<SlotSelectionBloc>(context, listen: false)
                       .state
@@ -89,10 +91,11 @@ class _SlotsPickingAreaState extends State<SlotsPickingArea> {
                                     height: mediaqueryHeight(0.045, context),
                                     width: mediaqueryWidth(0.19, context),
                                     decoration: BoxDecoration(
-                                      color:
-                                          contianerColor(time, context, list),
+                                      color: SlotColorsInBookingScreen()
+                                          .contianerColor(time, context, list),
                                       border: Border.all(
-                                          color: borderColor(
+                                          color: SlotColorsInBookingScreen()
+                                              .borderColor(
                                         time,
                                         context,
                                       )),
@@ -103,8 +106,8 @@ class _SlotsPickingAreaState extends State<SlotsPickingArea> {
                                           fontFamily: cabinCondensed,
                                           fontSize: 13,
                                           fontWeight: FontWeight.normal,
-                                          fontColor:
-                                              textColor(time, context, list)),
+                                          fontColor: SlotColorsInBookingScreen()
+                                              .textColor(time, context, list)),
                                     )),
                               ),
                             );

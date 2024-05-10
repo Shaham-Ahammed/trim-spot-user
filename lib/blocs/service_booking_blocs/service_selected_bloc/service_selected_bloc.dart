@@ -15,7 +15,7 @@ class ServiceSelectedBloc
   }
   _selectedAService(
       SelectedAService event, Emitter<ServiceSelectedState> emit) {
-    Map<String, Map<String, String>> map =  Map.from(state.serviceMap);
+    Map<String, Map<String, String>> map = Map.from(state.serviceMap);
     if (map.containsKey(event.service)) {
       map.remove(event.service);
       emit(ServiceSelectedInitial(serviceMap: map));
@@ -32,7 +32,6 @@ class ServiceSelectedBloc
                   [SalonDocumentModel.serviceRate],
         }),
       });
-
       emit(ServiceSelectedInitial(serviceMap: map));
       print("added");
     }
