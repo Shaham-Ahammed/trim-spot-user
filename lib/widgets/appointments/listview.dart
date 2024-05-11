@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:trim_spot_user_side/data/data_provider/user_data_document.dart';
 import 'package:trim_spot_user_side/data/firebase_collection_references/user_information_reference.dart';
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
@@ -31,7 +31,7 @@ class AllAppointmentsList extends StatelessWidget {
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
                 child: const CircularProgressIndicator(
               color: cyanColor,
             ));
@@ -42,7 +42,7 @@ class AllAppointmentsList extends StatelessWidget {
           if (snapshot.data!.docs.isEmpty) {
             return Center(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 LottieBuilder.asset(
                   "assets/animations/nobooking.json",

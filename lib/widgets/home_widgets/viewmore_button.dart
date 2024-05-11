@@ -16,7 +16,7 @@ class ViewMoreButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NearbySalonsBloc, NearbySalonsState>(
       builder: (context, state) {
-        if (state.listCount == 5) {
+        if (state.originalLength > 5 && state.listCount < 5) {
           return Align(
               alignment: Alignment.center,
               child: GestureDetector(

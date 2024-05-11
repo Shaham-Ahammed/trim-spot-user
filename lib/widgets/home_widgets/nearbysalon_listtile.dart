@@ -10,10 +10,23 @@ import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/utils/page%20transitions/slide_transition.dart';
 
-class NearbySalonsListviewWidget extends StatelessWidget {
+class NearbySalonsListviewWidget extends StatefulWidget {
   const NearbySalonsListviewWidget({
     super.key,
   });
+
+  @override
+  State<NearbySalonsListviewWidget> createState() =>
+      _NearbySalonsListviewWidgetState();
+}
+
+class _NearbySalonsListviewWidgetState
+    extends State<NearbySalonsListviewWidget> {
+  @override
+  void initState() {
+    context.read<NearbySalonsBloc>().add(FetchingTotalLength(context: context));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +44,7 @@ class NearbySalonsListviewWidget extends StatelessWidget {
             );
           } else if (snapshot.data!.docs.isEmpty) {
             return Center(
-              child: myFont("No salons available",
+              child: myFont("No salons registered",
                   fontFamily: cabinCondensed,
                   fontSize: mediaqueryHeight(0.025, context),
                   fontWeight: FontWeight.w500,
@@ -48,13 +61,16 @@ class NearbySalonsListviewWidget extends StatelessWidget {
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(SlideTransitionPageRoute(
-                              child:  ServiceBookingScreen(shop: shop,)));
+                              child: ServiceBookingScreen(
+                            shop: shop,
+                          )));
                         },
                         child: Container(
                           padding: const EdgeInsets.all(12),
                           width: double.infinity,
                           height: mediaqueryHeight(0.25, context),
                           decoration: BoxDecoration(
+                              color: bottomNavBarColor,
                               borderRadius: BorderRadius.circular(14),
                               image: DecorationImage(
                                   fit: BoxFit.cover,
@@ -101,7 +117,8 @@ class NearbySalonsListviewWidget extends StatelessWidget {
                         height: mediaqueryHeight(0.02, context),
                       );
                     },
-                    itemCount: snapshot.data!.docs.length);
+                    itemCount:
+                        context.watch<NearbySalonsBloc>().state.listCount);
               },
             );
           }
