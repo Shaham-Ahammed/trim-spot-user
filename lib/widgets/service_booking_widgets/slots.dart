@@ -49,10 +49,10 @@ class _SlotsPickingAreaState extends State<SlotsPickingArea> {
                   BlocProvider.of<DateSelectionBloc>(context, listen: true)
                       .state
                       .date!;
-              String today = DateFormat('dd-MM-yyyy').format(selectedDate);
+              String selectedDay = DateFormat('dd-MM-yyyy').format(selectedDate);
            
               final List<String> list =
-                  (snapshot.data!.data()![today] as List<dynamic>)
+                  (snapshot.data!.data()![selectedDay] as List<dynamic>)
                       .cast<String>();
 
               final totalSlots =

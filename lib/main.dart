@@ -68,6 +68,9 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
       theme: ThemeData(
+        
+          textSelectionTheme:
+                const TextSelectionThemeData(selectionHandleColor: cyanColor),
           bottomSheetTheme:
               const BottomSheetThemeData(backgroundColor: introductionColor)),
       home: const SplashScreen(),

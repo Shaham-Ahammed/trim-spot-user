@@ -27,9 +27,7 @@ class SearchScreen extends StatelessWidget {
               SizedBox(
                 height: mediaqueryHeight(0.03, context),
               ),
-              Expanded(
-                child: searchResultDisplay(),
-              )
+              const ListViewOfSearchScreen()
             ],
           ),
         ),
