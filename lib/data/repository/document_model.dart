@@ -48,3 +48,12 @@ class BookingsDocumentModel {
   static const String services = "services";
   static const String totalAmount = "totalAmount";
 }
+
+class BookingHisotryUserDocumentModel {
+  static const String currentStatus = "currentStatus";
+  static const String date = "date";
+  static const String service = "service";
+  static const String shopLocation = "shopLocation";
+  static const String shopName = "shopName";
+  static const String time = "time";
+}

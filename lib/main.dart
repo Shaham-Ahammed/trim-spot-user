@@ -2,6 +2,7 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_user_side/blocs/booking_completion_bloc/booking_service_bloc.dart';
 import 'package:trim_spot_user_side/blocs/bloc_observer.dart';
 import 'package:trim_spot_user_side/blocs/bookmark_animation_bloc/book_mark_animation_bloc.dart';
 import 'package:trim_spot_user_side/blocs/bottom_nav_bloc/bottom_navigation_bloc.dart';
@@ -24,18 +25,21 @@ import 'blocs/on_boarding_bloc/onboardind_bloc_bloc.dart';
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-    await FirebaseAppCheck.instance.activate(
-   androidProvider: AndroidProvider.debug,
-   
+  await FirebaseAppCheck.instance.activate(
+    androidProvider: AndroidProvider.debug,
   );
   Bloc.observer = AppBlocObserver();
   runApp(MultiBlocProvider(
     providers: [
-         BlocProvider<ProfilePasswordBloc>(create: (context) => ProfilePasswordBloc()),
-       BlocProvider<UserDetailsBloc>(create: (context) => UserDetailsBloc()),
-        BlocProvider<LocationPermissionBloc>(create: (context) => LocationPermissionBloc()),
-       BlocProvider<BookMarkAnimationBloc>(create: (context) => BookMarkAnimationBloc()),
-  
+      BlocProvider<BookingCompletionBloc>(
+          create: (context) => BookingCompletionBloc()),
+      BlocProvider<ProfilePasswordBloc>(
+          create: (context) => ProfilePasswordBloc()),
+      BlocProvider<UserDetailsBloc>(create: (context) => UserDetailsBloc()),
+      BlocProvider<LocationPermissionBloc>(
+          create: (context) => LocationPermissionBloc()),
+      BlocProvider<BookMarkAnimationBloc>(
+          create: (context) => BookMarkAnimationBloc()),
       BlocProvider<ProfileNameBloc>(create: (context) => ProfileNameBloc()),
       BlocProvider<ProfilePhoneBloc>(create: (context) => ProfilePhoneBloc()),
       BlocProvider<ProfileUserImageBloc>(

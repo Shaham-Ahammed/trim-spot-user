@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:slide_to_act_reborn/slide_to_act_reborn.dart';
+import 'package:trim_spot_user_side/blocs/booking_completion_bloc/booking_service_bloc.dart';
 import 'package:trim_spot_user_side/blocs/slot_selection_bloc/slot_selection_bloc.dart';
 
 import 'package:trim_spot_user_side/utils/colors.dart';
@@ -9,7 +11,8 @@ import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 
 class SlideToPayWidget extends StatelessWidget {
-  const SlideToPayWidget({
+  final QueryDocumentSnapshot<Object?> shop;
+  const SlideToPayWidget(this.shop,{
     super.key,
   });
 
@@ -24,6 +27,11 @@ class SlideToPayWidget extends StatelessWidget {
                 height: mediaqueryHeight(0.02, context),
               ),
               SlideAction(
+                onSubmit: () {
+                  context
+                      .read<BookingCompletionBloc>()
+                      .add(BookNowPressed(shop: shop, context: context));
+                },
                 borderRadius: 90,
                 height: mediaqueryHeight(0.082, context),
                 innerColor: cyanColor,

@@ -6,3 +6,8 @@ class FirebaseNamesShopSide {
   static const dailyBookingsCollection = "daily_bookings";
   static const bookingDetailsCollection = "booking_details";
 }
+
+class FirebaseNamesUserSide {
+  static const registrationReference = "user_information";
+  static const bookingHistoryCollectionReference = "user_booking_history";
+}

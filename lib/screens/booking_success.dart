@@ -3,36 +3,35 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
-import 'package:trim_spot_user_side/widgets/booking_failure/lottie_animation.dart';
+import 'package:trim_spot_user_side/widgets/booking_success/lottie_animation.dart';
+import 'package:trim_spot_user_side/widgets/booking_success/texts.dart';
 
-import 'package:trim_spot_user_side/widgets/booking_failure/texts.dart';
-
-class BookingFailureMessageScreen extends StatefulWidget {
-  const BookingFailureMessageScreen({super.key});
+class BookingSuccessMessageScreen extends StatefulWidget {
+  const BookingSuccessMessageScreen({super.key});
 
   @override
-  State<BookingFailureMessageScreen> createState() =>
-      _BookingFailureMessageScreenState();
+  State<BookingSuccessMessageScreen> createState() =>
+      _BookingSuccessMessageScreenState();
 }
 
-class _BookingFailureMessageScreenState
-    extends State<BookingFailureMessageScreen>
+class _BookingSuccessMessageScreenState
+    extends State<BookingSuccessMessageScreen>
     with SingleTickerProviderStateMixin {
-  late AnimationController failureAnimationController;
+  late AnimationController successAnimationController;
   late Timer timer;
   @override
   void initState() {
-    timer = Timer(const Duration(seconds: 3), () {
+    timer = Timer(const Duration(seconds: 2), () {
       Navigator.pop(context);
     });
-    failureAnimationController = AnimationController(vsync: this);
+    successAnimationController = AnimationController(vsync: this);
     super.initState();
   }
 
   @override
   void dispose() {
     timer.cancel();
-    failureAnimationController.dispose();
+    successAnimationController.dispose();
     super.dispose();
   }
 
@@ -49,18 +48,15 @@ class _BookingFailureMessageScreenState
               height: mediaqueryHeight(0.24, context),
             ),
             TickMarkLottie(
-                failureAnimationController: failureAnimationController),
-            tryAgainText(context),
+                successAnimationController: successAnimationController),
+            congratulationsFont(context),
             SizedBox(
               height: mediaqueryHeight(0.015, context),
             ),
-            const BookingFailureMessage()
+            const BookingSuccessText()
           ],
         ),
       )),
     );
   }
-
- 
 }
-

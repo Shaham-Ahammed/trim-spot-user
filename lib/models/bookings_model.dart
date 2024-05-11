@@ -15,8 +15,7 @@ class BookingsModel {
       required this.service,
       required this.date,
       required this.time,
-      required this.shopName,
-      
+      required this.shopName,      
       required this.shopLocation,
       required this.status,required this.statusColor,});
 }
