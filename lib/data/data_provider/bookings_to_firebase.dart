@@ -49,7 +49,8 @@ class BookingsToFirebase {
 
     for (int i = 0; i < services.length; i++) {
       final data = BookingHistoryModel(
-              currentStatus: "PENDING",
+              currentStatus:
+                  BookingHisotryUserDocumentModel.currentStatusPending,
               date: formattedDate,
               service: services[i],
               shopLocation: shop[SalonDocumentModel.locationName],
@@ -109,5 +110,25 @@ class BookingsToFirebase {
     } catch (e) {
       print("error while adding in shop side");
     }
+  }
+
+  lockSlotsOnShopSide(
+      final QueryDocumentSnapshot<Object?> shop, BuildContext context) async {
+    DateTime date =
+        BlocProvider.of<DateSelectionBloc>(context, listen: false).state.date!;
+    final String formattedDate = DateFormat('dd-MM-yyyy').format(date);
+    final allSlots = BlocProvider.of<SlotSelectionBloc>(context, listen: false)
+        .state
+        .selectedSlots;
+    final docReference = CollectionReferences()
+        .shopDetailsReference()
+        .doc(shop.id)
+        .collection(FirebaseNamesShopSide.bookingCollectionReference)
+        .doc(FirebaseNamesShopSide.slotsBookingDocument);
+    final bookingData = await docReference.get();
+    final List<String> currentBookingsOnTheDate =
+        (bookingData[formattedDate] as List<dynamic>).cast<String>();
+    final updationData = [...currentBookingsOnTheDate, ...allSlots];
+    await docReference.update({formattedDate: updationData});
   }
 }

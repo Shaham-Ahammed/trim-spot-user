@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:trim_spot_user_side/models/bookings_model.dart';
+import 'package:trim_spot_user_side/data/repository/document_model.dart';
+
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/widgets/appointments_details/back_button.dart';
@@ -10,8 +12,8 @@ import 'package:trim_spot_user_side/widgets/appointments_details/service_image.d
 import 'package:trim_spot_user_side/widgets/appointments_details/status_and_service_stack.dart';
 
 class MyAppointmentsDetailsScreen extends StatelessWidget {
-  const MyAppointmentsDetailsScreen({super.key, required this.bookingModel});
-  final BookingsModel bookingModel;
+  const MyAppointmentsDetailsScreen({super.key, required this.booking});
+  final QueryDocumentSnapshot<Object?> booking;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +31,11 @@ class MyAppointmentsDetailsScreen extends StatelessWidget {
                     width: double.infinity,
                     height: mediaqueryHeight(0.45, context),
                   ),
-                  ServiceImage(bookingModel: bookingModel),
+                  ServiceImage(
+                    booking: booking,
+                  ),
                   const BackButtonBookinDetails(),
-                  StatusAndService(bookingModel: bookingModel)
+                  StatusAndService(booking: booking)
                 ],
               ),
             ),
@@ -42,12 +46,13 @@ class MyAppointmentsDetailsScreen extends StatelessWidget {
             SizedBox(
               height: mediaqueryHeight(0.01, context),
             ),
-            detailsDisplayArea(context, bookingModel),
+            detailsDisplayArea(context, booking),
             SizedBox(
               height: mediaqueryHeight(0.065, context),
             ),
-            if (bookingModel.status != "cancelled")
-              rateOrCancel(context, bookingModel)
+            if (booking[BookingHisotryUserDocumentModel.currentStatus] !=
+                BookingHisotryUserDocumentModel.currentStatusCancelled)
+              rateOrCancel(context, booking)
           ],
         )),
       ),

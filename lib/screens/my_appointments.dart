@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/utils/screen_padding.dart';
@@ -22,7 +23,7 @@ class BookingsScreen extends StatelessWidget {
               SizedBox(
                 height: mediaqueryHeight(0.025, context),
               ),
-              Expanded(child: bookingsListViewDisplay())
+              const Expanded(child: AllAppointmentsList())
             ],
           ),
         ),

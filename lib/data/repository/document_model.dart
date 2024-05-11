@@ -56,4 +56,7 @@ class BookingHisotryUserDocumentModel {
   static const String shopLocation = "shopLocation";
   static const String shopName = "shopName";
   static const String time = "time";
+  static const String currentStatusPending = "PENDING";
+  static const String currentStatusCompleted = "COMPLETED";
+  static const String currentStatusCancelled = "CANCELLED";
 }

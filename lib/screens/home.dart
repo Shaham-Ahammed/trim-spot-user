@@ -56,12 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: mediaqueryHeight(0.03, context),
                     ),
-                    GestureDetector(
-                        onTap: ()  {
-                        
-                        
-                        },
-                        child: const SearchBox()),
+                    GestureDetector(onTap: () {}, child: const SearchBox()),
                     SizedBox(
                       height: mediaqueryHeight(0.02, context),
                     ),

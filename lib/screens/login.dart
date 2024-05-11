@@ -39,6 +39,7 @@ class LoginScreen extends StatelessWidget {
                 context
                     .read<UserDetailsBloc>()
                     .add(FetchingUserDetailsFromFirebase());
+                
                 // Navigator.pop(context);
                 Navigator.of(context).pushAndRemoveUntil(
                   FadeTransitionPageRoute(

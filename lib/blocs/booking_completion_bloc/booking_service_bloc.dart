@@ -20,6 +20,7 @@ class BookingCompletionBloc
         .addUserBookingHistoryToFirebase(event.shop, event.context);
     await BookingsToFirebase()
         .addUserBookingToShopside(event.shop, event.context);
+    await BookingsToFirebase().lockSlotsOnShopSide(event.shop, event.context);
     emit(BookingSuccessfullyCompleted());
   }
 }

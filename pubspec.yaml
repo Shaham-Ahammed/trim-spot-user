@@ -107,6 +107,9 @@ flutter:
     - assets/animations/swipe_to_pay_animation.json
     - assets/animations/failed_animation.json
     - assets/animations/booking_succes_lottie.json
+    - assets/images/nobooking.png
+    - assets/images/nobooking2.png
+    - assets/animations/nobooking.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

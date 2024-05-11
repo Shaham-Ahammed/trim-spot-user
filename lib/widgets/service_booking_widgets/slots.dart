@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:trim_spot_user_side/blocs/service_booking_blocs/date_selection_bloc/date_selection_bloc.dart';
 import 'package:trim_spot_user_side/blocs/slot_selection_bloc/slot_selection_bloc.dart';
 import 'package:trim_spot_user_side/data/firebase_collection_references/user_information_reference.dart';
 import 'package:trim_spot_user_side/data/repository/firebase_docs_and_collections.dart';
@@ -44,8 +45,12 @@ class _SlotsPickingAreaState extends State<SlotsPickingArea> {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const SlotsInShimmerEffect();
               }
-
-              String today = DateFormat('dd-MM-yyyy').format(DateTime.now());
+              DateTime selectedDate =
+                  BlocProvider.of<DateSelectionBloc>(context, listen: true)
+                      .state
+                      .date!;
+              String today = DateFormat('dd-MM-yyyy').format(selectedDate);
+           
               final List<String> list =
                   (snapshot.data!.data()![today] as List<dynamic>)
                       .cast<String>();
