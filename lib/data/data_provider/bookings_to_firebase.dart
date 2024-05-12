@@ -47,21 +47,19 @@ class BookingsToFirebase {
         CollectionReferences().userCollectionReference().doc(userId).collection(
             FirebaseNamesUserSide.bookingHistoryCollectionReference);
 
-    for (int i = 0; i < services.length; i++) {
-      final data = BookingHistoryModel(
-              currentStatus:
-                  BookingHisotryUserDocumentModel.currentStatusPending,
-              date: formattedDate,
-              service: services[i],
-              shopLocation: shop[SalonDocumentModel.locationName],
-              shopName: shop[SalonDocumentModel.shopName],
-              time: parsedTime)
-          .toMap();
-      try {
-        await userBookinHistoryCollectionReference.add(data);
-      } catch (e) {
-        print("error while addingto user history $e");
-      }
+    final data = BookingHistoryModel(
+            currentStatus: BookingHisotryUserDocumentModel.currentStatusPending,
+            date: formattedDate,
+            service: services.join(", "),
+            shopLocation: shop[SalonDocumentModel.locationName],
+            shopName: shop[SalonDocumentModel.shopName],
+            time: parsedTime,
+            shopId: shop.id)
+        .toMap();
+    try {
+      await userBookinHistoryCollectionReference.add(data);
+    } catch (e) {
+      print("error while addingto user history $e");
     }
   }
 

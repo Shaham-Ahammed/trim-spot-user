@@ -1,23 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_user_side/blocs/cancel_booking_bloc/cancel_booking_bloc_bloc.dart';
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
 
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/widgets/appointments_details/cancel_alert.dart';
+import 'package:trim_spot_user_side/widgets/appointments_details/cannot_cancel_alert.dart';
 import 'package:trim_spot_user_side/widgets/appointments_details/review_box.dart';
 
 Center rateOrCancel(
     BuildContext context, final QueryDocumentSnapshot<Object?> bookingModel) {
   return Center(
     child: Material(
-      color: availableActionContainerColor(bookingModel[BookingHisotryUserDocumentModel.currentStatus]),
+      color: availableActionContainerColor(
+          bookingModel[BookingHisotryUserDocumentModel.currentStatus]),
       borderRadius: BorderRadius.circular(8),
       child: InkWell(
         borderRadius: BorderRadius.circular(8),
         onTap: () {
-          onTapFunction(bookingModel[BookingHisotryUserDocumentModel.currentStatus], context);
+          onTapFunction(
+              bookingModel[BookingHisotryUserDocumentModel.currentStatus],
+              context,
+              bookingModel);
         },
         child: Container(
           padding:
@@ -29,7 +36,9 @@ Center rateOrCancel(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              myFont(availableActionText(bookingModel[BookingHisotryUserDocumentModel.currentStatus]),
+              myFont(
+                  availableActionText(bookingModel[
+                      BookingHisotryUserDocumentModel.currentStatus]),
                   fontFamily: b612,
                   fontSize: mediaqueryHeight(0.02, context),
                   fontWeight: FontWeight.w500,
@@ -42,10 +51,14 @@ Center rateOrCancel(
   );
 }
 
-onTapFunction(String status, context) {
+onTapFunction(String status, BuildContext context,
+    QueryDocumentSnapshot<Object?> bookingDetails) {
   if (status == BookingHisotryUserDocumentModel.currentStatusPending) {
-    return cancelAlertDialogue(context);
-  } else if (status == "completed") {
+    context
+        .read<CancelBookingBloc>()
+        .add(CancelBookingPressed(bookingDetails: bookingDetails));
+
+  } else if (status == BookingHisotryUserDocumentModel.currentStatusCompleted) {
     return reviewDialogue(context);
   }
 }

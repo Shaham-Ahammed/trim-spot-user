@@ -26,20 +26,11 @@ class StatusAndService extends StatelessWidget {
                   booking[BookingHisotryUserDocumentModel.currentStatus])),
           width: mediaqueryWidth(0.6, context),
           height: mediaqueryHeight(0.08, context),
-          child: Column(
-            children: [
-              myFont(booking[BookingHisotryUserDocumentModel.service].toString().toUpperCase(),
-                  fontFamily: cabinCondensed,
-                  fontSize: mediaqueryHeight(0.03, context),
-                  fontWeight: FontWeight.bold,
-                  fontColor: blackColor),
-              myFont(booking[BookingHisotryUserDocumentModel.currentStatus],
-                  fontFamily: balooChettan,
-                  fontSize: mediaqueryHeight(0.018, context),
-                  fontWeight: FontWeight.w700,
-                  fontColor: whiteColor)
-            ],
-          ),
+          child:Center(child: myFont(booking[BookingHisotryUserDocumentModel.currentStatus],
+              fontFamily: balooChettan,
+              fontSize: mediaqueryHeight(0.026, context),
+              fontWeight: FontWeight.w700,
+              fontColor: whiteColor),)
         ));
   }
 }

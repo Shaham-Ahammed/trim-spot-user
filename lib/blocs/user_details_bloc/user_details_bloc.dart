@@ -13,6 +13,7 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
       : super(const UserDetailsInitial(
             profileImage: '',
             userName: '',
+            id: "",
             phone: '',
             password: '',
             email: '')) {
@@ -30,12 +31,13 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
         .get();
 
     final userData = collection.docs.first;
-    await UserDataDocumentFromFirebase().getUserId();
+   
     emit(UserDetailsInitial(
         profileImage: userData[UserDocumentModel.imagePath],
         userName: userData[UserDocumentModel.username],
         phone: userData[UserDocumentModel.phone],
         password: userData[UserDocumentModel.password],
-        email: userData[UserDocumentModel.email]));
+        email: userData[UserDocumentModel.email],
+        id: userData.id));
   }
 }

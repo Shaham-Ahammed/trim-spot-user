@@ -10,7 +10,6 @@ import 'package:trim_spot_user_side/widgets/appointments/service_name.dart';
 import 'package:trim_spot_user_side/widgets/appointments/shop_details.dart';
 import 'package:trim_spot_user_side/widgets/appointments/time_and_date.dart';
 
-
 class MyBookingsListView extends StatelessWidget {
   const MyBookingsListView({super.key, required this.snapshot});
   final AsyncSnapshot<QuerySnapshot<Object?>> snapshot;
@@ -49,9 +48,13 @@ class MyBookingsListView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        servcieNameBookings(
-                            myBookings[BookingHisotryUserDocumentModel.service],
-                            context),
+                        Container(
+                          width: mediaqueryWidth(0.55, context),
+                          child: servcieNameBookings(
+                              myBookings[
+                                  BookingHisotryUserDocumentModel.service],
+                              context),
+                        ),
                         TimeAndDateBookings(
                           date:
                               myBookings[BookingHisotryUserDocumentModel.date],

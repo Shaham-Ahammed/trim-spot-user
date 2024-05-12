@@ -34,6 +34,9 @@ class _SlotsPickingAreaState extends State<SlotsPickingArea> {
     return FutureBuilder(
       future: SlotTileFucntions().fetchingBookedSlots(widget.shop.id),
       builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const SlotsInShimmerEffect();
+        }
         return StreamBuilder(
             stream: CollectionReferences()
                 .shopDetailsReference()
@@ -49,8 +52,9 @@ class _SlotsPickingAreaState extends State<SlotsPickingArea> {
                   BlocProvider.of<DateSelectionBloc>(context, listen: true)
                       .state
                       .date!;
-              String selectedDay = DateFormat('dd-MM-yyyy').format(selectedDate);
-           
+              String selectedDay =
+                  DateFormat('dd-MM-yyyy').format(selectedDate);
+
               final List<String> list =
                   (snapshot.data!.data()![selectedDay] as List<dynamic>)
                       .cast<String>();

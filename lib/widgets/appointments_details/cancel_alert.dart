@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_user_side/blocs/cancel_booking_bloc/cancel_booking_bloc_bloc.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 
-Future<dynamic> cancelAlertDialogue(context) {
+Future<dynamic> cancelAlertDialogue(
+    context, final QueryDocumentSnapshot<Object?> bookingDetails) {
   return showDialog(
       barrierColor: const Color.fromARGB(182, 0, 0, 0),
       context: context,
@@ -46,8 +50,7 @@ Future<dynamic> cancelAlertDialogue(context) {
                             child: Container(
                                 width: mediaqueryWidth(0.24, context),
                                 padding: EdgeInsets.symmetric(
-                                    vertical:
-                                        mediaqueryHeight(0.008, context)),
+                                    vertical: mediaqueryHeight(0.008, context)),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(90),
                                 ),
@@ -76,13 +79,15 @@ Future<dynamic> cancelAlertDialogue(context) {
                           child: InkWell(
                             borderRadius: BorderRadius.circular(90),
                             onTap: () {
-                              Navigator.pop(context);
+                              context.read<CancelBookingBloc>().add(
+                                  PressedYesOnCancelBooking(
+                                      bookingDetails: bookingDetails,
+                                      context: context));
                             },
                             child: Container(
                                 width: mediaqueryWidth(0.24, context),
                                 padding: EdgeInsets.symmetric(
-                                    vertical:
-                                        mediaqueryHeight(0.008, context)),
+                                    vertical: mediaqueryHeight(0.008, context)),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(90),
                                 ),

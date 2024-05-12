@@ -1,18 +1,20 @@
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:trim_spot_user_side/data/data_provider/user_data_document.dart';
+import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_user_side/data/firebase_collection_references/user_information_reference.dart';
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
 import 'package:trim_spot_user_side/data/repository/firebase_docs_and_collections.dart';
 
-changingPastPendingsToCompleted() async {
+changingPastPendingsToCompleted(BuildContext context) async {
   final collectionReferenceOfBookingHistory = CollectionReferences()
       .userCollectionReference()
-      .doc(UserDataDocumentFromFirebase.userId)
+      .doc(BlocProvider.of<UserDetailsBloc>(context,listen: true).state.id)
       .collection(FirebaseNamesUserSide.bookingHistoryCollectionReference);
 
   final allBookingPendings = await CollectionReferences()
       .userCollectionReference()
-      .doc(UserDataDocumentFromFirebase.userId)
+      .doc(BlocProvider.of<UserDetailsBloc>(context,listen: true).state.id)
       .collection(FirebaseNamesUserSide.bookingHistoryCollectionReference)
       .where(BookingHisotryUserDocumentModel.currentStatus,
           isEqualTo: BookingHisotryUserDocumentModel.currentStatusPending)

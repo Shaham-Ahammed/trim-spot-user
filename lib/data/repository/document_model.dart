@@ -42,7 +42,7 @@ class ReviewDocumentModel {
   static const String review = "review";
 }
 
-class BookingsDocumentModel {
+class BookingsShopSideDocumentModel {
   static const String time = "time";
   static const String name = "name";
   static const String services = "services";
@@ -50,6 +50,7 @@ class BookingsDocumentModel {
 }
 
 class BookingHisotryUserDocumentModel {
+  static const String shopId = "shopId";
   static const String currentStatus = "currentStatus";
   static const String date = "date";
   static const String service = "service";

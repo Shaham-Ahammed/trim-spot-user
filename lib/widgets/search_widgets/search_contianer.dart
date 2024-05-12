@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 
+
+
 class SearchField extends StatelessWidget {
   const SearchField({
     super.key,
@@ -23,6 +25,10 @@ class SearchField extends StatelessWidget {
             children: [
               Expanded(
                 child: TextField(
+                  onChanged: (value) {
+                   
+                   
+                  },
                   cursorColor: cyanColor,
                   cursorHeight: 22,
                   maxLength: 35,

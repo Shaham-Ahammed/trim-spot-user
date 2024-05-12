@@ -8,6 +8,7 @@ import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/utils/page%20transitions/fade_transition.dart';
 import 'package:trim_spot_user_side/widgets/search_widgets/name_location_service.dart';
 import 'package:trim_spot_user_side/widgets/search_widgets/no_shops_text.dart';
+import 'package:trim_spot_user_side/widgets/search_widgets/search_contianer.dart';
 import 'package:trim_spot_user_side/widgets/search_widgets/shimmer_effect.dart';
 import 'package:trim_spot_user_side/widgets/search_widgets/shop_image.dart';
 
@@ -22,6 +23,7 @@ class ListViewOfSearchScreen extends StatelessWidget {
         stream: CollectionReferences()
             .shopDetailsReference()
             .where(SalonDocumentModel.isApproved, isEqualTo: true)
+          
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
