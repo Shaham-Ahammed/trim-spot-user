@@ -16,6 +16,7 @@ import 'package:trim_spot_user_side/blocs/profile_blocs/phone_bloc/profile_phone
 import 'package:trim_spot_user_side/blocs/profile_blocs/profile_password_bloc/profile_password_bloc.dart';
 import 'package:trim_spot_user_side/blocs/profile_blocs/user_profile_image_bloc/profile_user_image_bloc.dart';
 import 'package:trim_spot_user_side/blocs/profile_image_bloc/profile_image_bloc.dart';
+import 'package:trim_spot_user_side/blocs/review_and_rating/review_and_rating_bloc.dart';
 import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_user_side/blocs/user_form_validation/form_validation_bloc.dart';
 import 'package:trim_spot_user_side/firebase_options.dart';
@@ -40,7 +41,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return (MultiBlocProvider(
       providers: [
-          BlocProvider<CancelBookingBloc>(
+        BlocProvider<ReviewAndRatingBloc>(
+            create: (context) => ReviewAndRatingBloc()),
+        BlocProvider<CancelBookingBloc>(
             create: (context) => CancelBookingBloc()),
         BlocProvider<BookingCompletionBloc>(
             create: (context) => BookingCompletionBloc()),

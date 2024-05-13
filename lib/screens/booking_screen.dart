@@ -2,20 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/booking_completion_bloc/booking_service_bloc.dart';
-import 'package:trim_spot_user_side/blocs/service_booking_blocs/date_selection_bloc/date_selection_bloc.dart';
 import 'package:trim_spot_user_side/blocs/service_booking_blocs/service_selected_bloc/service_selected_bloc.dart';
-import 'package:trim_spot_user_side/blocs/slot_selection_bloc/slot_selection_bloc.dart';
-import 'package:trim_spot_user_side/screens/booking_success.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
-import 'package:trim_spot_user_side/utils/page%20transitions/no_transition_page_route.dart';
 import 'package:trim_spot_user_side/utils/service_booking/animation_controller.dart';
-import 'package:trim_spot_user_side/widgets/login_page_widgets/loading_indicator.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/bookmark_lottie.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/clear_selection.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/date_selection.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/headings.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/main_contianer_decoration.dart';
+import 'package:trim_spot_user_side/widgets/service_booking_widgets/providers_list/providers.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/resusables.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/round_icons.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/service_selection.dart';
@@ -24,6 +20,7 @@ import 'package:trim_spot_user_side/widgets/service_booking_widgets/shop_locatio
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/shop_name.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/slide_to_widget.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/slots.dart';
+import 'package:trim_spot_user_side/widgets/service_booking_widgets/state_handler/booking_state_handler.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/total_amount.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/total_time.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/reviews_and_ratings/user_review.dart';
@@ -55,21 +52,10 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => SlotSelectionBloc()),
-        BlocProvider(create: (context) => DateSelectionBloc()),
-        BlocProvider(create: (context) => ServiceSelectedBloc()),
-      ],
+      providers: blocProvidersOfBookingScreen,
       child: BlocListener<BookingCompletionBloc, BookingCompletionState>(
         listener: (context, state) {
-          if (state is LoadingIndicatorOnBookingScreen) {
-            loadingIndicator(context);
-          }
-          if (state is BookingSuccessfullyCompleted) {
-            Navigator.pop(context);
-            Navigator.of(context).pushReplacement(
-                NoTransitionPageRoute(child: const BookingSuccessMessageScreen()));
-          }
+          BookingStateHandler.handleState(context, state);
         },
         child: Scaffold(
             backgroundColor: blackColor,

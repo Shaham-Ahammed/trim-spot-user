@@ -16,11 +16,18 @@ class BookingCompletionBloc
   _bookNowPressed(
       BookNowPressed event, Emitter<BookingCompletionState> emit) async {
     emit(LoadingIndicatorOnBookingScreen());
-    await BookingsToFirebase()
-        .addUserBookingHistoryToFirebase(event.shop, event.context);
-    await BookingsToFirebase()
-        .addUserBookingToShopside(event.shop, event.context);
-    await BookingsToFirebase().lockSlotsOnShopSide(event.shop, event.context);
+    try {
+      await BookingsToFirebase()
+          .addUserBookingHistoryToFirebase(event.shop, event.context);
+      await BookingsToFirebase()
+          .addUserBookingToShopside(event.shop, event.context);
+      await BookingsToFirebase().lockSlotsOnShopSide(event.shop, event.context);
+    } catch (e) {
+      emit(BookingFailed());
+      return;
+    }
+
     emit(BookingSuccessfullyCompleted());
+  
   }
 }

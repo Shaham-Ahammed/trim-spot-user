@@ -40,6 +40,9 @@ class ReviewDocumentModel {
   static const String userNmae = "userName";
   static const String ratings = "ratings";
   static const String review = "review";
+  static const String ratingTime = "ratingTime";
+  static const String serviceDoneOn = "serviceDoneOn";
+  static const String timeSlotWasOn = "timeSlot";
 }
 
 class BookingsShopSideDocumentModel {

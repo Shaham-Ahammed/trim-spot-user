@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/cancel_booking_bloc/cancel_booking_bloc_bloc.dart';
+import 'package:trim_spot_user_side/blocs/review_and_rating/review_and_rating_bloc.dart';
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
 
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
-import 'package:trim_spot_user_side/widgets/appointments_details/review_box.dart';
 
 Center rateOrCancel(
     BuildContext context, final QueryDocumentSnapshot<Object?> bookingModel) {
@@ -55,9 +55,10 @@ onTapFunction(String status, BuildContext context,
     context
         .read<CancelBookingBloc>()
         .add(CancelBookingPressed(bookingDetails: bookingDetails));
-
   } else if (status == BookingHisotryUserDocumentModel.currentStatusCompleted) {
-    return reviewDialogue(context);
+    context
+        .read<ReviewAndRatingBloc>()
+        .add(RateAndReviewButtonPressed(reviewDetails: bookingDetails));
   }
 }
 

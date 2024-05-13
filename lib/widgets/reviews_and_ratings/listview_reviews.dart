@@ -4,10 +4,11 @@ import 'package:trim_spot_user_side/data/repository/document_model.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
+import 'package:trim_spot_user_side/widgets/service_booking_widgets/reviews_and_ratings/functions/review_time_calculator.dart';
 
 class DisplayReviewsAndRatings extends StatelessWidget {
- final AsyncSnapshot<QuerySnapshot<Object?>> snapshot;
- const DisplayReviewsAndRatings(
+  final AsyncSnapshot<QuerySnapshot<Object?>> snapshot;
+  const DisplayReviewsAndRatings(
     this.snapshot, {
     super.key,
   });
@@ -67,7 +68,13 @@ class DisplayReviewsAndRatings extends StatelessWidget {
                         }),
                       )
                     ],
-                  )
+                  ),
+                  const Spacer(),
+                  myFont(getTimeAgo(reviewer[ReviewDocumentModel.ratingTime]),
+                      fontFamily: balooChettan,
+                      fontSize: mediaqueryHeight(0.015, context),
+                      fontWeight: FontWeight.w500,
+                      fontColor: greyColor)
                 ],
               ),
               SizedBox(
@@ -77,7 +84,7 @@ class DisplayReviewsAndRatings extends StatelessWidget {
                   fontFamily: balooChettan,
                   fontSize: mediaqueryHeight(0.018, context),
                   fontWeight: FontWeight.normal,
-                  fontColor: greyColor),
+                  fontColor: greyColor2),
               SizedBox(
                 height: mediaqueryHeight(0.02, context),
               ),

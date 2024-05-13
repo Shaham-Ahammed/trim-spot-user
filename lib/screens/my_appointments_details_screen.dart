@@ -2,50 +2,39 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/cancel_booking_bloc/cancel_booking_bloc_bloc.dart';
+import 'package:trim_spot_user_side/blocs/review_and_rating/review_and_rating_bloc.dart';
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
-import 'package:trim_spot_user_side/screens/bottom_navigation.dart';
 
 import 'package:trim_spot_user_side/utils/colors.dart';
-import 'package:trim_spot_user_side/utils/error_snackbars.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
-import 'package:trim_spot_user_side/utils/page%20transitions/no_transition_page_route.dart';
 import 'package:trim_spot_user_side/widgets/appointments_details/back_button.dart';
-import 'package:trim_spot_user_side/widgets/appointments_details/cancel_alert.dart';
-import 'package:trim_spot_user_side/widgets/appointments_details/cannot_cancel_alert.dart';
 import 'package:trim_spot_user_side/widgets/appointments_details/detailed_display_container.dart';
 import 'package:trim_spot_user_side/widgets/appointments_details/details_heading.dart';
 import 'package:trim_spot_user_side/widgets/appointments_details/review_or_cancel_button.dart';
 import 'package:trim_spot_user_side/widgets/appointments_details/service_image.dart';
+import 'package:trim_spot_user_side/widgets/appointments_details/state_handler/state_handler.dart';
 import 'package:trim_spot_user_side/widgets/appointments_details/status_and_service_stack.dart';
-import 'package:trim_spot_user_side/widgets/login_page_widgets/loading_indicator.dart';
 
 class MyAppointmentsDetailsScreen extends StatelessWidget {
   const MyAppointmentsDetailsScreen({super.key, required this.booking});
   final QueryDocumentSnapshot<Object?> booking;
   @override
   Widget build(BuildContext context) {
-    return BlocListener<CancelBookingBloc, CancelBookingBlocState>(
-      listener: (context, state) {
-        if (state is ShowCannotCancelAlert) {
-          cannotCancelAlertDialogue(context);
-        }
-        if (state is ShowCancellationAlertDialogue) {
-          cancelAlertDialogue(context, booking);
-        }
-        if (state is LoadingCancellation) {
-          loadingIndicator(context);
-        }
-        if (state is CancellationCompleted) {
-          Navigator.of(context).pushAndRemoveUntil(
-              NoTransitionPageRoute(child: const BottomNavigationBarScreen()),
-              (route) => false);
-        }
-        if (state is CancellationFailed) {
-          Navigator.pop(context);
-          ScaffoldMessenger.of(context).showSnackBar(
-              errorSnackBar("cancellation failed !. please try again"));
-        }
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<CancelBookingBloc, CancelBookingBlocState>(
+          listener: (context, state) {
+            MyAppointementStateHandler.handleStateOfCancellation(
+                context, state, booking);
+          },
+        ),
+        BlocListener<ReviewAndRatingBloc, ReviewAndRatingState>(
+          listener: (context, state) {
+            MyAppointementStateHandler.handleStateOfRateAndReview(
+                context, state, booking);
+          },
+        )
+      ],
       child: Scaffold(
         backgroundColor: blackColor,
         body: SingleChildScrollView(

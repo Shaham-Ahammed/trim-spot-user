@@ -35,8 +35,4 @@ class CustomerSupport extends StatelessWidget {
       ),
     );
   }
-
-
-
- 
 }

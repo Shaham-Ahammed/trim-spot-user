@@ -1,14 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/rating_stars_bloc/rating_stars_bloc.dart';
+import 'package:trim_spot_user_side/blocs/review_and_rating/review_and_rating_bloc.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
+import 'package:trim_spot_user_side/utils/rate_and_review/controller.dart';
 
-Future<dynamic> reviewDialogue(context) {
+Future<dynamic> reviewDialogue(
+    BuildContext context, QueryDocumentSnapshot<Object?> bookingDetails) {
   return showDialog(
     context: context,
     builder: (context) {
+      reviewController.clear();
       return BlocProvider(
         create: (context) => RatingStarsBloc(),
         child: Dialog(
@@ -48,6 +53,8 @@ Future<dynamic> reviewDialogue(context) {
                     ),
                     TextField(
                       maxLines: null,
+                      cursorColor: cyanColor,
+                      controller: reviewController,
                       maxLength: 120,
                       keyboardType: TextInputType.multiline,
                       decoration: InputDecoration(
@@ -71,7 +78,11 @@ Future<dynamic> reviewDialogue(context) {
                           style: const ButtonStyle(
                               overlayColor: MaterialStatePropertyAll(
                                   Color.fromARGB(255, 129, 129, 129))),
-                          onPressed: () {},
+                          onPressed: () {
+                            context.read<ReviewAndRatingBloc>().add(
+                                SubmitButtonPressed(
+                                    context: context, reviewDetails: bookingDetails));
+                          },
                           child: myFont("Submit",
                               fontFamily: balooChettan,
                               fontSize: mediaqueryHeight(0.025, context),
