@@ -1,14 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_user_side/data/data_provider/booking_cancellation.dart';
-import 'package:trim_spot_user_side/data/firebase_collection_references/user_information_reference.dart';
 
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
-import 'package:trim_spot_user_side/data/repository/firebase_docs_and_collections.dart';
 
 part 'cancel_booking_bloc_event.dart';
 part 'cancel_booking_bloc_state.dart';
@@ -37,13 +35,15 @@ class CancelBookingBloc
     try {
       await BookingCancellation().changePendingToCancelledInUserBookingHistory(
           event.context, event.bookingDetails);
-await BookingCancellation().removingPendingFromShopSide(
+      await BookingCancellation()
+          .removingPendingFromShopSide(event.context, event.bookingDetails);
+      await BookingCancellation().removeTheBookedSlotsFromShopside(
           event.context, event.bookingDetails);
     } catch (e) {
       emit(CancellationFailed());
       return;
     }
- 
+
     emit(CancellationCompleted());
   }
 }

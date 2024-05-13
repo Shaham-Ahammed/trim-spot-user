@@ -41,7 +41,7 @@ class _SlotsPickingAreaState extends State<SlotsPickingArea> {
             stream: CollectionReferences()
                 .shopDetailsReference()
                 .doc(widget.shop.id)
-                .collection(FirebaseNamesShopSide.bookingCollectionReference)
+                .collection(FirebaseNamesShopSide.slotBookingCollectionReference)
                 .doc(FirebaseNamesShopSide.slotsBookingDocument)
                 .snapshots(),
             builder: (context, snapshot) {

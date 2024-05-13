@@ -30,7 +30,7 @@ class BookingCancellation {
         bookingDetails[BookingHisotryUserDocumentModel.date];
     final DateTime parsedBookedDay =
         DateFormat('E, d MMM, yyyy').parse(bookedDay);
-    
+
     final String requiredParseModelOfDate =
         DateFormat('dd-MM-yyyy').format(parsedBookedDay);
     print(requiredParseModelOfDate);
@@ -54,5 +54,42 @@ class BookingCancellation {
     } catch (e) {
       print("failure $e");
     }
+  }
+
+  removeTheBookedSlotsFromShopside(BuildContext context,
+      QueryDocumentSnapshot<Object?> bookingDetails) async {
+    String timings = bookingDetails[BookingHisotryUserDocumentModel.time];
+    List<String> startingAndEndingtime = timings.split("-");
+    String startingTime = startingAndEndingtime.first.trim();
+    String endingTime = startingAndEndingtime.last.trim();
+    DateFormat format = DateFormat('hh:mm a');
+    DateTime starting = format.parse(startingTime);
+    DateTime ending = format.parse(endingTime);
+    List<String> slots = [];
+    while (starting.isBefore(ending)) {
+      slots.add(format.format(starting));
+      starting = starting.add(const Duration(minutes: 30));
+    }
+    print(slots);
+    final String bookedDay =
+        bookingDetails[BookingHisotryUserDocumentModel.date];
+    final DateTime parsedBookedDay =
+        DateFormat('E, d MMM, yyyy').parse(bookedDay);
+
+    final String requiredParseModelOfDate =
+        DateFormat('dd-MM-yyyy').format(parsedBookedDay);
+    final DocumentReference slotsBookedDoc = CollectionReferences()
+        .shopDetailsReference()
+        .doc(bookingDetails[BookingHisotryUserDocumentModel.shopId])
+        .collection(FirebaseNamesShopSide.slotBookingCollectionReference)
+        .doc(FirebaseNamesShopSide.slotsBookingDocument);
+    final bookingDatas = await slotsBookedDoc.get();
+    final List<String> slotsBooked =
+        (bookingDatas[requiredParseModelOfDate] as List<dynamic>)
+            .cast<String>();
+    for (var element in slots) {
+      slotsBooked.remove(element);
+    }
+    await slotsBookedDoc.update({requiredParseModelOfDate: slotsBooked});
   }
 }

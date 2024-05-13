@@ -121,7 +121,7 @@ class BookingsToFirebase {
     final docReference = CollectionReferences()
         .shopDetailsReference()
         .doc(shop.id)
-        .collection(FirebaseNamesShopSide.bookingCollectionReference)
+        .collection(FirebaseNamesShopSide.slotBookingCollectionReference)
         .doc(FirebaseNamesShopSide.slotsBookingDocument);
     final bookingData = await docReference.get();
     final List<String> currentBookingsOnTheDate =

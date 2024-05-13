@@ -14,7 +14,7 @@ class SlotTileFucntions {
     final bookedSlotsReference = CollectionReferences()
         .shopDetailsReference()
         .doc(shopId)
-        .collection(FirebaseNamesShopSide.bookingCollectionReference)
+        .collection(FirebaseNamesShopSide.slotBookingCollectionReference)
         .doc(FirebaseNamesShopSide.slotsBookingDocument);
     final bookedSlotsCollection = await bookedSlotsReference.get();
     for (var dates in sixDaysFromNow) {

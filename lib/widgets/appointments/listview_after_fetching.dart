@@ -48,7 +48,7 @@ class MyBookingsListView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                           width: mediaqueryWidth(0.55, context),
                           child: servcieNameBookings(
                               myBookings[

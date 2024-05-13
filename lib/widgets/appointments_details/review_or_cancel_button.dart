@@ -7,8 +7,6 @@ import 'package:trim_spot_user_side/data/repository/document_model.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
-import 'package:trim_spot_user_side/widgets/appointments_details/cancel_alert.dart';
-import 'package:trim_spot_user_side/widgets/appointments_details/cannot_cancel_alert.dart';
 import 'package:trim_spot_user_side/widgets/appointments_details/review_box.dart';
 
 Center rateOrCancel(

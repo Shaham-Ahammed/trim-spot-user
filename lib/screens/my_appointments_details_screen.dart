@@ -6,6 +6,7 @@ import 'package:trim_spot_user_side/data/repository/document_model.dart';
 import 'package:trim_spot_user_side/screens/bottom_navigation.dart';
 
 import 'package:trim_spot_user_side/utils/colors.dart';
+import 'package:trim_spot_user_side/utils/error_snackbars.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/utils/page%20transitions/no_transition_page_route.dart';
 import 'package:trim_spot_user_side/widgets/appointments_details/back_button.dart';
@@ -29,15 +30,20 @@ class MyAppointmentsDetailsScreen extends StatelessWidget {
           cannotCancelAlertDialogue(context);
         }
         if (state is ShowCancellationAlertDialogue) {
-          cancelAlertDialogue(context,booking);
+          cancelAlertDialogue(context, booking);
         }
         if (state is LoadingCancellation) {
           loadingIndicator(context);
         }
         if (state is CancellationCompleted) {
           Navigator.of(context).pushAndRemoveUntil(
-              NoTransitionPageRoute(child: BottomNavigationBarScreen()),
+              NoTransitionPageRoute(child: const BottomNavigationBarScreen()),
               (route) => false);
+        }
+        if (state is CancellationFailed) {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+              errorSnackBar("cancellation failed !. please try again"));
         }
       },
       child: Scaffold(

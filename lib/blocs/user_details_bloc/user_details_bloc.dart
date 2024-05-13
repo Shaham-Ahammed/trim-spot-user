@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:trim_spot_user_side/data/data_provider/user_data_document.dart';
 import 'package:trim_spot_user_side/data/firebase_collection_references/user_information_reference.dart';
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
 import 'package:trim_spot_user_side/data/shared_preference/functions.dart';
