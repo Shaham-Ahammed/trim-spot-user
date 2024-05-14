@@ -1,13 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_user_side/blocs/search_bloc/search_bloc.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 
-
-
-class SearchField extends StatelessWidget {
+class SearchField extends StatefulWidget {
+  final bool autoFocus;
+  final String service;
   const SearchField({
+    this.autoFocus = false,
+    required this.service,
     super.key,
   });
+
+  @override
+  State<SearchField> createState() => _SearchFieldState();
+}
+
+class _SearchFieldState extends State<SearchField> {
+  final TextEditingController searchController = TextEditingController();
+  @override
+  void initState() {
+    searchController.text = widget.service;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +41,12 @@ class SearchField extends StatelessWidget {
             children: [
               Expanded(
                 child: TextField(
+                  controller: searchController,
+                  autofocus: widget.autoFocus,
                   onChanged: (value) {
-                   
-                   
+                    context
+                        .read<SearchBloc>()
+                        .add(EnteredASearchString(searchWord: value));
                   },
                   cursorColor: cyanColor,
                   cursorHeight: 22,

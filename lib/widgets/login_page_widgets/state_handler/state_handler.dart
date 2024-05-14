@@ -54,6 +54,7 @@ class LoginStateHandler {
     if (state is AuthenticatingUser) {
       loadingIndicator(context);
     }
+   
   }
 
   static void handleStateOfGoogleSignInState(

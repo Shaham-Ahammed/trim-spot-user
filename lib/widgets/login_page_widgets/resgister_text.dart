@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:trim_spot_user_side/blocs/on_boarding_bloc/onboardind_bloc_bloc.dart';
+import 'package:trim_spot_user_side/screens/signup.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
+import 'package:trim_spot_user_side/utils/page%20transitions/fade_transition.dart';
 
 class RegisterNowText extends StatelessWidget {
   const RegisterNowText({
@@ -21,7 +21,8 @@ class RegisterNowText extends StatelessWidget {
             fontColor: whiteColor),
         GestureDetector(
           onTap: () {
-            context.read<OnboardindBloc>().add(SignUpButtonPressed());
+            Navigator.of(context)
+                .push(FadeTransitionPageRoute(child: const SignUpScreen()));
           },
           child: myFont("Register Now",
               fontFamily: balooChettan,

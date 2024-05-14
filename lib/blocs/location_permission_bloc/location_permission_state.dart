@@ -16,3 +16,7 @@ final class LocationServiceNotEnabled extends LocationPermissionState {
   const LocationServiceNotEnabled({required super.currentLocation, required super.currentPosition});
  
 }
+final class FetchingUserLocation extends LocationPermissionState {
+  const FetchingUserLocation({required super.currentLocation, required super.currentPosition});
+  
+}

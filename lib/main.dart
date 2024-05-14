@@ -17,6 +17,7 @@ import 'package:trim_spot_user_side/blocs/profile_blocs/profile_password_bloc/pr
 import 'package:trim_spot_user_side/blocs/profile_blocs/user_profile_image_bloc/profile_user_image_bloc.dart';
 import 'package:trim_spot_user_side/blocs/profile_image_bloc/profile_image_bloc.dart';
 import 'package:trim_spot_user_side/blocs/review_and_rating/review_and_rating_bloc.dart';
+import 'package:trim_spot_user_side/blocs/search_bloc/search_bloc.dart';
 import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_user_side/blocs/user_form_validation/form_validation_bloc.dart';
 import 'package:trim_spot_user_side/firebase_options.dart';
@@ -40,7 +41,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (MultiBlocProvider(
-      providers: [
+      providers: [ BlocProvider<SearchBloc>(
+            create: (context) => SearchBloc()),
         BlocProvider<ReviewAndRatingBloc>(
             create: (context) => ReviewAndRatingBloc()),
         BlocProvider<CancelBookingBloc>(

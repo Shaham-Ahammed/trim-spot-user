@@ -13,10 +13,4 @@ class UserDataDocumentFromFirebase {
     final data = collectionReference.docs.first;
     return data;
   }
-
-  // static late String userId;
-  //  getUserId() async {
-  //   final data = await userDocument();
-  //   userId = data.id;
-  // }
 }

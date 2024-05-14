@@ -3,16 +3,8 @@ import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 
-searchHeading(BuildContext context) {
-  return myFont("Search",
-      fontFamily: belleza,
-      fontSize: mediaqueryHeight(0.028, context),
-      fontWeight: FontWeight.normal,
-      fontColor: whiteColor);
-}
-
-class BackButtonWithHeading extends StatelessWidget {
-  const BackButtonWithHeading({
+class HeadingAndBackButton extends StatelessWidget {
+  const HeadingAndBackButton({
     super.key,
   });
 
@@ -31,7 +23,11 @@ class BackButtonWithHeading extends StatelessWidget {
         SizedBox(
           width: mediaqueryWidth(0.05, context),
         ),
-        searchHeading(context)
+        (myFont("My Bookmarks",
+            fontFamily: belleza,
+            fontSize: mediaqueryHeight(0.028, context),
+            fontWeight: FontWeight.normal,
+            fontColor: whiteColor))
       ],
     );
   }

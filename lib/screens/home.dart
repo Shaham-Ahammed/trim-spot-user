@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/location_permission_bloc/location_permission_bloc.dart';
+import 'package:trim_spot_user_side/screens/search_screen.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/home/scaffold_key.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
@@ -53,7 +54,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: mediaqueryHeight(0.03, context),
                     ),
-                    GestureDetector(onTap: () {}, child: const SearchBox()),
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  const SearchScreen(autoFocus: true,backButtonNeeded: true,)));
+                        },
+                        child: const SearchBox()),
                     SizedBox(
                       height: mediaqueryHeight(0.02, context),
                     ),

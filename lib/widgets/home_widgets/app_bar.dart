@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:trim_spot_user_side/blocs/location_permission_bloc/location_permission_bloc.dart';
 import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
@@ -72,12 +73,32 @@ class NameAndLocation extends StatelessWidget {
                 context,
               ),
             ),
-            myFont(
-                context.watch<LocationPermissionBloc>().state.currentLocation,
-                fontFamily: balooChettan,
-                fontSize: mediaqueryHeight(0.018, context),
-                fontWeight: FontWeight.normal,
-                fontColor: whiteColor),
+            BlocBuilder<LocationPermissionBloc, LocationPermissionState>(
+              builder: (context, state) {
+                if (state is FetchingUserLocation) {
+                  return Shimmer.fromColors(
+                    direction: ShimmerDirection.ltr,
+                    baseColor: greyColor,
+                    highlightColor: whiteColor,
+                    child: Container(
+                      width: mediaqueryWidth(0.3, context),
+                      height: mediaqueryHeight(0.02, context),
+                      color: greyColor2,
+                    ),
+                  );
+                }
+                return Text(
+                  context.watch<LocationPermissionBloc>().state.currentLocation,
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      overflow: null,
+                      fontFamily: balooChettan,
+                      fontSize: mediaqueryHeight(0.018, context),
+                      fontWeight: FontWeight.normal,
+                      color: whiteColor),
+                );
+              },
+            ),
           ],
         )
       ],

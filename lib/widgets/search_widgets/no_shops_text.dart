@@ -11,9 +11,9 @@ class NoShopsRegisteredText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: myFont("no shops registered yet",
+      child: myFont("no resuls found",
           fontFamily: balooChettan,
-          fontSize: mediaqueryHeight(0.2, context),
+          fontSize: mediaqueryHeight(0.02, context),
           fontWeight: FontWeight.w500,
           fontColor: greyColor),
     );

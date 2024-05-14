@@ -9,20 +9,24 @@ import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 
 userPhone(BuildContext context) {
-  return myFont(context.watch<UserDetailsBloc>().state.phone,
-      fontFamily: balooChettan,
-      fontSize: mediaqueryHeight(0.016, context),
-      fontWeight: FontWeight.w400,
-      fontColor: greyColor);
+  return SizedBox(
+      width: mediaqueryWidth(0.43, context),
+      child: myFont(context.watch<UserDetailsBloc>().state.phone,
+          fontFamily: balooChettan,
+          fontSize: mediaqueryHeight(0.016, context),
+          fontWeight: FontWeight.w400,
+          fontColor: greyColor));
 }
 
 userEmail(BuildContext context) {
-  return myFont(
-    context.watch<UserDetailsBloc>().state.email,
-      fontFamily: balooChettan,
-      fontSize: mediaqueryHeight(0.016, context),
-      fontWeight: FontWeight.w400,
-      fontColor: greyColor);
+  return SizedBox(
+      width: mediaqueryWidth(0.43, context),
+      child: myFont(context.watch<UserDetailsBloc>().state.email,
+          fontFamily: balooChettan,
+          fontSize: mediaqueryHeight(0.016, context),
+          overflow: TextOverflow.ellipsis,
+          fontWeight: FontWeight.w400,
+          fontColor: greyColor));
 }
 
 userName(BuildContext context) {

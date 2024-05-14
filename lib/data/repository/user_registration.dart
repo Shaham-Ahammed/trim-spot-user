@@ -34,7 +34,7 @@ class AddUserDetailsToFirebase {
               username: googleSignInAccount.displayName ?? "",
               email: googleSignInAccount.email,
               phone: "",
-              password: "")
+              password: "", bookmarkedShops: [])
           .toMap();
       try {
         await collectionReference.add(data);

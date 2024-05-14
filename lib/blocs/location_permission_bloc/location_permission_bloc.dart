@@ -43,6 +43,7 @@ class LocationPermissionBloc
 
   _fetchUserLocation(
       FetchUserLocation event, Emitter<LocationPermissionState> emit) async {
+    emit(const FetchingUserLocation(currentLocation: '', currentPosition: null));
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((Position position) async {

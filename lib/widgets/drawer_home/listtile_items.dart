@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/bottom_nav_bloc/bottom_navigation_bloc.dart';
+import 'package:trim_spot_user_side/screens/bookmark_screen.dart';
 import 'package:trim_spot_user_side/screens/customer_support.dart';
 import 'package:trim_spot_user_side/utils/home/listtile_widget.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/utils/page%20transitions/fade_transition.dart';
+import 'package:trim_spot_user_side/utils/page%20transitions/slide_transition.dart';
 import 'package:trim_spot_user_side/widgets/drawer_home/logout_confirm.dart';
 import 'package:trim_spot_user_side/widgets/drawer_home/version_number.dart';
 
@@ -28,7 +30,7 @@ Expanded listviewDrawerHome(BuildContext context) {
         drawerListTiles(context, iconSize: mediaqueryHeight(0.029, context),
             function: () {
           Navigator.pop(context);
-         context
+          context
               .read<BottomNavigationBloc>()
               .add(BottomNavBarPressed(currentPage: 2));
           return null;
@@ -36,21 +38,23 @@ Expanded listviewDrawerHome(BuildContext context) {
         drawerListTiles(context, iconSize: mediaqueryHeight(0.029, context),
             function: () {
           Navigator.pop(context);
-           context
+          context
               .read<BottomNavigationBloc>()
               .add(BottomNavBarPressed(currentPage: 3));
           return null;
         }, icon: Icons.person_3_outlined, title: "Profile"),
         drawerListTiles(context, iconSize: mediaqueryHeight(0.029, context),
             function: () {
-
+          Navigator.pop(context);
+          Navigator.of(context)
+              .push(SlideTransitionPageRoute(child: const BookMarkScreen()));
           return null;
         }, icon: Icons.bookmark_border_rounded, title: "Bookmarked"),
         drawerListTiles(context, iconSize: mediaqueryHeight(0.029, context),
             function: () {
           Navigator.pop(context);
-          Navigator.of(context).push(FadeTransitionPageRoute(
-              child: const CustomerSupport()));
+          Navigator.of(context)
+              .push(FadeTransitionPageRoute(child: const CustomerSupport()));
           return null;
         }, icon: Icons.headset_mic_outlined, title: "Customer Support"),
         drawerListTiles(context, iconSize: mediaqueryHeight(0.029, context),

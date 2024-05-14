@@ -110,6 +110,10 @@ flutter:
     - assets/images/nobooking.png
     - assets/images/nobooking2.png
     - assets/animations/nobooking.json
+    - assets/images/bookmarks.png
+    - assets/images/bookmarks1.png
+    - assets/images/bookmarks2.png
+ 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

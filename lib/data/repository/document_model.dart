@@ -25,6 +25,7 @@ class SalonDocumentModel {
   static const String serviceStraighten = "straighten";
   static const String serviceTime = "time";
   static const String serviceRate = "rate";
+  static const String servicesList = "servicesList";
 }
 
 class UserDocumentModel {
@@ -33,6 +34,7 @@ class UserDocumentModel {
   static const String email = "email";
   static const String phone = "phone";
   static const String password = "password";
+  static const String bookmarkedShops = "bookmarkedShops";
 }
 
 class ReviewDocumentModel {

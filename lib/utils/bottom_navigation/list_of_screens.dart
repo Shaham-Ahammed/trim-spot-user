@@ -6,7 +6,7 @@ import 'package:trim_spot_user_side/screens/search_screen.dart';
 
 List<Widget> tabs = [
   const HomeScreen(),
-  const SearchScreen(),
+  const SearchScreen(autoFocus: false,),
   const BookingsScreen(),
    const ProfileScreen()
 ];
