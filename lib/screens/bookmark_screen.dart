@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_user_side/blocs/bookmark_animation_bloc/book_mark_animation_bloc.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/utils/screen_padding.dart';
@@ -26,26 +28,31 @@ class BookMarkScreen extends StatelessWidget {
             children: [
               const HeadingAndBackButton(),
               SizedBox(height: mediaqueryHeight(0.02, context)),
-              FutureBuilder<List<QueryDocumentSnapshot>>(
-                  future: fetchBookmarkedShops(context),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const ShimmerEffectOfSearchScreen();
-                    }
-                    if (!snapshot.hasData) {
-                      return const ShimmerEffectOfSearchScreen();
-                    }
+              BlocBuilder<BookMarkAnimationBloc, BookMarkAnimationState>(
+                builder: (context, state) {
+                  return FutureBuilder<List<QueryDocumentSnapshot>>(
+                      future: fetchBookmarkedShops(context),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const ShimmerEffectOfSearchScreen();
+                        }
+                        if (!snapshot.hasData) {
+                          return const ShimmerEffectOfSearchScreen();
+                        }
 
-                    if (snapshot.data!.isEmpty) {
-                      return const NoBookmarksIllustrationAndText();
-                    }
-                    if (snapshot.data!.isNotEmpty) {
-                      return BookmarkedShopsListView(
-                        snapshot: snapshot,
-                      );
-                    }
-                    return Container();
-                  })
+                        if (snapshot.data!.isEmpty) {
+                          return const NoBookmarksIllustrationAndText();
+                        }
+                        if (snapshot.data!.isNotEmpty) {
+                          return BookmarkedShopsListView(
+                            snapshot: snapshot,
+                          );
+                        }
+                        return Container();
+                      });
+                },
+              )
             ],
           ),
         ),
@@ -53,6 +60,3 @@ class BookMarkScreen extends StatelessWidget {
     );
   }
 }
-
-
-

@@ -77,15 +77,10 @@ class NameAndLocation extends StatelessWidget {
               builder: (context, state) {
                 if (state is FetchingUserLocation) {
                   return Shimmer.fromColors(
-                    direction: ShimmerDirection.ltr,
-                    baseColor: greyColor,
-                    highlightColor: whiteColor,
-                    child: Container(
-                      width: mediaqueryWidth(0.3, context),
-                      height: mediaqueryHeight(0.02, context),
-                      color: greyColor2,
-                    ),
-                  );
+                      direction: ShimmerDirection.ltr,
+                      baseColor: greyColor,
+                      highlightColor: whiteColor,
+                      child: const Text("......"));
                 }
                 return Text(
                   context.watch<LocationPermissionBloc>().state.currentLocation,

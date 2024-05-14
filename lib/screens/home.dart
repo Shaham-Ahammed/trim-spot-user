@@ -57,8 +57,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const SearchScreen(autoFocus: true,backButtonNeeded: true,)));
+                              builder: (context) => const SearchScreen(
+                                    autoFocus: true,
+                                    backButtonNeeded: true,
+                                  )));
                         },
                         child: const SearchBox()),
                     SizedBox(

@@ -69,7 +69,7 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                   ),
                   Positioned(child: ShopImageDisplay(widget.shop)),
                   const BackButton(),
-                  const BookmarkAnimationLottie()
+                   BookmarkAnimationLottie(shopId: widget.shop.id,)
                 ],
               ),
               shopName(context, widget.shop),
