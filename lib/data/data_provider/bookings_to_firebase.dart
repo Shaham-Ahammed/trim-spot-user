@@ -47,6 +47,8 @@ class BookingsToFirebase {
         CollectionReferences().userCollectionReference().doc(userId).collection(
             FirebaseNamesUserSide.bookingHistoryCollectionReference);
 
+    final totalAmount = totalAmountOfServices(context);
+
     final data = BookingHistoryModel(
             currentStatus: BookingHisotryUserDocumentModel.currentStatusPending,
             date: formattedDate,
@@ -54,7 +56,8 @@ class BookingsToFirebase {
             shopLocation: shop[SalonDocumentModel.locationName],
             shopName: shop[SalonDocumentModel.shopName],
             time: parsedTime,
-            shopId: shop.id)
+            shopId: shop.id,
+            amount: totalAmount)
         .toMap();
     try {
       await userBookinHistoryCollectionReference.add(data);
@@ -76,7 +79,7 @@ class BookingsToFirebase {
       services.add(key);
     });
     String serviesInStringFormat = services.join(', ');
-    final totalAmount = totalTimeRequired(context);
+    final totalAmount = totalAmountOfServices(context);
     final allSlots = BlocProvider.of<SlotSelectionBloc>(context, listen: false)
         .state
         .selectedSlots;

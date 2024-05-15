@@ -37,19 +37,17 @@ class ServiceBookingScreen extends StatefulWidget {
 
 class _ServiceBookingScreenState extends State<ServiceBookingScreen>
     with SingleTickerProviderStateMixin {
- 
-
   @override
   void initState() {
     bookmarkAnimationController = AnimationController(vsync: this);
-  
+
     super.initState();
   }
 
   @override
   void dispose() {
     bookmarkAnimationController.dispose();
-  
+
     super.dispose();
   }
 
@@ -174,7 +172,7 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                                                     ),
                                                     SlideToPayWidget(
                                                       shop: widget.shop,
-                                                   //   razorpay: razorpay,
+                                                      //   razorpay: razorpay,
                                                     ),
                                                   ],
                                                 );
@@ -187,7 +185,9 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                           fourRoundedIcons(context, widget.shop),
                         ],
                       )))
-            ]))),
+            ])),
+        
+            ),
       ),
     );
   }

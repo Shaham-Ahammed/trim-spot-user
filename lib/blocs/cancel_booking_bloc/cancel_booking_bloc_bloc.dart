@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:trim_spot_user_side/data/data_provider/booking_cancellation.dart';
+import 'package:trim_spot_user_side/data/data_provider/updating_wallet.dart';
 
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
 
@@ -39,6 +40,8 @@ class CancelBookingBloc
           .removingPendingFromShopSide(event.context, event.bookingDetails);
       await BookingCancellation().removeTheBookedSlotsFromShopside(
           event.context, event.bookingDetails);
+      await DbWalletOperations()
+          .refundDuringCancellation(event.bookingDetails, event.context);
     } catch (e) {
       emit(CancellationFailed());
       return;

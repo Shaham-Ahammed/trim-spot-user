@@ -115,6 +115,9 @@ flutter:
     - assets/images/bookmarks.png
     - assets/images/bookmarks1.png
     - assets/images/bookmarks2.png
+    - assets/animations/loading_indicator_wallet.json
+    - assets/images/empty wallet.png
+    - assets/animations/horizontal loading on wallet.json
  
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

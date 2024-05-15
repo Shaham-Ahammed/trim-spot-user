@@ -11,6 +11,7 @@ class BookingStateHandler {
       loadingIndicator(context);
     }
     if (state is BookingSuccessfullyCompleted) {
+     Navigator.pop(context);
       Navigator.pop(context);
       Navigator.of(context).pushReplacement(
           NoTransitionPageRoute(child: const BookingSuccessMessageScreen()));

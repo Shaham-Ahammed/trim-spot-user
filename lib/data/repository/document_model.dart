@@ -65,6 +65,7 @@ class BookingHisotryUserDocumentModel {
   static const String currentStatusPending = "PENDING";
   static const String currentStatusCompleted = "COMPLETED";
   static const String currentStatusCancelled = "CANCELLED";
+  static const String totalAmount = "amount";
 }
 
 class WalletUserDocumentModel {

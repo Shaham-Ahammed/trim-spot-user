@@ -17,3 +17,16 @@ String totalTimeRequired(BuildContext context) {
   return time.toString();
 }
 
+String totalAmountOfServices(BuildContext context) {
+  final Map<String, Map<String, String>> services =
+      BlocProvider.of<ServiceSelectedBloc>(context,listen: false).state.serviceMap;
+  int amount = 0;
+  services.forEach((key, value) {
+    if (value.containsKey(SalonDocumentModel.serviceRate)) {
+      int rateOfOneService = int.parse(value[SalonDocumentModel.serviceRate]!);
+      amount += rateOfOneService;
+    }
+  });
+
+  return amount.toString();
+}

@@ -9,3 +9,7 @@ final class LoadingIndicatorOnBookingScreen extends BookingCompletionState{}
 final class BookingSuccessfullyCompleted extends BookingCompletionState{}
 
 final class BookingFailed extends BookingCompletionState{}
+
+final class NoEnoughAmountOnWallet extends BookingCompletionState{}
+
+final class StopLoading extends BookingCompletionState{}

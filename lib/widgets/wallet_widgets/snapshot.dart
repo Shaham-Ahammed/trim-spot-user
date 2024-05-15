@@ -5,6 +5,8 @@ import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.da
 import 'package:trim_spot_user_side/data/firebase_collection_references/user_information_reference.dart';
 import 'package:trim_spot_user_side/data/repository/firebase_docs_and_collections.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
+import 'package:trim_spot_user_side/utils/font.dart';
+import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/widgets/wallet_widgets/listview.dart';
 
 class HistoryListView extends StatelessWidget {
@@ -30,9 +32,21 @@ class HistoryListView extends StatelessWidget {
             return Container();
           }
           if (snapshot.data!.docs.isEmpty) {
-            return const Icon(
-              Icons.ac_unit,
-              color: whiteColor,
+            return Padding(
+              padding:  EdgeInsets.only(top: mediaqueryHeight(0.1, context)),
+              child: Column(
+                children: [
+                  Image.asset("assets/images/empty wallet.png",height: mediaqueryHeight(0.3, context),),
+                  myFont(
+                    
+                      "You haven't made any wallet transactions yet.",
+                    textalign: TextAlign.center,
+                      fontFamily: balooChettan,
+                      fontSize: mediaqueryHeight(0.016, context),
+                      fontWeight: FontWeight.w400,
+                      fontColor: whiteColor),
+                ],
+              ),
             );
           }
           if (snapshot.data!.docs.isNotEmpty) {
