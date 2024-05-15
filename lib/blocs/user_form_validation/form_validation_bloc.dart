@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/profile_image_bloc/profile_image_bloc.dart';
 import 'package:trim_spot_user_side/data/firebase_auth_implementation/firebase_auth_services.dart';
-import 'package:trim_spot_user_side/data/repository/user_registration.dart';
+import 'package:trim_spot_user_side/data/data_provider/user_registration.dart';
 import 'package:trim_spot_user_side/data/shared_preference/functions.dart';
 import 'package:trim_spot_user_side/screens/bottom_navigation.dart';
 import 'package:trim_spot_user_side/utils/page%20transitions/fade_transition.dart';

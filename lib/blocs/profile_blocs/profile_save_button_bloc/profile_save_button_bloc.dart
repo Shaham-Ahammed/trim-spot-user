@@ -7,7 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:trim_spot_user_side/blocs/profile_blocs/name_bloc/profile_name_bloc.dart';
 import 'package:trim_spot_user_side/blocs/profile_blocs/phone_bloc/profile_phone_bloc.dart';
 import 'package:trim_spot_user_side/blocs/profile_blocs/user_profile_image_bloc/profile_user_image_bloc.dart';
-import 'package:trim_spot_user_side/data/data_provider/user_data_document.dart';
+import 'package:trim_spot_user_side/data/repository/user_data_document.dart';
 import 'package:trim_spot_user_side/data/firebase_collection_references/user_information_reference.dart';
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
 import 'package:trim_spot_user_side/utils/profile_screen/controllers.dart';

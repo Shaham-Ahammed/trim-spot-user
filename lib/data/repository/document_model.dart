@@ -66,3 +66,13 @@ class BookingHisotryUserDocumentModel {
   static const String currentStatusCompleted = "COMPLETED";
   static const String currentStatusCancelled = "CANCELLED";
 }
+
+class WalletUserDocumentModel {
+  static const String shopName = "shopName";
+  static const String amount = "amount";
+  static const String transferDate = "transferDate";
+  static const String action = "action";
+  static const String credit = 'credit';
+  static const String booking = "BOOKING";
+  static const String refund = "REFUND";
+}

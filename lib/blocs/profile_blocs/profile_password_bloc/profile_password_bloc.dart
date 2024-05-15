@@ -3,7 +3,7 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:trim_spot_user_side/data/data_provider/user_data_document.dart';
+import 'package:trim_spot_user_side/data/repository/user_data_document.dart';
 import 'package:trim_spot_user_side/data/firebase_collection_references/user_information_reference.dart';
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
 

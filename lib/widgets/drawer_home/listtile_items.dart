@@ -8,6 +8,7 @@ import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/utils/page%20transitions/fade_transition.dart';
 import 'package:trim_spot_user_side/utils/page%20transitions/slide_transition.dart';
 import 'package:trim_spot_user_side/widgets/drawer_home/logout_confirm.dart';
+import 'package:trim_spot_user_side/widgets/drawer_home/mywallet_listtile.dart';
 import 'package:trim_spot_user_side/widgets/drawer_home/version_number.dart';
 
 Expanded listviewDrawerHome(BuildContext context) {
@@ -50,6 +51,7 @@ Expanded listviewDrawerHome(BuildContext context) {
               .push(SlideTransitionPageRoute(child: const BookMarkScreen()));
           return null;
         }, icon: Icons.bookmark_border_rounded, title: "Bookmarked"),
+        const MyWalletSection(),
         drawerListTiles(context, iconSize: mediaqueryHeight(0.029, context),
             function: () {
           Navigator.pop(context);

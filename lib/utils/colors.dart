@@ -15,3 +15,4 @@ const Color appBarColor = Color.fromRGBO(73, 73, 73, 0.631);
 const Color subTitlesTextGrey = Color.fromRGBO(177, 177, 177, 1);
 const Color bottomNavBarColor = Color.fromRGBO(255, 255, 255, 0.494);
 const Color nonSelectedIconBackgroundColor = Color.fromRGBO(177, 177, 177, 0.6);
+const Color greenColor = Color.fromRGBO(0, 165, 26, 1);

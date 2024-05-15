@@ -2,7 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:trim_spot_user_side/data/repository/user_registration.dart';
+import 'package:trim_spot_user_side/data/data_provider/user_registration.dart';
 import 'package:trim_spot_user_side/utils/login_screen/controllers.dart';
 import 'package:trim_spot_user_side/utils/register_page/controllers.dart';
 

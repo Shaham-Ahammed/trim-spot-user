@@ -10,4 +10,5 @@ class FirebaseNamesShopSide {
 class FirebaseNamesUserSide {
   static const registrationReference = "user_information";
   static const bookingHistoryCollectionReference = "user_booking_history";
+  static const walletcollectionReference = "wallet";
 }

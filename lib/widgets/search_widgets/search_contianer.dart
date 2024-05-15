@@ -21,8 +21,16 @@ class _SearchFieldState extends State<SearchField> {
   final TextEditingController searchController = TextEditingController();
   @override
   void initState() {
+    context
+        .read<SearchBloc>()
+        .add(EnteredASearchString(searchWord: widget.service));
     searchController.text = widget.service;
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override

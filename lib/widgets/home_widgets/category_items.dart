@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:trim_spot_user_side/blocs/search_bloc/search_bloc.dart';
 import 'package:trim_spot_user_side/screens/search_screen.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
@@ -25,9 +23,6 @@ Row firstThreeCategories(BuildContext context) {
 GestureDetector categorieItemsWidget(BuildContext context, int index) {
   return GestureDetector(
     onTap: () {
-      context
-          .read<SearchBloc>()
-          .add(EnteredASearchString(searchWord: categoryNames[index]));
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => SearchScreen(
           autoFocus: false,
