@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/profile_blocs/profile_save_button_bloc/profile_save_button_bloc.dart';
 import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
+import 'package:trim_spot_user_side/data/repository/network_stream.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
+import 'package:trim_spot_user_side/utils/no_network.dart';
 import 'package:trim_spot_user_side/utils/profile_screen/formkey.dart';
 import 'package:trim_spot_user_side/utils/screen_padding.dart';
 import 'package:trim_spot_user_side/widgets/profile_widgets/initstate/initializing.dart';
@@ -45,69 +47,83 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Scaffold(
           backgroundColor: blackColor,
           body: SafeArea(
-            child: SingleChildScrollView(
-              child: Form(
-                key: profileFormKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const HeadingAndLogoutButton(),
-                    SizedBox(
-                      height: mediaqueryHeight(0.04, context),
+            child: StreamBuilder<bool>(
+            stream: checkInternetconnectivity(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Container();
+                    }
+
+                    if (!snapshot.data!) {
+                     
+
+                     return const  NoNetworkDisplayWidget();
+                    }
+                return SingleChildScrollView(
+                  child: Form(
+                    key: profileFormKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const HeadingAndLogoutButton(),
+                        SizedBox(
+                          height: mediaqueryHeight(0.04, context),
+                        ),
+                        Padding(
+                          padding: commonScreenPadding(context),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const ProfilePictureDispaly(),
+                              SizedBox(
+                                height: mediaqueryHeight(0.015, context),
+                              ),
+                              const UserNameDisaply(),
+                              SizedBox(
+                                height: mediaqueryHeight(0.015, context),
+                              ),
+                              profilePageHeadings(context, "Name"),
+                              spaceBetweenHeadingAndTextfield(context),
+                              const UserNameTextField(),
+                              SizedBox(
+                                height: mediaqueryHeight(0.014, context),
+                              ),
+                              profilePageHeadings(context, "Phone"),
+                              spaceBetweenHeadingAndTextfield(context),
+                              const PhoneTextField(),
+                              SizedBox(
+                                height: mediaqueryHeight(0.014, context),
+                              ),
+                              profilePageHeadings(context, "Email"),
+                              spaceBetweenHeadingAndTextfield(context),
+                              const EmailTextField(),
+                              SizedBox(
+                                height: mediaqueryHeight(0.03, context),
+                              ),
+                              BlocBuilder<UserDetailsBloc, UserDetailsState>(
+                                builder: (context, state) {
+                                  return state.password.isEmpty
+                                      ? Container()
+                                      : GestureDetector(
+                                          onTap: () {
+                                            changePasswordAlert(context);
+                                          },
+                                          child: changePasswordText(context),
+                                        );
+                                },
+                              ),
+                              SizedBox(
+                                height: mediaqueryHeight(0.04, context),
+                              ),
+                              const SubmitButton()
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: commonScreenPadding(context),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const ProfilePictureDispaly(),
-                          SizedBox(
-                            height: mediaqueryHeight(0.015, context),
-                          ),
-                          const UserNameDisaply(),
-                          SizedBox(
-                            height: mediaqueryHeight(0.015, context),
-                          ),
-                          profilePageHeadings(context, "Name"),
-                          spaceBetweenHeadingAndTextfield(context),
-                          const UserNameTextField(),
-                          SizedBox(
-                            height: mediaqueryHeight(0.014, context),
-                          ),
-                          profilePageHeadings(context, "Phone"),
-                          spaceBetweenHeadingAndTextfield(context),
-                          const PhoneTextField(),
-                          SizedBox(
-                            height: mediaqueryHeight(0.014, context),
-                          ),
-                          profilePageHeadings(context, "Email"),
-                          spaceBetweenHeadingAndTextfield(context),
-                          const EmailTextField(),
-                          SizedBox(
-                            height: mediaqueryHeight(0.03, context),
-                          ),
-                          BlocBuilder<UserDetailsBloc, UserDetailsState>(
-                            builder: (context, state) {
-                              return state.password.isEmpty
-                                  ? Container()
-                                  : GestureDetector(
-                                      onTap: () {
-                                        changePasswordAlert(context);
-                                      },
-                                      child: changePasswordText(context),
-                                    );
-                            },
-                          ),
-                          SizedBox(
-                            height: mediaqueryHeight(0.04, context),
-                          ),
-                          const SubmitButton()
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                  ),
+                );
+              }
             ),
           ),
         ),

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_user_side/blocs/bottom_nav_bloc/bottom_navigation_bloc.dart';
 import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
-import 'package:trim_spot_user_side/screens/profile.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
-import 'package:trim_spot_user_side/utils/page%20transitions/fade_transition.dart';
 
 class ProfileImageDisplay extends StatelessWidget {
   const ProfileImageDisplay({
@@ -42,9 +41,10 @@ class ProfileImageEditButton extends StatelessWidget {
           color: cyanColor,
           child: InkWell(
             onTap: () {
-              Navigator.pop(context);
-              Navigator.of(context)
-                  .push(FadeTransitionPageRoute(child: const ProfileScreen()));
+               Navigator.pop(context);
+          context
+              .read<BottomNavigationBloc>()
+              .add(BottomNavBarPressed(currentPage: 3));
             },
             borderRadius: BorderRadius.circular(90),
             child: Container(

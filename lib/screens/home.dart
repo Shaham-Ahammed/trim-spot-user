@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/location_permission_bloc/location_permission_bloc.dart';
+import 'package:trim_spot_user_side/data/repository/network_stream.dart';
 import 'package:trim_spot_user_side/screens/search_screen.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/home/scaffold_key.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
+import 'package:trim_spot_user_side/utils/no_network.dart';
 import 'package:trim_spot_user_side/utils/screen_padding.dart';
 import 'package:trim_spot_user_side/widgets/home_widgets/app_bar.dart';
 import 'package:trim_spot_user_side/widgets/home_widgets/category_items.dart';
@@ -44,50 +46,60 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           backgroundColor: blackColor,
           body: SafeArea(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: commonScreenPadding(context),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const AppBarElements(),
-                    SizedBox(
-                      height: mediaqueryHeight(0.03, context),
+            child: StreamBuilder<bool>(
+                stream: checkInternetconnectivity(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container();
+                  }
+                  if (!snapshot.data!) {
+                    return const NoNetworkDisplayWidget();
+                  }
+                  return SingleChildScrollView(
+                    child: Padding(
+                      padding: commonScreenPadding(context),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const AppBarElements(),
+                          SizedBox(
+                            height: mediaqueryHeight(0.03, context),
+                          ),
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => const SearchScreen(
+                                          autoFocus: true,
+                                          backButtonNeeded: true,
+                                        )));
+                              },
+                              child: const SearchBox()),
+                          SizedBox(
+                            height: mediaqueryHeight(0.02, context),
+                          ),
+                          categoriesHeading(context),
+                          SizedBox(
+                            height: mediaqueryHeight(0.015, context),
+                          ),
+                          firstThreeCategories(context),
+                          SizedBox(
+                            height: mediaqueryHeight(0.01, context),
+                          ),
+                          secongThreeCategories(context),
+                          SizedBox(
+                            height: mediaqueryHeight(0.02, context),
+                          ),
+                          nearbySalonsHeading(context),
+                          SizedBox(
+                            height: mediaqueryHeight(0.015, context),
+                          ),
+                          const NearbySalonsListviewWidget(),
+                          const ViewMoreButton()
+                        ],
+                      ),
                     ),
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const SearchScreen(
-                                    autoFocus: true,
-                                    backButtonNeeded: true,
-                                  )));
-                        },
-                        child: const SearchBox()),
-                    SizedBox(
-                      height: mediaqueryHeight(0.02, context),
-                    ),
-                    categoriesHeading(context),
-                    SizedBox(
-                      height: mediaqueryHeight(0.015, context),
-                    ),
-                    firstThreeCategories(context),
-                    SizedBox(
-                      height: mediaqueryHeight(0.01, context),
-                    ),
-                    secongThreeCategories(context),
-                    SizedBox(
-                      height: mediaqueryHeight(0.02, context),
-                    ),
-                    nearbySalonsHeading(context),
-                    SizedBox(
-                      height: mediaqueryHeight(0.015, context),
-                    ),
-                    const NearbySalonsListviewWidget(),
-                    const ViewMoreButton()
-                  ],
-                ),
-              ),
-            ),
+                  );
+                }),
           )),
     );
   }

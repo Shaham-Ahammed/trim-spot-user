@@ -118,6 +118,7 @@ flutter:
     - assets/animations/loading_indicator_wallet.json
     - assets/images/empty wallet.png
     - assets/animations/horizontal loading on wallet.json
+    - assets/images/no-wifi.png
  
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

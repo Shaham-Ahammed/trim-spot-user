@@ -4,9 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/cancel_booking_bloc/cancel_booking_bloc_bloc.dart';
 import 'package:trim_spot_user_side/blocs/review_and_rating/review_and_rating_bloc.dart';
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
+import 'package:trim_spot_user_side/data/repository/network_stream.dart';
 
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
+import 'package:trim_spot_user_side/utils/no_network.dart';
 import 'package:trim_spot_user_side/widgets/appointments_details/back_button.dart';
 import 'package:trim_spot_user_side/widgets/appointments_details/detailed_display_container.dart';
 import 'package:trim_spot_user_side/widgets/appointments_details/details_heading.dart';
@@ -37,43 +39,57 @@ class MyAppointmentsDetailsScreen extends StatelessWidget {
       ],
       child: Scaffold(
         backgroundColor: blackColor,
-        body: SingleChildScrollView(
-          child: SafeArea(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.all(mediaqueryHeight(0.01, context)),
-                child: Stack(
-                  children: [
-                    SizedBox(
-                      width: double.infinity,
-                      height: mediaqueryHeight(0.45, context),
+        body: StreamBuilder<bool>(
+         stream: checkInternetconnectivity(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Container();
+                    }
+
+                    if (!snapshot.data!) {
+                     
+
+                     return const  NoNetworkDisplayWidget();
+                    }
+            return SingleChildScrollView(
+              child: SafeArea(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(mediaqueryHeight(0.01, context)),
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: double.infinity,
+                          height: mediaqueryHeight(0.45, context),
+                        ),
+                        ServiceImage(
+                          booking: booking,
+                        ),
+                        const BackButtonBookinDetails(),
+                        StatusAndService(booking: booking)
+                      ],
                     ),
-                    ServiceImage(
-                      booking: booking,
-                    ),
-                    const BackButtonBookinDetails(),
-                    StatusAndService(booking: booking)
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: mediaqueryHeight(0.02, context),
-              ),
-              const DetailsHeading(),
-              SizedBox(
-                height: mediaqueryHeight(0.01, context),
-              ),
-              detailsDisplayArea(context, booking),
-              SizedBox(
-                height: mediaqueryHeight(0.065, context),
-              ),
-              if (booking[BookingHisotryUserDocumentModel.currentStatus] !=
-                  BookingHisotryUserDocumentModel.currentStatusCancelled)
-                rateOrCancel(context, booking)
-            ],
-          )),
+                  ),
+                  SizedBox(
+                    height: mediaqueryHeight(0.02, context),
+                  ),
+                  const DetailsHeading(),
+                  SizedBox(
+                    height: mediaqueryHeight(0.01, context),
+                  ),
+                  detailsDisplayArea(context, booking),
+                  SizedBox(
+                    height: mediaqueryHeight(0.065, context),
+                  ),
+                  if (booking[BookingHisotryUserDocumentModel.currentStatus] !=
+                      BookingHisotryUserDocumentModel.currentStatusCancelled)
+                    rateOrCancel(context, booking)
+                ],
+              )),
+            );
+          }
         ),
       ),
     );
