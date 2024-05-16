@@ -21,9 +21,9 @@ class ReviewAndRatingsSubmission {
             .doc(bookingHistory[BookingHisotryUserDocumentModel.shopId])
             .collection(FirebaseNamesShopSide.reviewscollectionReference)
             .where(ReviewDocumentModel.serviceDoneOn,
-                isEqualTo:bookingHistory[ BookingHisotryUserDocumentModel.date])
+                isEqualTo: bookingHistory[BookingHisotryUserDocumentModel.date])
             .where(ReviewDocumentModel.timeSlotWasOn,
-                isEqualTo:bookingHistory[ BookingsShopSideDocumentModel.time])
+                isEqualTo: bookingHistory[BookingsShopSideDocumentModel.time])
             .get();
     print(reviewDetails.docs.length);
     if (reviewDetails.docs.isEmpty) {
@@ -48,6 +48,7 @@ class ReviewAndRatingsSubmission {
         DateFormat('yyyy-MM-dd HH:mm:ss').format(currentTimeInDateTime);
 
     final data = ReviewsAndRatingsModel(
+            timestamp: Timestamp.now(),
             imagepath: userDetailsState.profileImage,
             name: userDetailsState.userName,
             rating: starCount.toString(),

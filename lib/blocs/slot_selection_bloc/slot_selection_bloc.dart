@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:trim_spot_user_side/blocs/service_booking_blocs/date_selection_bloc/date_selection_bloc.dart';
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
 
-import 'package:trim_spot_user_side/utils/service_booking/total_time.dart';
+import 'package:trim_spot_user_side/widgets/service_booking_widgets/functions/total_time.dart';
 
 part 'slot_selection_event.dart';
 part 'slot_selection_state.dart';

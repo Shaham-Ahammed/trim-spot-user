@@ -4,9 +4,9 @@ part of 'slide_to_pay_widget_bloc.dart';
 sealed class SlideToPayWidgetState {
   final bool notSwiped;
 
-  SlideToPayWidgetState({required this.notSwiped});
+  const SlideToPayWidgetState({required this.notSwiped});
 }
 
 final class SlideToPayWidgetInitial extends SlideToPayWidgetState {
-  SlideToPayWidgetInitial({required super.notSwiped});
+  const SlideToPayWidgetInitial({required super.notSwiped});
 }

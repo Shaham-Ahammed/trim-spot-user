@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:lottie/lottie.dart';
 import 'package:trim_spot_user_side/screens/wallet_screen.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/utils/page%20transitions/slide_transition.dart';
 import 'package:trim_spot_user_side/widgets/drawer_home/functions/fetching_waller_amount.dart';
-
 
 class MyWalletSection extends StatelessWidget {
   const MyWalletSection({
@@ -35,10 +34,9 @@ class MyWalletSection extends StatelessWidget {
           future: fetchingTheWalletAmount(context),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Shimmer.fromColors(
-                baseColor: cyanColor,
-                highlightColor: whiteColor,
-                child: const Text("..."),
+              return LottieBuilder.asset(
+                "assets/animations/loading_indicator_wallet.json",
+                height: mediaqueryHeight(0.05, context),
               );
             }
             return myFont("₹${snapshot.data}",

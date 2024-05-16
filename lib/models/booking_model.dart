@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class BookingHistoryModel {
   final String currentStatus;
   final String date;
@@ -7,6 +9,8 @@ class BookingHistoryModel {
   final String time;
   final String amount;
   final String shopId;
+  final Timestamp timestamp;
+
   BookingHistoryModel({
     required this.currentStatus,
     required this.shopId,
@@ -16,10 +20,12 @@ class BookingHistoryModel {
     required this.shopLocation,
     required this.shopName,
     required this.time,
+    required this.timestamp
   });
   Map<String, dynamic> toMap() {
     return {
-      "amount" : amount,
+      "timeStamp":timestamp,
+      "amount": amount,
       "currentStatus": currentStatus,
       "date": date,
       "service": service,
@@ -31,4 +37,3 @@ class BookingHistoryModel {
   }
 }
 
-enum BookingStatus { pending, completed, cancelled }

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +22,7 @@ class DbWalletOperations {
         DateFormat('dd MMM yyyy').format(DateTime.now()).toUpperCase();
 
     final data = WalletModel(
+            timeStamp: Timestamp.now(),
             shopName: shop[SalonDocumentModel.shopName],
             transferDate: today,
             action: WalletUserDocumentModel.booking,
@@ -46,6 +49,7 @@ class DbWalletOperations {
         DateFormat('dd MMM yyyy').format(DateTime.now()).toUpperCase();
 
     final data = WalletModel(
+            timeStamp: Timestamp.now(),
             shopName: bookingHistory[BookingHisotryUserDocumentModel.shopName],
             transferDate: today,
             action: WalletUserDocumentModel.refund,

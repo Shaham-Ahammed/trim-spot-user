@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
 
 class ReviewsAndRatingsModel {
@@ -8,10 +9,12 @@ class ReviewsAndRatingsModel {
   final String currentTime;
   final String serviceDoneOn;
   final String timeSlotWasOn;
+  final Timestamp timestamp;
 
   ReviewsAndRatingsModel(
       {required this.imagepath,
       required this.name,
+      required this.timestamp,
       required this.rating,
       required this.currentTime,
       required this.review,

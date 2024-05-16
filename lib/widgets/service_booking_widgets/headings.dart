@@ -3,7 +3,7 @@ import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 
-import 'package:trim_spot_user_side/utils/service_booking/total_slots.dart';
+import 'package:trim_spot_user_side/widgets/service_booking_widgets/functions/total_slots.dart';
   slotSelectionSubtitle(BuildContext context) {
    return myFont(
         "( Please select ${slotsRequired(context)} consecutive available slots )",

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:trim_spot_user_side/data/firebase_collection_references/user_information_reference.dart';
+import 'package:trim_spot_user_side/data/repository/document_model.dart';
 import 'package:trim_spot_user_side/data/repository/firebase_docs_and_collections.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/reviews_and_ratings/no_reviews_yet.dart';
 import 'package:trim_spot_user_side/widgets/service_booking_widgets/reviews_and_ratings/review_list.dart';
@@ -20,6 +21,7 @@ class UserReviews extends StatelessWidget {
             .shopDetailsReference()
             .doc(shop.id)
             .collection(FirebaseNamesShopSide.reviewscollectionReference)
+            .orderBy(ReviewDocumentModel.timeStamp,descending: true)
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {

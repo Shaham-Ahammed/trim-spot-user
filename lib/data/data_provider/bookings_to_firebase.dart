@@ -13,7 +13,7 @@ import 'package:trim_spot_user_side/data/repository/document_model.dart';
 import 'package:trim_spot_user_side/data/repository/firebase_docs_and_collections.dart';
 import 'package:trim_spot_user_side/models/booking_model.dart';
 import 'package:trim_spot_user_side/models/salon_side_booking_model.dart';
-import 'package:trim_spot_user_side/utils/service_booking/total_time.dart';
+import 'package:trim_spot_user_side/widgets/service_booking_widgets/functions/total_time.dart';
 
 class BookingsToFirebase {
   addUserBookingHistoryToFirebase(
@@ -50,6 +50,7 @@ class BookingsToFirebase {
     final totalAmount = totalAmountOfServices(context);
 
     final data = BookingHistoryModel(
+            timestamp: Timestamp.now(),
             currentStatus: BookingHisotryUserDocumentModel.currentStatusPending,
             date: formattedDate,
             service: services.join(", "),
@@ -101,6 +102,7 @@ class BookingsToFirebase {
             .collection(FirebaseNamesShopSide.bookingDetailsCollection);
 
     final data = SalonSideBookingModel(
+            timestamp: Timestamp.now(),
             name: name,
             services: serviesInStringFormat,
             time: parsedTime,

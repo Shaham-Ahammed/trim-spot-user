@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_user_side/data/firebase_collection_references/user_information_reference.dart';
+import 'package:trim_spot_user_side/data/repository/document_model.dart';
 import 'package:trim_spot_user_side/data/repository/firebase_docs_and_collections.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
@@ -21,6 +22,7 @@ class HistoryListView extends StatelessWidget {
             .userCollectionReference()
             .doc(BlocProvider.of<UserDetailsBloc>(context).state.id)
             .collection(FirebaseNamesUserSide.walletcollectionReference)
+            .orderBy(WalletUserDocumentModel.timeStamp, descending: true)
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -33,14 +35,15 @@ class HistoryListView extends StatelessWidget {
           }
           if (snapshot.data!.docs.isEmpty) {
             return Padding(
-              padding:  EdgeInsets.only(top: mediaqueryHeight(0.1, context)),
+              padding: EdgeInsets.only(top: mediaqueryHeight(0.1, context)),
               child: Column(
                 children: [
-                  Image.asset("assets/images/empty wallet.png",height: mediaqueryHeight(0.3, context),),
-                  myFont(
-                    
-                      "You haven't made any wallet transactions yet.",
-                    textalign: TextAlign.center,
+                  Image.asset(
+                    "assets/images/empty wallet.png",
+                    height: mediaqueryHeight(0.3, context),
+                  ),
+                  myFont("You haven't made any wallet transactions yet.",
+                      textalign: TextAlign.center,
                       fontFamily: balooChettan,
                       fontSize: mediaqueryHeight(0.016, context),
                       fontWeight: FontWeight.w400,

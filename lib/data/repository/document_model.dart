@@ -42,6 +42,7 @@ class ReviewDocumentModel {
   static const String userNmae = "userName";
   static const String ratings = "ratings";
   static const String review = "review";
+  static const String timeStamp = "timeStamp";
   static const String ratingTime = "ratingTime";
   static const String serviceDoneOn = "serviceDoneOn";
   static const String timeSlotWasOn = "timeSlot";
@@ -52,6 +53,7 @@ class BookingsShopSideDocumentModel {
   static const String name = "name";
   static const String services = "services";
   static const String totalAmount = "totalAmount";
+  static const String timeStamp = "timeStamp";
 }
 
 class BookingHisotryUserDocumentModel {
@@ -61,6 +63,7 @@ class BookingHisotryUserDocumentModel {
   static const String service = "service";
   static const String shopLocation = "shopLocation";
   static const String shopName = "shopName";
+  static const String timeStamp = "timeStamp";
   static const String time = "time";
   static const String currentStatusPending = "PENDING";
   static const String currentStatusCompleted = "COMPLETED";
@@ -76,4 +79,5 @@ class WalletUserDocumentModel {
   static const String credit = 'credit';
   static const String booking = "BOOKING";
   static const String refund = "REFUND";
+  static const String timeStamp = "timeStamp";
 }

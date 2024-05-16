@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_user_side/data/firebase_collection_references/user_information_reference.dart';
+import 'package:trim_spot_user_side/data/repository/document_model.dart';
 import 'package:trim_spot_user_side/data/repository/firebase_docs_and_collections.dart';
 import 'package:trim_spot_user_side/widgets/appointments/functions/checking_completed.dart';
 import 'package:trim_spot_user_side/widgets/appointments/listview_after_fetching.dart';
@@ -30,6 +31,7 @@ class AllAppointmentsList extends StatelessWidget {
                     .id)
                 .collection(
                     FirebaseNamesUserSide.bookingHistoryCollectionReference)
+                    .orderBy(BookingHisotryUserDocumentModel.timeStamp,descending: true)
                 .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {

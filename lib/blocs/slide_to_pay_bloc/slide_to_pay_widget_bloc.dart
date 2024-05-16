@@ -6,13 +6,13 @@ part 'slide_to_pay_widget_state.dart';
 
 class SlideToPayWidgetBloc
     extends Bloc<SlideToPayWidgetEvent, SlideToPayWidgetState> {
-  SlideToPayWidgetBloc() : super(SlideToPayWidgetInitial(notSwiped: true)) {
+  SlideToPayWidgetBloc() : super(const SlideToPayWidgetInitial(notSwiped: true)) {
     on<SwipedThePayment>(_swipedThePayment);
   }
   _swipedThePayment(
       SwipedThePayment event, Emitter<SlideToPayWidgetState> emit) async {
-    emit(SlideToPayWidgetInitial(notSwiped: false));
+    emit(const SlideToPayWidgetInitial(notSwiped: false));
     await Future.delayed(const Duration(seconds: 1));
-    emit(SlideToPayWidgetInitial(notSwiped: true));
+    emit(const SlideToPayWidgetInitial(notSwiped: true));
   }
 }

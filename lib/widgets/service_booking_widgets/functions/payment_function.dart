@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void openCheckout(amount, Razorpay razorpay) async {
   amount = amount * 100;
@@ -18,3 +19,18 @@ void openCheckout(amount, Razorpay razorpay) async {
     debugPrint("error in payment :$e");
   }
 }
+
+
+ 
+
+  void handlePaymentError(PaymentFailureResponse response) {
+    Fluttertoast.showToast(
+        msg: "Payment Fail${response.message!}",
+        toastLength: Toast.LENGTH_SHORT);
+  }
+
+  void handleExternalWallet(ExternalWalletResponse response) {
+    Fluttertoast.showToast(
+        msg: "External wallet${response.walletName!}",
+        toastLength: Toast.LENGTH_SHORT);
+  }
