@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:trim_spot_user_side/utils/bookings/alert_texts.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
-import 'package:trim_spot_user_side/utils/my_appointments/cannot_cancel_text.dart';
+
 
 Future<dynamic> cannotCancelAlertDialogue(context) {
   return showDialog(

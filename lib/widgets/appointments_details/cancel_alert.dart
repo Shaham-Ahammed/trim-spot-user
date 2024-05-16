@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/cancel_booking_bloc/cancel_booking_bloc_bloc.dart';
+import 'package:trim_spot_user_side/utils/bookings/alert_texts.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
@@ -15,7 +16,7 @@ Future<dynamic> cancelAlertDialogue(
         return Dialog(
           child: Container(
             width: mediaqueryHeight(0.8, context),
-            height: mediaqueryHeight(0.18, context),
+            height: mediaqueryHeight(0.23, context),
             padding: EdgeInsets.all(mediaqueryHeight(0.02, context)),
             decoration: BoxDecoration(
               color: blackColor,
@@ -31,6 +32,17 @@ Future<dynamic> cancelAlertDialogue(
                     fontSize: mediaqueryHeight(0.0245, context),
                     fontWeight: FontWeight.w500,
                     fontColor: whiteColor),
+
+                    
+                    SizedBox(height:mediaqueryHeight(0.003, context)),
+             
+               
+                myFont(
+                  refundAlertText  ,
+                    fontFamily: balooChettan,
+                    fontSize: mediaqueryHeight(0.016, context),
+                    fontWeight: FontWeight.w400,
+                    fontColor: greyColor),
                 const Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

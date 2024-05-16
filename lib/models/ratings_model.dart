@@ -23,6 +23,7 @@ class ReviewsAndRatingsModel {
 
   Map<String, dynamic> toMap() {
     return {
+      ReviewDocumentModel.timeStamp :timestamp,
       ReviewDocumentModel.imagePath: imagepath,
       ReviewDocumentModel.ratings: rating,
       ReviewDocumentModel.review: review,
