@@ -1,6 +1,5 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member, unrelated_type_equality_checks, use_build_context_synchronously, avoid_print, no_leading_underscores_for_local_identifiers
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,6 @@ import 'package:trim_spot_user_side/data/data_provider/user_registration.dart';
 import 'package:trim_spot_user_side/data/shared_preference/functions.dart';
 import 'package:trim_spot_user_side/screens/bottom_navigation.dart';
 import 'package:trim_spot_user_side/utils/page%20transitions/fade_transition.dart';
-import 'package:trim_spot_user_side/utils/register_page/controllers.dart';
 import 'package:trim_spot_user_side/utils/register_page/formkey.dart';
 import 'package:trim_spot_user_side/utils/register_page/valuenotifier.dart';
 part 'form_validation_event.dart';
@@ -42,20 +40,6 @@ class FormValidationBloc
         return;
       }
       emit(LoadingState());
-
-      final collection =
-          await FirebaseFirestore.instance.collection("user_information").get();
-
-      final List<String> usernames = [];
-      usernames.clear();
-      for (var doc in collection.docs) {
-        usernames.add(doc.data()['username'] as String);
-      }
-
-      if (usernames.contains(registerUsernameController.text.trim())) {
-        emit(UserNameExists());
-        return;
-      }
 
       add(AuthenticateUserDetails(event.context));
     } else {

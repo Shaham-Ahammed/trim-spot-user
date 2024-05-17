@@ -49,6 +49,7 @@ class ReviewDocumentModel {
 }
 
 class BookingsShopSideDocumentModel {
+  static const String userDocId = "userId";
   static const String time = "time";
   static const String name = "name";
   static const String services = "services";

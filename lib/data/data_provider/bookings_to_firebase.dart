@@ -71,6 +71,7 @@ class BookingsToFirebase {
       final QueryDocumentSnapshot<Object?> shop, BuildContext context) async {
     final userDetails = await UserDataDocumentFromFirebase().userDocument();
     final name = userDetails[UserDocumentModel.username];
+    final userId = userDetails.id;
     final servicesSelected =
         BlocProvider.of<ServiceSelectedBloc>(context, listen: false)
             .state
@@ -101,14 +102,23 @@ class BookingsToFirebase {
             .doc(formattedDate)
             .collection(FirebaseNamesShopSide.bookingDetailsCollection);
 
+    final DocumentReference bookingdoc = CollectionReferences()
+        .shopDetailsReference()
+        .doc(shop.id)
+        .collection(FirebaseNamesShopSide.dailyBookingsCollection)
+        .doc(formattedDate);
+
     final data = SalonSideBookingModel(
             timestamp: Timestamp.now(),
             name: name,
             services: serviesInStringFormat,
             time: parsedTime,
-            totalAmount: totalAmount)
+            totalAmount: totalAmount,
+            userId: userId)
         .toMap();
+
     try {
+      await bookingdoc.set({"key": "value"});
       await shopBookingHistoryCollection.add(data);
     } catch (e) {
       print("error while adding in shop side");

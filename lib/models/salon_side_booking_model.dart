@@ -5,17 +5,20 @@ class SalonSideBookingModel {
   final String services;
   final String time;
   final String totalAmount;
+  final String userId;
   final Timestamp timestamp;
 
   SalonSideBookingModel(
       {required this.name,
+      required this.userId,
       required this.timestamp,
       required this.services,
       required this.time,
       required this.totalAmount});
 
   Map<String, dynamic> toMap() {
-    return {
+    return { 
+      "userId":userId,
       "timeStamp":timestamp,
       "name": name,
       "services": services,

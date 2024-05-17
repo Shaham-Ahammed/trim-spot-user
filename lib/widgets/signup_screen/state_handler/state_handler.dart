@@ -11,12 +11,7 @@ import 'package:trim_spot_user_side/widgets/signup_screen/network_error_snackbar
 
 class SignupStateHandler{
   static void handleState(BuildContext context , FormValidationState state){
-     if (state is UserNameExists) {
-                  registerUsernameController.clear();
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(errorSnackBar("username already exists"));
-                  Navigator.pop(context);
-                }
+  
                 if (state is NetworkError) {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(networkErrorSnackbar(context));

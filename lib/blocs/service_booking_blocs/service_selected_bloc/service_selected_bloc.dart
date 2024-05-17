@@ -19,7 +19,6 @@ class ServiceSelectedBloc
     if (map.containsKey(event.service)) {
       map.remove(event.service);
       emit(ServiceSelectedInitial(serviceMap: map));
-
       print("removed");
     } else {
       map.addAll({
