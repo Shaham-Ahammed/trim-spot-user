@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/bloc_observer.dart';
-import 'package:trim_spot_user_side/firebase_options.dart';
+import 'package:trim_spot_user_side/data/firebase_options.dart';
 import 'package:trim_spot_user_side/screens/splash_screen.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/providers/main_provider_list.dart';

@@ -97,24 +97,17 @@ flutter:
     - assets/images/s4.jpg
     - assets/images/s5.jpg
     - assets/images/s6.jpg
-    - assets/images/spalsh barber.jpg
     - assets/images/spalsh user blur.jpg
     - assets/images/spalsh user.jpg
-    - assets/images/splash barber.jpg
     - assets/images/intoduction1-2.jpeg
     - assets/icons/mdi--google.svg
     - assets/animations/bookmark_lottie.json
     - assets/icons/menu_icon.svg
-    - assets/images/shop_image.jpg
     - assets/animations/swipe_to_pay_animation.json
     - assets/animations/failed_animation.json
     - assets/animations/booking_succes_lottie.json
-    - assets/images/nobooking.png
-    - assets/images/nobooking2.png
     - assets/animations/nobooking.json
-    - assets/images/bookmarks.png
     - assets/images/bookmarks1.png
-    - assets/images/bookmarks2.png
     - assets/animations/loading_indicator_wallet.json
     - assets/images/empty wallet.png
     - assets/animations/horizontal loading on wallet.json
@@ -131,6 +124,7 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+
   fonts:
     - family: Baloo Chettan
       fonts:  
