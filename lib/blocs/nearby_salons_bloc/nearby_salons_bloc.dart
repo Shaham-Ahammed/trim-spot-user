@@ -7,7 +7,8 @@ part 'nearby_salons_event.dart';
 part 'nearby_salons_state.dart';
 
 class NearbySalonsBloc extends Bloc<NearbySalonsEvent, NearbySalonsState> {
-  NearbySalonsBloc() : super(const NearbySalonsInitial(listCount: 0, originalLength: 0)) {
+  NearbySalonsBloc()
+      : super(const NearbySalonsInitial(listCount: 0, originalLength: 0)) {
     on<ViewMorePressed>(_viewMorePressed);
     on<FetchingTotalLength>(_fetchTotalLength);
   }
@@ -19,23 +20,21 @@ class NearbySalonsBloc extends Bloc<NearbySalonsEvent, NearbySalonsState> {
         .get();
     final length = totalShop.docs.length;
     if (length > 10) {
-      emit(NearbySalonsInitial(listCount: 10, originalLength: state.originalLength));
+      emit(NearbySalonsInitial(
+          listCount: 10, originalLength: state.originalLength));
     } else {
-      emit(NearbySalonsInitial(listCount: length, originalLength: state.originalLength));
+      emit(NearbySalonsInitial(
+          listCount: length, originalLength: state.originalLength));
     }
   }
 
   _fetchTotalLength(
       FetchingTotalLength event, Emitter<NearbySalonsState> emit) async {
-    final totalShop = await CollectionReferences()
-        .shopDetailsReference()
-        .where(SalonDocumentModel.isApproved, isEqualTo: true)
-        .get();
-    final length = totalShop.docs.length;
+    final length = event.totalLength;
     if (length > 5) {
-      emit(NearbySalonsInitial(listCount: 5,originalLength: length));
+      emit(NearbySalonsInitial(listCount: 5, originalLength: length));
     } else {
-      emit(NearbySalonsInitial(listCount: length,originalLength: length));
+      emit(NearbySalonsInitial(listCount: length, originalLength: length));
     }
   }
 }

@@ -6,7 +6,7 @@ sealed class NearbySalonsEvent {}
 final class ViewMorePressed extends NearbySalonsEvent {}
 
 final class FetchingTotalLength extends NearbySalonsEvent {
-  final BuildContext context;
+  final int totalLength;
 
-  FetchingTotalLength({required this.context});
+  FetchingTotalLength({required this.totalLength});
 }
