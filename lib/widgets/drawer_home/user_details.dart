@@ -30,9 +30,14 @@ userEmail(BuildContext context) {
 }
 
 userName(BuildContext context) {
-  return myFont(context.watch<UserDetailsBloc>().state.userName.toUpperCase(),
-      fontFamily: belleza,
-      fontSize: mediaqueryHeight(0.026, context),
-      fontWeight: FontWeight.w600,
-      fontColor: whiteColor);
+  return SizedBox(
+    width: mediaqueryWidth(0.43, context),
+      
+      child: myFont(
+          context.watch<UserDetailsBloc>().state.userName.toUpperCase(),
+      overflow: TextOverflow.ellipsis,
+          fontFamily: belleza,
+          fontSize: mediaqueryHeight(0.026, context),
+          fontWeight: FontWeight.w600,
+          fontColor: whiteColor));
 }

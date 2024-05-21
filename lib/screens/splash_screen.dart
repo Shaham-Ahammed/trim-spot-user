@@ -51,7 +51,7 @@ checkTheScreen(context) async {
   await Future.delayed(const Duration(milliseconds: 2500));
   final sharedPre = await SharedPreferences.getInstance();
   final newUser = sharedPre.getBool(firstTimeUser);
-  if (newUser == true) {
+  if (newUser == null) {
     Navigator.of(context).pushReplacement(
         FadeTransitionPageRoute(child: FirstIntroductionPage()));
   } else {

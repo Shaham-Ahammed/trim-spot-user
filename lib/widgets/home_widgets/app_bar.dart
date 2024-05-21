@@ -58,11 +58,18 @@ class NameAndLocation extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        myFont(context.watch<UserDetailsBloc>().state.userName,
+        SizedBox(
+          width: mediaqueryWidth(0.55, context),
+
+          child:   myFont(context.watch<UserDetailsBloc>().state.userName,
+          overflow: TextOverflow.ellipsis,
             fontFamily: balooChettan,
             fontSize: mediaqueryHeight(0.023, context),
             fontWeight: FontWeight.normal,
             fontColor: whiteColor),
+
+        ),
+      
         Row(
           children: [
             Icon(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/profile_blocs/phone_bloc/profile_phone_bloc.dart';
 
@@ -33,9 +34,9 @@ class PhoneTextField extends StatelessWidget {
                   maxLength: 10,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
-                    if (value!.isEmpty) {
+                    if (value!.trim().isEmpty) {
                       return "please enter your phone number";
-                    } else if (value.length < 10) {
+                    } else if (value.trim().length < 10) {
                       return "enter a valid number";
                     }
 
@@ -45,10 +46,13 @@ class PhoneTextField extends StatelessWidget {
                       color: state.editPressed ? blackColor : whiteColor,
                       fontFamily: b612),
                   decoration: InputDecoration(
-                    counterText: "",
+                      counterText: "",
                       contentPadding: EdgeInsets.symmetric(
                           vertical: mediaqueryHeight(0.0072, context)),
                       border: InputBorder.none),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*$'))
+                  ],
                   controller: profilePhoneController,
                   cursorColor: Colors.blueGrey.shade200,
                   enableInteractiveSelection: false,
