@@ -6,13 +6,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:math';
 
 import 'package:geolocator/geolocator.dart';
+import 'package:trim_spot_user_side/blocs/location_permission_bloc/location_permission_bloc.dart';
 import 'package:trim_spot_user_side/blocs/nearby_salons_bloc/nearby_salons_bloc.dart';
 import 'package:trim_spot_user_side/data/firebase_collection_references/user_information_reference.dart';
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
 
 Future<List<QueryDocumentSnapshot<Object?>>> fetchNearbySalons(
     BuildContext context) async {
-  Position? userLocation = await fetchingUserLocation();
+  Position? userLocation = BlocProvider.of<LocationPermissionBloc>(context).state.currentPosition;
   print(userLocation);
   if (userLocation != null) {
     final userLatitude = userLocation.latitude;
@@ -54,12 +55,3 @@ double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
   return distance;
 }
 
-Future<Position?> fetchingUserLocation() async {
-  try {
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    return position;
-  } catch (e) {
-    return null;
-  }
-}

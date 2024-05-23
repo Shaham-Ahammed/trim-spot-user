@@ -60,16 +60,13 @@ class NameAndLocation extends StatelessWidget {
       children: [
         SizedBox(
           width: mediaqueryWidth(0.55, context),
-
-          child:   myFont(context.watch<UserDetailsBloc>().state.userName,
-          overflow: TextOverflow.ellipsis,
-            fontFamily: balooChettan,
-            fontSize: mediaqueryHeight(0.023, context),
-            fontWeight: FontWeight.normal,
-            fontColor: whiteColor),
-
+          child: myFont(context.watch<UserDetailsBloc>().state.userName,
+              overflow: TextOverflow.ellipsis,
+              fontFamily: balooChettan,
+              fontSize: mediaqueryHeight(0.023, context),
+              fontWeight: FontWeight.normal,
+              fontColor: whiteColor),
         ),
-      
         Row(
           children: [
             Icon(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/location_permission_bloc/location_permission_bloc.dart';
 import 'package:trim_spot_user_side/data/repository/network_stream.dart';
-import 'package:trim_spot_user_side/screens/search_screen.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/home/scaffold_key.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
@@ -12,7 +11,7 @@ import 'package:trim_spot_user_side/widgets/home_widgets/app_bar.dart';
 import 'package:trim_spot_user_side/widgets/home_widgets/category_items.dart';
 import 'package:trim_spot_user_side/widgets/home_widgets/drawer.dart';
 import 'package:trim_spot_user_side/widgets/home_widgets/headings.dart';
-import 'package:trim_spot_user_side/widgets/home_widgets/nearbysalon_listtile.dart';
+import 'package:trim_spot_user_side/widgets/home_widgets/neaby_salons_widgets/nearbysalons.dart';
 import 'package:trim_spot_user_side/widgets/home_widgets/search_box.dart';
 import 'package:trim_spot_user_side/widgets/home_widgets/state_handler/state_handler.dart';
 import 'package:trim_spot_user_side/widgets/home_widgets/viewmore_button.dart';
@@ -27,7 +26,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    context.read<LocationPermissionBloc>().add(GetLocationPermission());
+    if (BlocProvider.of<LocationPermissionBloc>(context)
+        .state
+        .currentLocation
+        .isEmpty) {
+      context.read<LocationPermissionBloc>().add(GetLocationPermission());
+    }
     super.initState();
   }
 
@@ -65,15 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           SizedBox(
                             height: mediaqueryHeight(0.03, context),
                           ),
-                          GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => const SearchScreen(
-                                          autoFocus: true,
-                                          backButtonNeeded: true,
-                                        )));
-                              },
-                              child: const SearchBox()),
+                         const SearchBox(),
                           SizedBox(
                             height: mediaqueryHeight(0.02, context),
                           ),
