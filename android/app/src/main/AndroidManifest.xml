@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <application
-        android:label="trim_spot_user_side"
+        android:label="TrimSpot"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/trimspot_user_logo3">
         <activity
             android:name=".MainActivity"
             android:exported="true"
