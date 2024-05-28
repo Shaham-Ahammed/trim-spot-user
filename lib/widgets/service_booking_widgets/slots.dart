@@ -31,7 +31,6 @@ class _SlotsPickingAreaState extends State<SlotsPickingArea> {
 
   @override
   Widget build(BuildContext context) {
-  
     return FutureBuilder(
       future: SlotTileFucntions().fetchingBookedSlots(widget.shop.id),
       builder: (context, snapshot) {

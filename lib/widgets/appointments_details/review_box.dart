@@ -13,7 +13,6 @@ Future<dynamic> reviewDialogue(
   return showDialog(
     context: context,
     builder: (context) {
-      reviewController.clear();
       return BlocProvider(
         create: (context) => RatingStarsBloc(),
         child: Dialog(
@@ -27,6 +26,10 @@ Future<dynamic> reviewDialogue(
                 return Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    const BackButtonOnRatingsAndReview(),
+                    SizedBox(
+                      height: mediaqueryHeight(0.02, context),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
@@ -81,7 +84,8 @@ Future<dynamic> reviewDialogue(
                           onPressed: () {
                             context.read<ReviewAndRatingBloc>().add(
                                 SubmitButtonPressed(
-                                    context: context, reviewDetails: bookingDetails));
+                                    context: context,
+                                    reviewDetails: bookingDetails));
                           },
                           child: myFont("Submit",
                               fontFamily: balooChettan,
@@ -97,4 +101,29 @@ Future<dynamic> reviewDialogue(
       );
     },
   );
+}
+
+class BackButtonOnRatingsAndReview extends StatelessWidget {
+  const BackButtonOnRatingsAndReview({
+    super.key,
+  });
+  
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.topRight,
+      child: IconButton(
+          iconSize: mediaqueryHeight(0.022, context),
+          style: const ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(greyColor3)),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.close,
+            color: whiteColor,
+            size: mediaqueryHeight(0.022, context),
+          )),
+    );
+  }
 }

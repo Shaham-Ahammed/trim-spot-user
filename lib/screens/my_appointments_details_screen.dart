@@ -5,7 +5,6 @@ import 'package:trim_spot_user_side/blocs/cancel_booking_bloc/cancel_booking_blo
 import 'package:trim_spot_user_side/blocs/review_and_rating/review_and_rating_bloc.dart';
 import 'package:trim_spot_user_side/data/repository/document_model.dart';
 import 'package:trim_spot_user_side/data/repository/network_stream.dart';
-
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/utils/no_network.dart';

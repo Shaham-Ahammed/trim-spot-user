@@ -5,6 +5,7 @@ import 'package:trim_spot_user_side/blocs/review_and_rating/review_and_rating_bl
 import 'package:trim_spot_user_side/screens/bottom_navigation.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/page%20transitions/no_transition_page_route.dart';
+import 'package:trim_spot_user_side/utils/rate_and_review/controller.dart';
 import 'package:trim_spot_user_side/utils/snack_bars.dart';
 import 'package:trim_spot_user_side/widgets/appointments_details/cancel_alert.dart';
 import 'package:trim_spot_user_side/widgets/appointments_details/cannot_cancel_alert.dart';
@@ -35,6 +36,12 @@ class MyAppointementStateHandler{
             }
   }
  static void handleStateOfRateAndReview(BuildContext context,ReviewAndRatingState state,QueryDocumentSnapshot<Object?> booking){
+    
+     if (state is ShowRateAndReviewOption) {
+        reviewController.clear();
+              Navigator.pop(context);
+              reviewDialogue(context, booking);
+            }
     if (state is ReviewSuccessfullySubmitted) {
               Navigator.pop(context);
               Navigator.pop(context);
@@ -69,9 +76,6 @@ class MyAppointementStateHandler{
                 backgroundColor: greyColor3,
               ));
             }
-            if (state is ShowRateAndReviewOption) {
-              Navigator.pop(context);
-              reviewDialogue(context, booking);
-            }
+          
  }
 }
