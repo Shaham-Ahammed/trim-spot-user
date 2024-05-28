@@ -43,6 +43,7 @@ class PhoneTextField extends StatelessWidget {
                     return null;
                   },
                   style: TextStyle(
+                     fontSize:  mediaqueryHeight(0.02, context),
                       color: state.editPressed ? blackColor : whiteColor,
                       fontFamily: b612),
                   decoration: InputDecoration(

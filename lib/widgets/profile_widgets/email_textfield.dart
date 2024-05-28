@@ -28,8 +28,9 @@ class EmailTextField extends StatelessWidget {
               children: [
                 Expanded(
                     child: TextFormField(
-                  style: const TextStyle(
+                  style:  TextStyle(
                       color: whiteColor,
+                         fontSize:  mediaqueryHeight(0.02, context),
                       fontFamily: b612),
                   decoration: const InputDecoration(border: InputBorder.none),
                   controller: profileEmailController,

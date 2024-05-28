@@ -29,6 +29,7 @@ import 'package:trim_spot_user_side/utils/mediaquery.dart';
           ),
           child: Icon(
             icon,
+            size: mediaqueryHeight(0.034, context),
             color: isSelected ? blackColor : whiteColor,
           ),
         ),

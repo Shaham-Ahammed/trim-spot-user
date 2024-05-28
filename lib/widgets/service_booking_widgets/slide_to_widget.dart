@@ -84,8 +84,9 @@ class _SlideToPayWidgetState extends State<SlideToPayWidget> {
                   height: mediaqueryHeight(0.082, context),
                   innerColor: cyanColor,
                   outerColor: Colors.white30,
-                  sliderButtonIcon: const Icon(
+                  sliderButtonIcon: Icon(
                     Icons.attach_money,
+                    size: mediaqueryHeight(0.03, context),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

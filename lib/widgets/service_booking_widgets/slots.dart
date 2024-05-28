@@ -31,6 +31,7 @@ class _SlotsPickingAreaState extends State<SlotsPickingArea> {
 
   @override
   Widget build(BuildContext context) {
+  
     return FutureBuilder(
       future: SlotTileFucntions().fetchingBookedSlots(widget.shop.id),
       builder: (context, snapshot) {
@@ -41,7 +42,8 @@ class _SlotsPickingAreaState extends State<SlotsPickingArea> {
             stream: CollectionReferences()
                 .shopDetailsReference()
                 .doc(widget.shop.id)
-                .collection(FirebaseNamesShopSide.slotBookingCollectionReference)
+                .collection(
+                    FirebaseNamesShopSide.slotBookingCollectionReference)
                 .doc(FirebaseNamesShopSide.slotsBookingDocument)
                 .snapshots(),
             builder: (context, snapshot) {
@@ -84,7 +86,7 @@ class _SlotsPickingAreaState extends State<SlotsPickingArea> {
                           children: timeSlotsRow.map((time) {
                             return Padding(
                               padding: EdgeInsets.only(
-                                  left: mediaqueryHeight(0.014, context)),
+                                  left: mediaqueryWidth(0.023, context)),
                               child: InkWell(
                                 borderRadius: BorderRadius.circular(8.0),
                                 onTap: () {
@@ -113,7 +115,8 @@ class _SlotsPickingAreaState extends State<SlotsPickingArea> {
                                     child: Center(
                                       child: myFont(time,
                                           fontFamily: cabinCondensed,
-                                          fontSize: 13,
+                                          fontSize:
+                                              mediaqueryHeight(0.018, context),
                                           fontWeight: FontWeight.normal,
                                           fontColor: SlotColorsInBookingScreen()
                                               .textColor(time, context, list)),

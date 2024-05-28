@@ -61,12 +61,14 @@ class _SearchFieldState extends State<SearchField> {
                   maxLength: 35,
                   style: const TextStyle(color: whiteColor),
                   decoration: InputDecoration(
-                      hintStyle: const TextStyle(color: greyColor2),
+
+                      hintStyle:const  TextStyle(color: greyColor2),
                       counterText: "",
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: mediaqueryHeight(0.01, context),
                           vertical: mediaqueryHeight(0.0132, context)),
                       hintText: "search salons, servies...",
+  
                       border: InputBorder.none),
                 ),
               ),

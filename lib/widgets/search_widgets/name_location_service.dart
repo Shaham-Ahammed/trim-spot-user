@@ -24,9 +24,10 @@ Row shopServices(BuildContext context, QueryDocumentSnapshot<Object?> shop) {
         width: mediaqueryWidth(0.02, context),
       ),
       SizedBox(
-          width: mediaqueryWidth(0.55, context),
+          width: mediaqueryHeight(0.22, context),
           child: myFont(services.join(', '),
               fontFamily: balooChettan,
+            
               fontSize: mediaqueryHeight(0.016, context),
               fontWeight: FontWeight.normal,
               fontColor: whiteColor))
