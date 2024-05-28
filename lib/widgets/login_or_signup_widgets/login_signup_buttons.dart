@@ -29,7 +29,7 @@ loginPageButtons(
           child: Center(
             child: myFont(text,
                 fontFamily: cabinCondensed,
-                fontSize: 20,
+                fontSize: mediaqueryHeight(0.025, context),
                 fontWeight: FontWeight.bold,
                 textalign: TextAlign.center,
                 fontColor: textColor),

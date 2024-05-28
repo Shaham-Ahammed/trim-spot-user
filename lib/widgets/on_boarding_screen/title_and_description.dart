@@ -24,7 +24,7 @@ class OnBoardingDescription extends StatelessWidget {
               EdgeInsets.symmetric(horizontal: mediaqueryWidth(0.1, context)),
           child: myFont(controller.items[index].subtitle,
               fontFamily: balooChettan,
-              fontSize: 16,
+              fontSize: mediaqueryHeight(0.023, context),
               fontWeight: FontWeight.normal,
               fontColor: greyColor),
         ));
@@ -47,7 +47,7 @@ class OnBoardingTitle2 extends StatelessWidget {
         bottom: mediaqueryHeight(0.25, context),
         child: myFont(controller.items[index].title2,
             fontFamily: b612,
-            fontSize: 28,
+            fontSize: mediaqueryHeight(0.036, context),
             fontWeight: FontWeight.bold,
             fontColor: cyanColor));
   }
@@ -69,7 +69,7 @@ class OnBoardingTitle extends StatelessWidget {
         bottom: mediaqueryHeight(0.3, context),
         child: myFont(controller.items[index].title,
             fontFamily: b612,
-            fontSize: 28,
+            fontSize:  mediaqueryHeight(0.036, context),
             fontWeight: FontWeight.bold,
             fontColor: whiteColor));
   }

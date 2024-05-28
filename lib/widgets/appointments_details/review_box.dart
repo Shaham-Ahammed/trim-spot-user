@@ -76,7 +76,7 @@ Future<dynamic> reviewDialogue(
                     if (state.rated != 0)
                       TextButton(
                           style: const ButtonStyle(
-                              overlayColor: MaterialStatePropertyAll(
+                              overlayColor: WidgetStatePropertyAll(
                                   Color.fromARGB(255, 129, 129, 129))),
                           onPressed: () {
                             context.read<ReviewAndRatingBloc>().add(

@@ -24,8 +24,7 @@ class RegisterButton extends StatelessWidget {
             context
                 .read<FormValidationBloc>()
                 .add(SubmitButtonPressed(context));
-            // Navigator.of(context)
-            //     .push(NoTransitionPageRoute(child: OtpVerificationScreen()));
+       
           },
           borderRadius: BorderRadius.circular(90),
           child: Container(
@@ -35,7 +34,7 @@ class RegisterButton extends StatelessWidget {
             child: Center(
               child: myFont("Register",
                   fontFamily: balooChettan,
-                  fontSize: 20,
+                  fontSize: mediaqueryHeight(0.025, context),
                   fontWeight: FontWeight.w600,
                   fontColor: blackColor),
             ),

@@ -28,7 +28,7 @@ class LoginButton extends StatelessWidget {
           child: Center(
             child: myFont("Login",
                 fontFamily: balooChettan,
-                fontSize: 20,
+                fontSize: mediaqueryHeight(0.026, context),
                 fontWeight: FontWeight.w600,
                 fontColor: blackColor),
           ),

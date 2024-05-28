@@ -20,7 +20,7 @@ class GoogleSignInWidget extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(90),
         onTap: () {
-          context.read<GoogleSignInBloc>().add(GoogleSigninButtonPressed());
+          context.read<GoogleSignInBloc>().add(GoogleSigninButtonPressed(context: context));
         },
         child: Container(
           height: mediaqueryHeight(0.06, context),
@@ -29,13 +29,13 @@ class GoogleSignInWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset("assets/icons/mdi--google.svg"),
+              SvgPicture.asset("assets/icons/mdi--google.svg",height: mediaqueryHeight(0.03, context),),
               SizedBox(
                 width: mediaqueryWidth(0.04, context),
               ),
               myFont("Sign in with google",
                   fontFamily: balooChettan,
-                  fontSize: 18,
+                  fontSize: mediaqueryHeight(0.024, context),
                   fontWeight: FontWeight.w600,
                   fontColor: blackColor)
             ],

@@ -26,7 +26,7 @@ class OrSeperator extends StatelessWidget {
         ),
         myFont("or",
             fontFamily: balooChettan,
-            fontSize: 18,
+            fontSize: mediaqueryHeight(0.025, context),
             fontWeight: FontWeight.w600,
             fontColor: greyColor2),
         SizedBox(

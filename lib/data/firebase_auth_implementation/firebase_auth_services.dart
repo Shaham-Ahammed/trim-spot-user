@@ -35,7 +35,8 @@ class FirebaseAuthService {
     return null;
   }
 
-  googleSigninAuthentication() async {
+ 
+ Future<bool> googleSigninAuthentication() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
     await googleSignIn.signOut();
     final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -52,6 +53,9 @@ class FirebaseAuthService {
       await firebaseAuth.signInWithCredential(credential);
       await AddUserDetailsToFirebase()
           .addDataAfterCheckingWhileGoogleSignin(googleSignInAccount);
+          return true;
+    }else{
+      return false;
     }
   }
 }

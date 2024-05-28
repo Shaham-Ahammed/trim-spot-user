@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/on_boarding_bloc/onboardind_bloc_bloc.dart';
+import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/onboarding/introduction_lists.dart';
 import 'package:trim_spot_user_side/widgets/on_boarding_screen/curved_contianer.dart';
 import 'package:trim_spot_user_side/widgets/on_boarding_screen/images.dart';
@@ -21,6 +22,7 @@ class FirstIntroductionPage extends StatelessWidget {
         OnBoardingStateHandler.handlerState(context, state, pageController);
       },
       child: Scaffold(
+        backgroundColor: blackColor,
           bottomSheet: SmoothPageIndincatorAndNextButton(
               pageController: pageController, controller: controller),
           body: PageView.builder(

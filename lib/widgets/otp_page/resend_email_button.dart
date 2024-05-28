@@ -6,23 +6,24 @@ import 'package:trim_spot_user_side/utils/font.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 
 class ResendEmailButton extends StatelessWidget {
-  const ResendEmailButton({
-    super.key,
-    required this.fromLogin
-  });
+  const ResendEmailButton({super.key, required this.fromLogin});
   final bool fromLogin;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
         style: ButtonStyle(
-          overlayColor: MaterialStatePropertyAll(Colors.grey.withOpacity(.2)),
+          overlayColor: WidgetStatePropertyAll(Colors.grey.withOpacity(.2)),
         ),
         onPressed: () {
-       fromLogin
-        ? context.read<LoginValidationBloc>().add(ResendEmailButtonPressedFromLogin())
-        : context.read<FormValidationBloc>().add(ResendEmailButtonPressed());
-    return;
+          fromLogin
+              ? context
+                  .read<LoginValidationBloc>()
+                  .add(ResendEmailButtonPressedFromLogin())
+              : context
+                  .read<FormValidationBloc>()
+                  .add(ResendEmailButtonPressed());
+          return;
         },
         child: myFont("resend email",
             fontFamily: balooChettan,

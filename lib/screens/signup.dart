@@ -42,7 +42,7 @@ class SignUpScreen extends StatelessWidget {
                         SizedBox(
                           height: mediaqueryHeight(0.04, context),
                         ),
-                        welcomeText(),
+                        welcomeText(context),
                         SizedBox(
                           height: mediaqueryHeight(0.02, context),
                         ),
