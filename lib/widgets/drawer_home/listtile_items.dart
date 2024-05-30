@@ -11,6 +11,7 @@ import 'package:trim_spot_user_side/utils/page%20transitions/fade_transition.dar
 import 'package:trim_spot_user_side/utils/page%20transitions/slide_transition.dart';
 import 'package:trim_spot_user_side/widgets/drawer_home/logout_confirm.dart';
 import 'package:trim_spot_user_side/widgets/drawer_home/mywallet_listtile.dart';
+import 'package:trim_spot_user_side/widgets/drawer_home/rating_alert.dart';
 import 'package:trim_spot_user_side/widgets/drawer_home/version_number.dart';
 
 Expanded listviewDrawerHome(BuildContext context) {
@@ -63,20 +64,21 @@ Expanded listviewDrawerHome(BuildContext context) {
         }, icon: Icons.headset_mic_outlined, title: "Customer Support"),
         drawerListTiles(context, iconSize: mediaqueryHeight(0.029, context),
             function: () {
-                Navigator.pop(context);
-          Navigator.of(context)
-              .push(FadeTransitionPageRoute(child: const TermsAndConditionsScreen())); 
+          Navigator.pop(context);
+          Navigator.of(context).push(
+              FadeTransitionPageRoute(child: const TermsAndConditionsScreen()));
           return null;
         }, icon: Icons.list_alt_outlined, title: "Terms & Conditions"),
         drawerListTiles(context, iconSize: mediaqueryHeight(0.029, context),
             function: () {
-                    Navigator.pop(context);
-          Navigator.of(context)
-              .push(FadeTransitionPageRoute(child: const PrivacyPolicyScreen())); 
+          Navigator.pop(context);
+          Navigator.of(context).push(
+              FadeTransitionPageRoute(child: const PrivacyPolicyScreen()));
           return null;
         }, icon: Icons.privacy_tip_outlined, title: "Privacy Policy"),
         drawerListTiles(context, iconSize: mediaqueryHeight(0.029, context),
             function: () {
+          ratingAlert(context);
           return null;
         },
             color: Colors.yellow.shade600,
