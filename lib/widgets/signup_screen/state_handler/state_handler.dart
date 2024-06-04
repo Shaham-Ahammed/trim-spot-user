@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:trim_spot_user_side/blocs/user_form_validation/form_validation_bloc.dart';
+import 'package:trim_spot_user_side/blocs/registration_bloc/form_validation_bloc.dart';
 import 'package:trim_spot_user_side/screens/otp_verification.dart';
 import 'package:trim_spot_user_side/utils/page%20transitions/slide_transition.dart';
 import 'package:trim_spot_user_side/utils/register_page/controllers.dart';

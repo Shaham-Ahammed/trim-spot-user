@@ -16,7 +16,7 @@ import 'package:trim_spot_user_side/blocs/profile_image_bloc/profile_image_bloc.
 import 'package:trim_spot_user_side/blocs/review_and_rating/review_and_rating_bloc.dart';
 import 'package:trim_spot_user_side/blocs/search_bloc/search_bloc.dart';
 import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
-import 'package:trim_spot_user_side/blocs/user_form_validation/form_validation_bloc.dart';
+import 'package:trim_spot_user_side/blocs/registration_bloc/form_validation_bloc.dart';
 
 List<BlocProvider> mainProviders = [
   BlocProvider<SearchBloc>(create: (context) => SearchBloc()),

@@ -68,7 +68,7 @@ class FormValidationBloc
     }
     emit(LoadingStateOtpScreenFromRegister());
     try {
-      FirebaseAuth.instance.currentUser?.reload();
+      await FirebaseAuth.instance.currentUser?.reload();
       final user = FirebaseAuth.instance.currentUser;
       if (user!.emailVerified) {
         await SharedPreferenceOperation().setGmail(user.email!);

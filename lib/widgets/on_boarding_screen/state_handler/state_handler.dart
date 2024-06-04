@@ -11,7 +11,7 @@ class OnBoardingStateHandler{
               curve: Curves.easeIn);
         }
         if (state is NavigateToLoginOrSignupPage) {
-          Navigator.of(context).push(FadeTransitionPageRoute(
+          Navigator.of(context).pushReplacement(FadeTransitionPageRoute(
             child: const LoginOrSignup(),
           ));
         }

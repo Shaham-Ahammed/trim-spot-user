@@ -19,7 +19,7 @@ Future<List<QueryDocumentSnapshot<Object?>>> fetchNearbySalons(
     final userLatitude = userLocation.latitude;
     final userLongitude = userLocation.longitude;
 
-    final salons = await CollectionReferences().shopDetailsReference().get();
+    final salons = await CollectionReferences().shopDetailsReference().where(SalonDocumentModel.isApproved,isEqualTo: true). get();
 
     final List<QueryDocumentSnapshot<Object?>> nearbySalons = [];
 
