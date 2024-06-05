@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/data/firebase_collection_references/user_information_reference.dart';
@@ -11,6 +12,7 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
   UserDetailsBloc()
       : super(const UserDetailsInitial(
             profileImage: '',
+            user: null,
             userName: '',
             id: "",
             phone: '',
@@ -29,9 +31,12 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
         .where(UserDocumentModel.email, isEqualTo: email)
         .get();
 
+    final FirebaseAuth auth = FirebaseAuth.instance;
+
     final userData = collection.docs.first;
-   
+
     emit(UserDetailsInitial(
+        user: auth.currentUser,
         profileImage: userData[UserDocumentModel.imagePath],
         userName: userData[UserDocumentModel.username],
         phone: userData[UserDocumentModel.phone],

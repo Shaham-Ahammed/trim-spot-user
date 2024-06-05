@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/registration_bloc/form_validation_bloc.dart';
+import 'package:trim_spot_user_side/blocs/registration_password_eye_bloc/registration_password_eye_bloc.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/utils/register_page/formkey.dart';
@@ -22,54 +23,57 @@ class SignUpScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: blackColor,
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          decoration: backgroundImage(),
-          child: SingleChildScrollView(
-            child: BlocConsumer<FormValidationBloc, FormValidationState>(
-              listener: (context, state) {
-                SignupStateHandler.handleState(context, state);
-              },
-              builder: (context, state) {
-                return Padding(
-                  padding: screenPadding(context),
-                  child: Form(
-                    key: registerFormKey,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: mediaqueryHeight(0.04, context),
-                        ),
-                        welcomeText(context),
-                        SizedBox(
-                          height: mediaqueryHeight(0.02, context),
-                        ),
-                        const ProfileImage(),
-                        const ProfileImageError(),
-                        SizedBox(
-                          height: mediaqueryHeight(0.03, context),
-                        ),
-                        const UsernameTextField(),
-                        textFormFieldSizedBox(context),
-                        const EmailTextField(),
-                        textFormFieldSizedBox(context),
-                        const PhoneTextField(),
-                        textFormFieldSizedBox(context),
-                        const PasswordTextField(),
-                        textFormFieldSizedBox(context),
-                        const ConfirmPasswordTextField(),
-                        SizedBox(
-                          height: mediaqueryHeight(0.04, context),
-                        ),
-                        const RegisterButton(),
-                        SizedBox(height: mediaqueryHeight(0.06, context)),
-                      ],
+      body: BlocProvider(
+        create: (context) => RegistrationPasswordEyeBloc(),
+        child: SafeArea(
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: backgroundImage(),
+            child: SingleChildScrollView(
+              child: BlocConsumer<FormValidationBloc, FormValidationState>(
+                listener: (context, state) {
+                  SignupStateHandler.handleState(context, state);
+                },
+                builder: (context, state) {
+                  return Padding(
+                    padding: screenPadding(context),
+                    child: Form(
+                      key: registerFormKey,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: mediaqueryHeight(0.04, context),
+                          ),
+                          welcomeText(context),
+                          SizedBox(
+                            height: mediaqueryHeight(0.02, context),
+                          ),
+                          const ProfileImage(),
+                          const ProfileImageError(),
+                          SizedBox(
+                            height: mediaqueryHeight(0.03, context),
+                          ),
+                          const UsernameTextField(),
+                          textFormFieldSizedBox(context),
+                          const EmailTextField(),
+                          textFormFieldSizedBox(context),
+                          const PhoneTextField(),
+                          textFormFieldSizedBox(context),
+                          const PasswordTextField(),
+                          textFormFieldSizedBox(context),
+                          const ConfirmPasswordTextField(),
+                          SizedBox(
+                            height: mediaqueryHeight(0.04, context),
+                          ),
+                          const RegisterButton(),
+                          SizedBox(height: mediaqueryHeight(0.06, context)),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
         ),

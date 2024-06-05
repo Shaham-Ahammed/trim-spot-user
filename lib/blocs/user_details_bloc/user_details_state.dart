@@ -7,7 +7,8 @@ sealed class UserDetailsState {
   final String phone;
   final String password;
   final String email;
-   final String id;
+  final String id;
+  final User? user;
 
   const UserDetailsState(
       {required this.profileImage,
@@ -15,14 +16,15 @@ sealed class UserDetailsState {
       required this.phone,
       required this.password,
       required this.id,
+      required this.user,
       required this.email});
 }
 
 final class UserDetailsInitial extends UserDetailsState {
   const UserDetailsInitial(
-    
       {required super.profileImage,
       required super.id,
+      required super.user,
       required super.userName,
       required super.phone,
       required super.password,

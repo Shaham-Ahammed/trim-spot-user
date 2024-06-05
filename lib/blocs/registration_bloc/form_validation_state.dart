@@ -13,8 +13,6 @@ final class LoadingStateOtpScreenFromRegister extends FormValidationState {}
 
 final class NetworkError extends FormValidationState {}
 
-
-
 final class NavigateToHomePage extends FormValidationState {}
 
 final class RegisrationFailure extends FormValidationState {
