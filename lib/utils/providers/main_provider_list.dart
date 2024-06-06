@@ -3,6 +3,7 @@ import 'package:trim_spot_user_side/blocs/cancel_booking_bloc/cancel_booking_blo
 import 'package:trim_spot_user_side/blocs/booking_completion_bloc/booking_service_bloc.dart';
 import 'package:trim_spot_user_side/blocs/bookmark_animation_bloc/book_mark_animation_bloc.dart';
 import 'package:trim_spot_user_side/blocs/bottom_nav_bloc/bottom_navigation_bloc.dart';
+import 'package:trim_spot_user_side/blocs/forgot_password_bloc/forgot_password_bloc.dart';
 import 'package:trim_spot_user_side/blocs/google_sign_in_bloc/google_sign_in_bloc.dart';
 import 'package:trim_spot_user_side/blocs/location_permission_bloc/location_permission_bloc.dart';
 import 'package:trim_spot_user_side/blocs/login_validation/login_validation_bloc.dart';
@@ -19,6 +20,7 @@ import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.da
 import 'package:trim_spot_user_side/blocs/registration_bloc/form_validation_bloc.dart';
 
 List<BlocProvider> mainProviders = [
+  BlocProvider<ForgotPasswordBloc>(create: (context) => ForgotPasswordBloc()),
   BlocProvider<SearchBloc>(create: (context) => SearchBloc()),
   BlocProvider<ReviewAndRatingBloc>(create: (context) => ReviewAndRatingBloc()),
   BlocProvider<CancelBookingBloc>(create: (context) => CancelBookingBloc()),

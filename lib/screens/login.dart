@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_user_side/blocs/google_sign_in_bloc/google_sign_in_bloc.dart';
 import 'package:trim_spot_user_side/blocs/login_eye_button_bloc/login_eye_button_bloc.dart';
-
 import 'package:trim_spot_user_side/blocs/login_validation/login_validation_bloc.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
 import 'package:trim_spot_user_side/utils/login_screen/formkey.dart';
 import 'package:trim_spot_user_side/utils/mediaquery.dart';
 import 'package:trim_spot_user_side/widgets/login_page_widgets/background_image.dart';
+import 'package:trim_spot_user_side/widgets/login_page_widgets/forget_password_text.dart';
 import 'package:trim_spot_user_side/widgets/login_page_widgets/google_signin.dart';
 import 'package:trim_spot_user_side/widgets/login_page_widgets/login_button.dart';
 import 'package:trim_spot_user_side/widgets/login_page_widgets/or_seperator.dart';
@@ -73,6 +73,10 @@ class LoginScreen extends StatelessWidget {
                           ),
                           const PasswordLoginTextFormfield(),
                           SizedBox(
+                            height: mediaqueryHeight(0.01, context),
+                          ),
+                         const ForgotPasswordButton(),
+                          SizedBox(
                             height: mediaqueryHeight(0.04, context),
                           ),
                           const LoginButton(),
@@ -93,3 +97,4 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+

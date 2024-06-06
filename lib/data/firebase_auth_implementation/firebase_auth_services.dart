@@ -1,8 +1,9 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print,, deprecated_member_use
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:trim_spot_user_side/data/data_provider/user_registration.dart';
+import 'package:trim_spot_user_side/utils/forgot_password/controller.dart';
 import 'package:trim_spot_user_side/utils/login_screen/controllers.dart';
 import 'package:trim_spot_user_side/utils/register_page/controllers.dart';
 
@@ -35,8 +36,28 @@ class FirebaseAuthService {
     return null;
   }
 
- 
- Future<bool> googleSigninAuthentication() async {
+  Future<String> sendPasswordResetLink() async {
+    try {
+      final list = await _auth
+          .fetchSignInMethodsForEmail(forgotPasswordEmailController.text);
+      print(list);
+      if (list.isEmpty) {
+        return "notRegistered";
+      } else {
+        try {
+          await _auth.sendPasswordResetEmail(
+              email: forgotPasswordEmailController.text);
+          return "success";
+        } catch (e) {
+          return "failure";
+        }
+      }
+    } on FirebaseAuthException catch (_) {
+      return "somethingwentwrong";
+    }
+  }
+
+  Future<bool> googleSigninAuthentication() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
     await googleSignIn.signOut();
     final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -53,8 +74,8 @@ class FirebaseAuthService {
       await firebaseAuth.signInWithCredential(credential);
       await AddUserDetailsToFirebase()
           .addDataAfterCheckingWhileGoogleSignin(googleSignInAccount);
-          return true;
-    }else{
+      return true;
+    } else {
       return false;
     }
   }

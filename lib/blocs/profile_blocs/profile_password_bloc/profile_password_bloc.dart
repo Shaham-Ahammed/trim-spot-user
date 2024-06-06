@@ -34,8 +34,9 @@ class ProfilePasswordBloc
 
           final User? user =
               BlocProvider.of<UserDetailsBloc>(event.context).state.user;
-
+           
           if (user != null) {
+          
             await user.updatePassword(event.newPasswordController.text);
           }
         } catch (e) {
