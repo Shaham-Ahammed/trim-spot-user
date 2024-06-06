@@ -34,6 +34,8 @@ class ProfileStateHandler{
                 context.watch<UserDetailsBloc>().state.userName;
           }
 
+        
+
           if (state is NetworkErrorWhileUpdatingProfile) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(networkErrorSnackbar(context));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:trim_spot_user_side/blocs/profile_blocs/profile_password_bloc/profile_password_bloc.dart';
 import 'package:trim_spot_user_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_user_side/utils/colors.dart';
@@ -12,17 +13,22 @@ import 'package:trim_spot_user_side/widgets/login_page_widgets/loading_indicator
 import 'package:trim_spot_user_side/widgets/profile_widgets/password_widgets/newpassword_textfield.dart';
 import 'package:trim_spot_user_side/widgets/profile_widgets/password_widgets/oldpassword_textfield.dart';
 
-
 Future<dynamic> changePasswordAlert(BuildContext context) {
   return showDialog(
     barrierDismissible: false,
     barrierColor: Colors.black87,
     context: context,
-    builder: (BuildContext context) {
+    builder: (BuildContext context2) {
       return BlocListener<ProfilePasswordBloc, ProfilePasswordState>(
         listener: (context, state) {
           if (state is PasswordUpdating) {
             loadingIndicator(context);
+          }
+          if (state is IncorrectPassword) {
+            Fluttertoast.showToast(
+                backgroundColor: redErrorColor,
+                msg: "incorrect old password",
+                toastLength: Toast.LENGTH_SHORT);
           }
           if (state is PasswordUpdated) {
             context

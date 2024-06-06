@@ -5,7 +5,7 @@ class UserModel {
   final String username;
   final String email;
   final String phone;
-  final String password;
+
   final List<String> bookmarkedShops;
 
   UserModel(
@@ -14,7 +14,7 @@ class UserModel {
       required this.email,
       required this.phone,
       required this.bookmarkedShops,
-      required this.password});
+     });
 
   Map<String, dynamic> toMap() {
     return {
@@ -22,7 +22,7 @@ class UserModel {
       UserDocumentModel.username: username,
       UserDocumentModel.email: email,
       UserDocumentModel.phone: phone,
-      UserDocumentModel.password: password,
+      
       UserDocumentModel.bookmarkedShops: bookmarkedShops
     };
   }

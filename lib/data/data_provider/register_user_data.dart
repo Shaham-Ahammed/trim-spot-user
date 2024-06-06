@@ -8,7 +8,7 @@ class UserDetailsData {
         username: registerUsernameController.text.trim(),
         email: registerEmailController.text.trim(),
         phone: registerPhoneController.text.trim(),
-        password: registerPasswordController.text.trim(),
+     
         bookmarkedShops: []).toMap();
     return data;
   }

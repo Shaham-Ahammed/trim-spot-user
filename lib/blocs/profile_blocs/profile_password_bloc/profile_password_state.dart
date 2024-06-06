@@ -18,3 +18,7 @@ final class PasswordUpdating extends ProfilePasswordState {
 final class PasswordUpdated extends ProfilePasswordState {
   const PasswordUpdated({required super.obscureText});
 }
+
+final class IncorrectPassword extends ProfilePasswordState {
+  const IncorrectPassword({required super.obscureText});
+}

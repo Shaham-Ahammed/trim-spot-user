@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:trim_spot_user_side/utils/colors.dart';
 
 void openCheckout(amount, Razorpay razorpay) async {
   amount = amount * 100;
@@ -25,6 +26,7 @@ void openCheckout(amount, Razorpay razorpay) async {
 
   void handlePaymentError(PaymentFailureResponse response) {
     Fluttertoast.showToast(
+       backgroundColor: redErrorColor,
         msg: "Payment Fail${response.message!}",
         toastLength: Toast.LENGTH_SHORT);
   }
